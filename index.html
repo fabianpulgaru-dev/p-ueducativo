@@ -1722,6 +1722,65 @@ button[disabled]{
   .your-turn-head,.lab-comparison{grid-column:1}
 }
 
+
+/* =========================================================
+   V4.2 · NAVEGACIÓN PERSISTENTE
+   ========================================================= */
+.main{position:relative}
+.footer{
+  position:relative;
+  z-index:90;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.footer .left,.footer .right{
+  position:absolute;
+  bottom:10px;
+  z-index:130;
+}
+.footer .left{left:20px}
+.footer .right{right:20px}
+.footer .right .btn.primary{
+  min-width:118px;
+  min-height:38px;
+  box-shadow:0 8px 20px rgba(41,46,74,.16);
+}
+.footer .left .btn{
+  min-height:36px;
+}
+/* El dock permanece al centro sin cubrir la navegación lateral. */
+.dock{z-index:110}
+@media(max-width:760px){
+  .footer .left{left:10px}
+  .footer .right{right:10px}
+  .footer .right .btn.primary{min-width:104px}
+}
+
+
+/* V4.3 · CTA DE INICIO VISIBLE */
+.welcome-start-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:14px;
+  align-items:center;
+}
+.welcome-start-btn{
+  border:0;
+  border-radius:11px;
+  padding:10px 14px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#252525;
+  font-size:calc(.64rem * var(--font-scale));
+  font-weight:900;
+  box-shadow:0 8px 22px rgba(0,0,0,.15);
+}
+.welcome-start-btn:hover{transform:translateY(-1px)}
+@media(max-width:760px){
+  .welcome-start-row{grid-template-columns:1fr}
+  .welcome-start-btn{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -1793,7 +1852,7 @@ button[disabled]{
                       <h2>¿Qué negocio tienes hoy y cómo funciona realmente?</h2>
                       <p>Construirás una fotografía inicial de tu actividad: qué ofreces, para quién, cómo funciona el recorrido de un cliente, qué personas y recursos participan y qué información utilizas para decidir.</p>
                     </div>
-                    <div class="welcome-bottom"><strong>Al terminar:</strong> tendrás una ficha “Mi negocio hoy” que servirá como materia prima para todo el programa.</div>
+                    <div class="welcome-bottom welcome-start-row"><div><strong>Al terminar:</strong> tendrás una ficha “Mi negocio hoy” que servirá como materia prima para todo el programa.</div><button class="welcome-start-btn" type="button" onclick="move(1)">Comenzar módulo →</button></div>
                   </div>
                   <div class="orientation-right">
                     <div class="ori-card"><span class="k">Principio</span><strong>Describir antes de evaluar</strong><p>Primero hacemos visible la realidad; después aprendemos a interpretarla.</p></div>
