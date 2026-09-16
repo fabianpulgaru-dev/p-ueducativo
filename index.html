@@ -526,6 +526,286 @@ td select{width:100%;border:1px solid var(--line);background:#fff;border-radius:
   .choice-grid,.identity-form,.eco-board,.clue-grid,.model-board,.lab-columns,.map-cards,.snapshot-grid{grid-template-columns:1fr}
   .drawer{left:10px;right:10px;width:auto;top:10px;bottom:82px}.theme-panel{left:10px;right:10px;width:auto;top:52px}
 }
+
+/* =========================================================
+   V2 · ESPACIO DE TRABAJO, BARRAS COLAPSABLES Y GUÍA DE COLOR
+   ========================================================= */
+
+/* Transiciones estructurales */
+.app,
+.lesson-shell,
+.sidebar,
+.aside{
+  transition:grid-template-columns .22s ease,width .22s ease,padding .22s ease,opacity .18s ease;
+}
+
+/* ---------- BARRA IZQUIERDA COLAPSABLE ---------- */
+.brand{position:relative}
+.brand-copy{min-width:0}
+.side-collapse-btn{
+  margin-left:auto;
+  flex:0 0 30px;
+  width:30px;height:30px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:rgba(255,255,255,.72);
+  color:var(--text-2);
+  font-size:calc(.9rem * var(--font-scale));
+  font-weight:900;
+  box-shadow:0 3px 10px rgba(40,45,75,.04);
+}
+.side-collapse-btn:hover{background:#fff}
+.left-collapsed .app{grid-template-columns:78px 1fr}
+.left-collapsed .sidebar{padding-left:10px;padding-right:10px}
+.left-collapsed .brand{
+  padding-left:0;padding-right:0;
+  flex-direction:column;
+  gap:7px;
+}
+.left-collapsed .brand-copy,
+.left-collapsed .side-label,
+.left-collapsed .mod > span:nth-child(2),
+.left-collapsed .side-progress-head span,
+.left-collapsed .side-bottom p{
+  display:none;
+}
+.left-collapsed .side-collapse-btn{
+  margin:0;
+  transform:rotate(180deg);
+}
+.left-collapsed .module-list{gap:6px}
+.left-collapsed .mod{
+  grid-template-columns:32px;
+  justify-content:center;
+  padding:7px 4px;
+  position:relative;
+}
+.left-collapsed .mod .n{
+  width:32px;height:32px;
+}
+.left-collapsed .mod .st{
+  position:absolute;
+  right:4px;top:3px;
+  width:10px;height:10px;
+  font-size:0;
+  border-radius:50%;
+  background:#c9cdd7;
+  border:2px solid rgba(255,255,255,.9);
+}
+.left-collapsed .mod.done .st{background:var(--success)}
+.left-collapsed .mod.active .st{background:var(--accent)}
+.left-collapsed .side-bottom{padding:12px 4px 3px}
+.left-collapsed .side-progress-head strong{
+  width:100%;text-align:center;
+  font-size:calc(.6rem * var(--font-scale));
+}
+
+/* ---------- GUÍA DERECHA COLAPSABLE ---------- */
+.lesson-shell{grid-template-columns:minmax(0,1fr) 250px}
+.guide-toggle{white-space:nowrap}
+.right-collapsed .lesson-shell{grid-template-columns:minmax(0,1fr) 54px}
+.right-collapsed .aside{
+  min-width:54px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  gap:8px;
+  padding:7px 5px;
+  border-radius:15px;
+  background:rgba(255,255,255,.44);
+  border:1px solid rgba(255,255,255,.70);
+}
+.right-collapsed .aside-card,
+.right-collapsed .aside-output{display:none}
+.aside-rail{display:none}
+.right-collapsed .aside-rail{
+  display:flex;
+  width:100%;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.aside-rail button{
+  width:38px;height:38px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#fff;
+  color:var(--text-2);
+  font-weight:900;
+  box-shadow:0 4px 12px rgba(40,45,75,.05);
+}
+.aside-rail .rail-dot{
+  width:12px;height:12px;
+  border-radius:50%;
+  border:0;
+  padding:0;
+  background:var(--phase-color,var(--accent));
+  box-shadow:0 0 0 5px var(--phase-soft,var(--accent-soft));
+}
+
+/* ---------- GUÍA DE COLOR POR MOMENTO DIDÁCTICO ---------- */
+.screen{
+  --phase-color:#7c6aaf;
+  --phase-soft:#eeeafa;
+}
+.screen[data-title="Bienvenida"]{--phase-color:#7f6bb6;--phase-soft:#eeeafa}
+.screen[data-title="Este es mi negocio"]{--phase-color:#537fa5;--phase-soft:#e8f1f7}
+.screen[data-title="Así funciona"]{--phase-color:#4c8791;--phase-soft:#e4f2f3}
+.screen[data-title="Quién y qué lo hace posible"]{--phase-color:#648a55;--phase-soft:#ebf3e6}
+.screen[data-title="Cómo sé lo que ocurre"]{--phase-color:#a77a2e;--phase-soft:#f7efd9}
+.screen[data-title="Mi fotografía de hoy"]{--phase-color:#a35f73;--phase-soft:#f6e9ed}
+
+.screen[data-title="Algo no cuadra"]{--phase-color:#a96555;--phase-soft:#f6e9e5}
+.screen[data-title="Qué necesitamos mirar"]{--phase-color:#4f7ea9;--phase-soft:#e7f0f8}
+.screen[data-title="Mirar el negocio completo"]{--phase-color:#765fae;--phase-soft:#ede9f8}
+.screen[data-title="Síntoma, evidencia y problema"]{--phase-color:#b47a27;--phase-soft:#faf0da}
+.screen[data-title="Ahora mira el tuyo"]{--phase-color:#5d895d;--phase-soft:#e9f3e8}
+.screen[data-title="Mi nueva lectura"]{--phase-color:#8a649f;--phase-soft:#f0e9f4}
+
+.screen .phase{color:var(--phase-color)}
+.screen .phase-badge{
+  background:var(--phase-soft);
+  color:var(--phase-color);
+}
+.screen .lesson-head{
+  box-shadow:inset 4px 0 0 var(--phase-color);
+}
+.screen .output-icon{
+  background:var(--phase-soft);
+  color:var(--phase-color);
+}
+.screen .aside-tag{color:var(--phase-color)}
+
+/* ---------- MÁS EQUILIBRIO ENTRE INFORMACIÓN Y TAREA ---------- */
+.lesson-body{padding:17px 20px 20px}
+.aside-card{padding:12px 13px}
+.aside-card p{line-height:1.40}
+.aside-output{padding:12px 13px}
+
+/* En pantallas de producción, la actividad ocupa más que la explicación */
+.identity-layout{grid-template-columns:.70fr 1.30fr}
+.flow-layout{grid-template-columns:minmax(0,1.42fr) minmax(270px,.58fr)}
+.eco-layout{grid-template-columns:minmax(0,1.38fr) minmax(285px,.62fr)}
+.info-layout{grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr)}
+.snapshot-layout{grid-template-columns:minmax(0,1.14fr) minmax(310px,.86fr)}
+.case-hook{grid-template-columns:.86fr 1.14fr}
+.discovery-layout{grid-template-columns:1.20fr .80fr}
+.lab-layout{grid-template-columns:.67fr 1.33fr}
+.map-layout{grid-template-columns:minmax(0,1.30fr) minmax(285px,.70fr)}
+.reinterpret-layout{grid-template-columns:1.18fr .82fr}
+
+/* Campos de respuesta con espacio real */
+.field textarea{min-height:92px;line-height:1.45}
+.identity-form .field.wide textarea{min-height:102px}
+.snapshot-reflect .field textarea{min-height:94px}
+.hook-task .field textarea{min-height:118px}
+.before-after .field textarea{min-height:112px}
+.map-side textarea{min-height:130px}
+
+/* Ecosistema: evitar tarjetas comprimidas como en la captura */
+.eco-board{
+  grid-template-columns:repeat(2,minmax(270px,1fr));
+  gap:11px;
+}
+.bucket{
+  min-height:176px;
+  padding:14px;
+  border-top:4px solid var(--bucket-color,#7c8ca7);
+}
+.bucket:nth-child(1){--bucket-color:#5e86af;background:linear-gradient(180deg,#f2f7fb,#fff 34%)}
+.bucket:nth-child(2){--bucket-color:#6f9b72;background:linear-gradient(180deg,#f1f7f0,#fff 34%)}
+.bucket:nth-child(3){--bucket-color:#b4873c;background:linear-gradient(180deg,#faf4e8,#fff 34%)}
+.bucket:nth-child(4){--bucket-color:#856dac;background:linear-gradient(180deg,#f4f0fa,#fff 34%)}
+.bucket h3{font-size:calc(.76rem * var(--font-scale))}
+.bucket p{font-size:calc(.61rem * var(--font-scale))}
+.addline input{min-height:39px}
+
+/* Proceso editable: cada paso tiene identidad visual */
+.flow-card{
+  border-left:5px solid var(--step-color,#6d89a9);
+  padding:10px;
+}
+.flow-card:nth-child(6n+1){--step-color:#5c82ad}
+.flow-card:nth-child(6n+2){--step-color:#628f83}
+.flow-card:nth-child(6n+3){--step-color:#8a70ae}
+.flow-card:nth-child(6n+4){--step-color:#b17b42}
+.flow-card:nth-child(6n+5){--step-color:#9e6574}
+.flow-card:nth-child(6n+6){--step-color:#6e8e56}
+.flow-card .flow-index{
+  background:color-mix(in srgb,var(--step-color) 15%,white);
+  color:var(--step-color);
+}
+
+/* Información: filas guiadas por color */
+.info-table tbody tr:nth-child(4n+1) td:first-child{border-left:4px solid #5f84ae}
+.info-table tbody tr:nth-child(4n+2) td:first-child{border-left:4px solid #6f9972}
+.info-table tbody tr:nth-child(4n+3) td:first-child{border-left:4px solid #b38439}
+.info-table tbody tr:nth-child(4n+4) td:first-child{border-left:4px solid #876fad}
+.info-table td:first-child{background:#fcfcfe}
+
+/* Fotografía: colores distinguen tipos de evidencia */
+.snap-card:nth-child(1){border-top:4px solid #637fa9}
+.snap-card:nth-child(2){border-top:4px solid #6b9977}
+.snap-card:nth-child(3){border-top:4px solid #ae7b3a}
+.snap-card:nth-child(4){border-top:4px solid #8068aa}
+.snap-card:nth-child(5){border-top:4px solid #4f8b93}
+.snap-card:nth-child(6){border-top:4px solid #a15f74}
+
+/* Descubrimiento: cada dimensión tiene color */
+.clue[data-dim="Dirección"].active{background:#f0ebf7;border-color:#8b73b2}
+.clue[data-dim="Clientes y resultados"].active{background:#eaf2f8;border-color:#5f86ac}
+.clue[data-dim="Personas"].active{background:#edf5e9;border-color:#6f965b}
+.clue[data-dim="Procesos"].active{background:#e8f4f3;border-color:#588f8c}
+.clue[data-dim="Información"].active{background:#e9f1f8;border-color:#557fac}
+.clue[data-dim="Recursos y tecnología"].active{background:#f4eef8;border-color:#8d6cab}
+.clue[data-dim="Proveedores y alianzas"].active{background:#faf1df;border-color:#b27c2e}
+.clue[data-dim="Control y mejora"].active{background:#f6ebed;border-color:#a45f70}
+
+/* Modelo: jerarquía visual de las cuatro familias */
+.dimension-group{
+  border-top:5px solid var(--group-color,#7762a9);
+  background:linear-gradient(180deg,var(--group-soft,#f2eef8),#fff 32%);
+}
+.dimension-group:nth-child(1){--group-color:#7b66aa;--group-soft:#f0ecf8}
+.dimension-group:nth-child(2){--group-color:#628b6c;--group-soft:#edf5ee}
+.dimension-group:nth-child(3){--group-color:#567fa5;--group-soft:#ebf2f7}
+.dimension-group:nth-child(4){--group-color:#b37c34;--group-soft:#faf1df}
+.dimension-group>strong{color:var(--group-color)}
+.dimension-btn.active{
+  background:var(--group-soft);
+  border-color:color-mix(in srgb,var(--group-color) 45%,white);
+}
+
+/* Síntoma → preguntas → evidencia → problema */
+.flow-mini div:nth-child(1){background:#f6e8eb;color:#8e5662}
+.flow-mini div:nth-child(2){background:#f9efdc;color:#946923}
+.flow-mini div:nth-child(3){background:#e9f1f8;color:#4e7398}
+.flow-mini div:nth-child(4){background:#eaf3e8;color:#57794b}
+.flow-mini div:nth-child(1) b{color:#8e5662}
+.flow-mini div:nth-child(2) b{color:#946923}
+.flow-mini div:nth-child(3) b{color:#4e7398}
+.flow-mini div:nth-child(4) b{color:#57794b}
+.lab-cell:nth-child(1){border-top:4px solid #a25f6d}
+.lab-cell:nth-child(2){border-top:4px solid #b18031}
+.lab-cell:nth-child(3){border-top:4px solid #587fa6}
+.lab-cell:nth-child(4){border-top:4px solid #668b58}
+
+/* Mapa de gestión: color por familia conceptual */
+.map-card:nth-child(1){border-left:5px solid #7c67aa}
+.map-card:nth-child(2),.map-card:nth-child(5){border-left:5px solid #577fa6}
+.map-card:nth-child(3),.map-card:nth-child(4),.map-card:nth-child(6),.map-card:nth-child(7){border-left:5px solid #638b6b}
+.map-card:nth-child(8){border-left:5px solid #b17c35}
+
+/* Colapsado simultáneo = modo foco, máxima superficie de trabajo */
+.left-collapsed.right-collapsed .stage{padding-left:16px;padding-right:16px}
+
+/* Mejor uso de ancho en pantallas intermedias */
+@media(max-width:1260px){
+  .lesson-shell{grid-template-columns:minmax(0,1fr) 225px}
+  .eco-board{grid-template-columns:repeat(2,minmax(235px,1fr))}
+}
+
 </style>
 </head>
 <body>
@@ -544,7 +824,8 @@ td select{width:100%;border:1px solid var(--line);background:#fff;border-radius:
     <aside class="sidebar">
       <div class="brand">
         <div class="logo">P&U</div>
-        <div><strong>Gestión P&U</strong><span>Aprender desde tu negocio</span></div>
+        <div class="brand-copy"><strong>Gestión P&U</strong><span>Aprender desde tu negocio</span></div>
+        <button class="side-collapse-btn" id="leftCollapseBtn" onclick="toggleLeftSidebar()" title="Colapsar barra lateral">‹</button>
       </div>
       <div class="side-label">Módulos</div>
       <div class="module-list">
@@ -571,6 +852,7 @@ td select{width:100%;border:1px solid var(--line);background:#fff;border-radius:
         <div class="top-meta">
           <div class="chip" id="timeChip">30–40 min</div>
           <div class="chip" id="saveChip">Guardado automático</div>
+          <button class="actionbtn guide-toggle" id="rightCollapseBtn" onclick="toggleRightSidebar()">Ocultar guía ›</button>
           <button class="actionbtn" onclick="toggleTheme()">Tema ◐</button>
           <button class="actionbtn" onclick="toggleDrawer()">Mi negocio ▸</button>
         </div>
@@ -1398,6 +1680,54 @@ document.getElementById('fontRange').addEventListener('input',e=>{
 const ti=Number(localStorage.getItem('pyu_intensity')||1),tn=localStorage.getItem('pyu_theme')||'aurora',fi=Number(localStorage.getItem('pyu_font')||1);
 document.getElementById('intensityRange').value=ti;document.getElementById('fontRange').value=fi;applyTheme(tn,ti);
 document.documentElement.style.setProperty('--font-scale',fontSizes[fi].scale);document.getElementById('fontLabel').textContent=fontSizes[fi].label;
+
+
+/* ---------- V2 · COLAPSADO DE BARRAS ---------- */
+function applyLayoutState(){
+  const left=localStorage.getItem('pyu_left_collapsed')==='1';
+  const right=localStorage.getItem('pyu_right_collapsed')==='1';
+  document.body.classList.toggle('left-collapsed',left);
+  document.body.classList.toggle('right-collapsed',right);
+
+  const lb=document.getElementById('leftCollapseBtn');
+  if(lb){
+    lb.title=left?'Expandir barra lateral':'Colapsar barra lateral';
+    lb.setAttribute('aria-label',lb.title);
+  }
+
+  const rb=document.getElementById('rightCollapseBtn');
+  if(rb){
+    rb.textContent=right?'Mostrar guía ‹':'Ocultar guía ›';
+    rb.title=right?'Mostrar barra de apoyo':'Ocultar barra de apoyo';
+  }
+}
+function toggleLeftSidebar(){
+  const next=localStorage.getItem('pyu_left_collapsed')!=='1';
+  localStorage.setItem('pyu_left_collapsed',next?'1':'0');
+  applyLayoutState();
+}
+function toggleRightSidebar(){
+  const next=localStorage.getItem('pyu_right_collapsed')!=='1';
+  localStorage.setItem('pyu_right_collapsed',next?'1':'0');
+  applyLayoutState();
+}
+function installAsideRails(){
+  document.querySelectorAll('.aside').forEach((aside)=>{
+    if(aside.querySelector('.aside-rail'))return;
+    const rail=document.createElement('div');
+    rail.className='aside-rail';
+    rail.innerHTML='<button onclick="toggleRightSidebar()" title="Expandir guía">‹</button><span class="rail-dot"></span><span class="rail-dot" style="opacity:.72"></span><span class="rail-dot" style="opacity:.45"></span>';
+    aside.prepend(rail);
+  });
+
+  // Tooltips de módulos cuando la barra izquierda está colapsada.
+  document.querySelectorAll('.mod').forEach(btn=>{
+    const label=btn.querySelector('span:nth-child(2)');
+    if(label)btn.title=label.textContent.trim();
+  });
+}
+installAsideRails();
+applyLayoutState();
 
 /* ---------- INIT ---------- */
 updateDrawer();updateProgress();render();
