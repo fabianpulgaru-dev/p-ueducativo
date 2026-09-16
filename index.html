@@ -1139,6 +1139,589 @@ button[disabled]{
 }
 .theme-close-btn:hover{background:var(--accent-soft);color:var(--accent-dark)}
 
+
+/* =========================================================
+   V3.6 · REDISEÑO DIDÁCTICO DE CLASIFICACIÓN GUIADA
+   ========================================================= */
+.guided-classification-layout{
+  display:grid;
+  grid-template-columns:minmax(310px,.72fr) minmax(0,1.28fr);
+  gap:14px;
+  height:100%;
+}
+.guided-case-context{
+  border-radius:17px;
+  padding:18px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(255,255,255,.08),transparent 34%),
+    linear-gradient(145deg,#2a2d40,#3b4057);
+  display:flex;
+  flex-direction:column;
+  overflow:auto;
+}
+.guided-case-context h3{
+  font-family:var(--fd);
+  font-size:calc(1.32rem * var(--font-scale));
+  line-height:1.13;
+  margin:7px 0 9px;
+}
+.guided-case-context>p{
+  color:#dde0e8;
+  font-size:calc(.64rem * var(--font-scale));
+  line-height:1.48;
+}
+.criterion-card{
+  margin-top:12px;
+  border-radius:12px;
+  padding:12px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.10);
+}
+.criterion-label{
+  display:block;
+  color:#e8cf87;
+  font-size:calc(.52rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-weight:900;
+  margin-bottom:5px;
+}
+.criterion-card strong{
+  display:block;
+  font-size:calc(.66rem * var(--font-scale));
+  line-height:1.42;
+}
+.criterion-examples{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:auto;
+  padding-top:12px;
+}
+.criterion-example{
+  border-radius:11px;
+  padding:10px;
+  min-height:100px;
+}
+.criterion-example span{
+  font-size:calc(.51rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:900;
+}
+.criterion-example p{
+  margin:5px 0 0;
+  font-size:calc(.58rem * var(--font-scale));
+  line-height:1.4;
+}
+.criterion-example.observable{
+  background:rgba(126,178,131,.16);
+  color:#d7ead8;
+}
+.criterion-example.interpretative{
+  background:rgba(209,123,145,.15);
+  color:#f0d9df;
+}
+
+.guided-classification-work{
+  min-height:0;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  gap:9px;
+}
+.guided-progress{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:13px;
+  padding:10px 12px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:12px;
+}
+.guided-step-label{
+  display:block;
+  font-size:calc(.54rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--phase-color);
+  font-weight:900;
+}
+#guidedCasePrompt{
+  display:block;
+  font-size:calc(.61rem * var(--font-scale));
+  margin-top:2px;
+}
+.guided-progress-bar{
+  height:7px;
+  background:#eceef2;
+  border-radius:999px;
+  overflow:hidden;
+}
+.guided-progress-bar span{
+  display:block;
+  width:16.66%;
+  height:100%;
+  border-radius:999px;
+  background:var(--phase-color);
+  transition:.2s ease;
+}
+.guided-statement-card{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:16px;
+  padding:17px;
+  overflow:auto;
+  box-shadow:0 7px 20px rgba(40,45,75,.04);
+}
+.statement-badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:999px;
+  background:var(--phase-soft);
+  color:var(--phase-color);
+  font-size:calc(.52rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:900;
+}
+.guided-statement-card blockquote{
+  margin:12px 0 14px;
+  padding:0;
+  border:0;
+  font-family:var(--fd);
+  font-size:calc(1.12rem * var(--font-scale));
+  line-height:1.3;
+  color:var(--text);
+}
+.guided-question{
+  border-top:1px solid var(--line);
+  padding-top:11px;
+}
+.guided-question strong{
+  font-size:calc(.66rem * var(--font-scale));
+}
+.guided-question p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:calc(.57rem * var(--font-scale));
+}
+.guided-answer-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.guided-answer-options button{
+  border:1px solid var(--line);
+  background:#fafafd;
+  border-radius:12px;
+  padding:11px;
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:8px;
+  align-items:center;
+  text-align:left;
+  color:var(--text-2);
+}
+.guided-answer-options button:hover{
+  transform:translateY(-1px);
+  border-color:color-mix(in srgb,var(--phase-color) 30%,white);
+}
+.guided-answer-options button.correct{
+  background:var(--success-soft);
+  border-color:#cfe0c8;
+  color:#527247;
+}
+.guided-answer-options button.wrong{
+  background:var(--danger-soft);
+  border-color:#ead0d6;
+  color:#8e5663;
+}
+.answer-icon{
+  width:32px;height:32px;
+  border-radius:9px;
+  display:grid;place-items:center;
+  background:#fff;
+}
+.guided-answer-options strong{
+  display:block;
+  font-size:calc(.61rem * var(--font-scale));
+}
+.guided-answer-options small{
+  display:block;
+  margin-top:2px;
+  color:inherit;
+  opacity:.78;
+  font-size:calc(.53rem * var(--font-scale));
+  line-height:1.35;
+}
+.guided-feedback{
+  display:none;
+  margin-top:10px;
+  padding:11px 12px;
+  border-radius:11px;
+  font-size:calc(.61rem * var(--font-scale));
+  line-height:1.45;
+}
+.guided-feedback.show{display:block}
+.guided-feedback.good{
+  background:var(--success-soft);
+  color:#527247;
+}
+.guided-feedback.bad{
+  background:var(--danger-soft);
+  color:#8e5663;
+}
+.guided-rewrite{
+  display:none;
+  margin-top:10px;
+  border-top:1px solid var(--line);
+  padding-top:11px;
+  gap:8px;
+}
+.guided-rewrite.show{display:grid}
+.rewrite-label{
+  display:block;
+  color:var(--phase-color);
+  font-size:calc(.51rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:900;
+  margin-bottom:3px;
+}
+.guided-rewrite strong{
+  font-size:calc(.61rem * var(--font-scale));
+}
+.guided-rewrite textarea{
+  width:100%;
+  min-height:72px;
+  resize:none;
+  border:1px solid var(--line);
+  background:#fafafd;
+  border-radius:9px;
+  padding:9px;
+  color:var(--text);
+  font-size:calc(.61rem * var(--font-scale));
+}
+.guided-model{
+  display:none;
+  padding:10px;
+  border-radius:10px;
+  background:var(--phase-soft);
+  color:var(--phase-color);
+  font-size:calc(.59rem * var(--font-scale));
+  line-height:1.42;
+}
+.guided-model.show{display:block}
+.guided-nav{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+}
+.guided-nav button:first-child{justify-self:start}
+.guided-nav button:last-child{justify-self:end}
+.guided-score{
+  color:var(--muted);
+  font-size:calc(.57rem * var(--font-scale));
+  font-weight:850;
+}
+
+@media(max-width:1140px){
+  .guided-classification-layout{grid-template-columns:.8fr 1.2fr}
+}
+@media(max-width:860px){
+  .guided-classification-layout{grid-template-columns:1fr}
+  .criterion-examples{margin-top:10px}
+}
+@media(max-width:760px){
+  .guided-answer-options,.criterion-examples{grid-template-columns:1fr}
+}
+
+
+/* =========================================================
+   V4 · SISTEMA DE ACTIVIDADES DIDÁCTICAS
+   ========================================================= */
+.activity-contract{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-bottom:10px;
+}
+.activity-contract.compact{margin-bottom:0}
+.activity-contract>div{
+  border:1px solid var(--line);
+  background:#fafafd;
+  border-radius:10px;
+  padding:8px 9px;
+}
+.activity-contract span{
+  display:block;
+  font-size:calc(.5rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--phase-color);
+  font-weight:900;
+}
+.activity-contract strong{
+  display:block;
+  margin-top:2px;
+  font-size:calc(.59rem * var(--font-scale));
+  line-height:1.3;
+}
+.studio-label{
+  display:block;
+  font-size:calc(.51rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--phase-color);
+  font-weight:900;
+  margin-bottom:3px;
+}
+
+/* Perfil guiado */
+.profile-builder{display:grid;grid-template-rows:auto 1fr auto;gap:9px;height:calc(100% - 56px)}
+.profile-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.profile-step{
+  border:1px solid var(--line);background:#fafafd;border-radius:10px;padding:8px;
+  display:grid;grid-template-columns:28px 1fr;gap:7px;text-align:left;color:var(--text-2)
+}
+.profile-step b{width:28px;height:28px;border-radius:8px;background:#fff;display:grid;place-items:center;color:var(--muted)}
+.profile-step strong{display:block;font-size:calc(.6rem * var(--font-scale));color:var(--text)}
+.profile-step small{display:block;font-size:calc(.51rem * var(--font-scale));color:var(--muted);margin-top:1px}
+.profile-step.active{background:var(--phase-soft);border-color:color-mix(in srgb,var(--phase-color) 40%,white)}
+.profile-step.active b{background:var(--phase-color);color:#fff}
+.profile-stage{position:relative;min-height:0}
+.profile-pane{
+  position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr);gap:10px;
+  opacity:0;pointer-events:none;transform:translateX(10px);transition:.15s
+}
+.profile-pane.active{opacity:1;pointer-events:auto;transform:none}
+.profile-task{border:1px solid var(--line);background:#fff;border-radius:13px;padding:12px;overflow:auto}
+.task-prompt{display:flex;gap:8px;align-items:flex-start;margin-bottom:9px}
+.task-number{width:27px;height:27px;border-radius:8px;background:var(--phase-color);color:#fff;display:grid;place-items:center;font-weight:900}
+.task-prompt strong{font-size:calc(.64rem * var(--font-scale))}
+.task-prompt p{margin:2px 0 0;font-size:calc(.55rem * var(--font-scale));color:var(--muted)}
+.compact-choice{grid-template-columns:repeat(4,1fr);margin-bottom:9px}
+.profile-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.profile-fields .wide{grid-column:1/-1}
+.worked-example{
+  border-radius:13px;padding:13px;background:linear-gradient(145deg,#f7f0df,#fff);
+  border:1px solid #ead9ae;overflow:auto
+}
+.worked-example.blue{background:linear-gradient(145deg,#ebf3f8,#fff);border-color:#d4e4ef}
+.worked-example.green{background:linear-gradient(145deg,#edf5e9,#fff);border-color:#d8e8d1}
+.example-label{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;letter-spacing:.08em;color:var(--phase-color);font-weight:900}
+.worked-example h3{font-family:var(--fd);font-size:calc(.92rem * var(--font-scale));margin:5px 0 8px}
+.worked-example p,.worked-example div{font-size:calc(.57rem * var(--font-scale));line-height:1.4}
+.example-before{padding:8px;border-radius:8px;background:#fff;color:var(--muted)}
+.example-arrow{text-align:center;padding:4px;color:var(--phase-color);font-weight:900}
+.example-after{padding:8px;border-radius:8px;background:var(--phase-soft);color:var(--phase-color);font-weight:800}
+.self-check{margin-top:9px;border-top:1px solid var(--line);padding-top:9px;display:grid;gap:5px}
+.self-check strong{font-size:calc(.59rem * var(--font-scale))}
+.self-check label{font-size:calc(.56rem * var(--font-scale));color:var(--text-2)}
+.self-check input{accent-color:var(--phase-color)}
+.profile-footer{display:grid;grid-template-columns:1fr auto;align-items:center}
+.profile-completion{display:flex;align-items:baseline;gap:5px}
+.profile-completion span{font-family:var(--fd);font-size:calc(1.05rem * var(--font-scale));color:var(--phase-color)}
+.profile-completion small{font-size:calc(.53rem * var(--font-scale));color:var(--muted)}
+
+/* Process studio */
+.process-studio{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:10px;height:calc(100% - 56px)}
+.process-builder,.process-review{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;min-height:0}
+.process-builder{overflow:auto}
+.process-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.process-toolbar strong{display:block;font-size:calc(.65rem * var(--font-scale))}
+.process-hints{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}
+.process-hints span{padding:5px 7px;border-radius:999px;background:#f3f5f7;color:var(--text-2);font-size:calc(.5rem * var(--font-scale));font-weight:800}
+.process-review{display:grid;grid-template-rows:auto auto 1fr auto auto;gap:8px}
+.review-header span{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;color:var(--phase-color);font-weight:900}
+.review-header strong{display:block;font-size:calc(.65rem * var(--font-scale));margin-top:2px}
+.review-list{display:grid;gap:5px}
+.review-list>div{display:grid;grid-template-columns:18px 1fr;gap:6px;align-items:center;padding:6px;border-radius:8px;background:#fafafd;font-size:calc(.54rem * var(--font-scale));color:var(--text-2)}
+.review-list i{font-style:normal;color:var(--muted)}
+.review-list div.ok{background:var(--success-soft);color:#55723f}
+.review-list div.ok i{color:var(--success)}
+.process-owner textarea{min-height:82px!important}
+.process-feedback{display:none;padding:9px;border-radius:9px;background:var(--phase-soft);color:var(--phase-color);font-size:calc(.56rem * var(--font-scale));line-height:1.4}
+.process-feedback.show{display:block}
+.process-feedback.good{background:var(--success-soft);color:#55723f}
+.process-feedback.warn{background:var(--warning-soft);color:#84601b}
+
+/* Ecosystem */
+.ecosystem-studio{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:10px;height:calc(100% - 56px)}
+.bucket-head{display:flex;gap:7px;align-items:flex-start}
+.bucket-icon{width:27px;height:27px;flex:0 0 27px;border-radius:8px;background:var(--bucket-color);color:#fff;display:grid;place-items:center;font-weight:900}
+.dependency-test{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;display:grid;grid-template-rows:auto auto 1fr auto auto;gap:8px}
+.dependency-header h3{font-family:var(--fd);font-size:calc(.9rem * var(--font-scale));margin:4px 0}
+.dependency-header p{font-size:calc(.55rem * var(--font-scale));color:var(--muted);margin:0}
+.dependency-progress{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dependency-progress>div{padding:8px;border-radius:9px;background:#fafafd;text-align:center}
+.dependency-progress strong{display:block;font-size:calc(.8rem * var(--font-scale));color:var(--phase-color)}
+.dependency-progress span{font-size:calc(.49rem * var(--font-scale));color:var(--muted)}
+
+/* Information */
+.information-studio{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:10px;height:calc(100% - 56px)}
+.table-intro{padding:10px 11px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.table-intro strong{font-size:calc(.63rem * var(--font-scale))}
+.table-intro span{font-size:calc(.53rem * var(--font-scale));color:var(--muted)}
+.decision-lab{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;overflow:auto}
+.decision-stage h3{font-family:var(--fd);font-size:calc(.92rem * var(--font-scale));margin:4px 0 9px}
+.decision-prompts{margin:8px 0}
+.decision-prompts>strong{font-size:calc(.56rem * var(--font-scale))}
+.prompt-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.prompt-chips button{border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:5px 7px;font-size:calc(.51rem * var(--font-scale));color:var(--text-2)}
+
+/* Snapshot */
+.snapshot-learning-layout{display:grid;grid-template-columns:1fr 1fr;gap:10px;height:100%}
+.snapshot-title span{font-size:calc(.51rem * var(--font-scale));text-transform:uppercase;letter-spacing:.08em;color:var(--phase-color);font-weight:900}
+.snapshot-title h3{margin:3px 0 8px}
+.reflection-ladder{display:grid;grid-template-rows:auto 1fr 1fr 1fr auto;gap:7px;min-height:0}
+.reflection-intro{padding:9px;border-radius:10px;background:var(--phase-soft);color:var(--phase-color)}
+.reflection-intro span{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;font-weight:900}
+.reflection-intro strong{display:block;font-size:calc(.61rem * var(--font-scale));margin-top:2px}
+.reflection-step{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px;display:grid;grid-template-rows:auto auto 1fr;min-height:0}
+.reflection-step>span{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;letter-spacing:.08em;font-weight:900}
+.reflection-step.know>span{color:#557fa6}.reflection-step.suppose>span{color:#a36b38}.reflection-step.investigate>span{color:#735da7}
+.reflection-step label{font-size:calc(.55rem * var(--font-scale));font-weight:800;margin:2px 0 4px}
+.reflection-step textarea{width:100%;min-height:58px;resize:none;border:1px solid var(--line);border-radius:8px;padding:7px;font-size:calc(.57rem * var(--font-scale))}
+
+/* Prediction case */
+.prediction-case{display:grid;grid-template-columns:.86fr 1.14fr;gap:11px;height:100%}
+.case-signals{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0}
+.case-signals span{padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.1);font-size:calc(.52rem * var(--font-scale));font-weight:850}
+.prediction-work{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;overflow:auto}
+.prediction-question{margin:10px 0}
+.prediction-question>strong{font-size:calc(.64rem * var(--font-scale))}
+.big-segmented{margin-top:7px}
+.big-segmented button{padding:9px 10px}
+.prediction-confidence{padding:8px;border-radius:9px;background:#fafafd;margin:8px 0}
+.prediction-confidence span{font-size:calc(.55rem * var(--font-scale));font-weight:850}
+.prediction-confidence input{width:100%;accent-color:var(--phase-color)}
+.prediction-confidence small{display:block;font-size:calc(.49rem * var(--font-scale));color:var(--muted)}
+
+/* Evidence learning */
+.evidence-learning-layout{display:grid;grid-template-columns:175px minmax(0,1.05fr) minmax(270px,.75fr);gap:9px;height:100%}
+.evidence-tab{display:grid!important;grid-template-columns:25px 1fr;grid-template-rows:auto auto}
+.evidence-tab small{grid-column:2;font-size:calc(.46rem * var(--font-scale));color:var(--muted);margin-top:1px}
+.evidence-analysis{display:grid;grid-template-rows:1fr auto;gap:8px;min-height:0}
+.evidence-reaction{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px}
+.evidence-reaction>strong{font-size:calc(.58rem * var(--font-scale))}
+.evidence-reaction-buttons button.active{
+  background:var(--phase-soft);
+  color:var(--phase-color);
+  border-color:color-mix(in srgb,var(--phase-color) 42%,white);
+}
+.evidence-reaction textarea{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:7px;resize:none;margin:7px 0;font-size:calc(.56rem * var(--font-scale))}
+.evidence-synthesis{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;overflow:auto}
+.evidence-synthesis h3{font-family:var(--fd);font-size:calc(.9rem * var(--font-scale));margin:4px 0}
+.evidence-synthesis p{font-size:calc(.55rem * var(--font-scale));color:var(--muted)}
+.evidence-visited{display:flex;gap:5px;align-items:baseline;margin-top:8px}
+.evidence-visited strong{font-family:var(--fd);font-size:calc(1rem * var(--font-scale));color:var(--phase-color)}
+.evidence-visited span{font-size:calc(.5rem * var(--font-scale));color:var(--muted)}
+
+/* Question discovery */
+.question-discovery{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:10px;height:100%}
+.question-bank{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px;overflow:auto}
+.question-bank-head{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.question-bank-head>span{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;color:var(--phase-color);font-weight:900}
+.question-bank-head>strong{font-size:calc(.61rem * var(--font-scale))}
+.question-bank-head>small{margin-left:auto;font-size:calc(.49rem * var(--font-scale));color:var(--muted)}
+.question-discovery-panel{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;overflow:auto}
+.question-discovery-panel h3{font-family:var(--fd);font-size:calc(.92rem * var(--font-scale));margin:4px 0}
+.question-discovery-panel>p{font-size:calc(.55rem * var(--font-scale));color:var(--text-2);line-height:1.4}
+.discovery-count{display:flex;gap:5px;align-items:baseline;margin:8px 0}
+.discovery-count strong{font-family:var(--fd);font-size:calc(1.1rem * var(--font-scale));color:var(--phase-color)}
+.discovery-count span{font-size:calc(.5rem * var(--font-scale));color:var(--muted)}
+
+/* Model learning */
+.model-learning-layout{display:grid;grid-template-columns:1fr 285px 260px;gap:9px;height:100%}
+.dimension-check{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;overflow:auto}
+.dimension-check h3{font-size:calc(.67rem * var(--font-scale));margin:4px 0}
+.dimension-check p{font-size:calc(.56rem * var(--font-scale));line-height:1.4;color:var(--text-2)}
+.dimension-check-options{display:grid;gap:5px;margin:8px 0}
+.dimension-check-options button{border:1px solid var(--line);background:#fafafd;border-radius:8px;padding:7px;text-align:left;font-size:calc(.55rem * var(--font-scale));color:var(--text-2)}
+
+/* Reading */
+.reading-strategy-layout{display:grid;grid-template-columns:210px minmax(0,1fr) 250px;gap:9px;height:100%}
+.reading-before{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px}
+.reading-before h3{font-family:var(--fd);font-size:calc(.9rem * var(--font-scale));margin:4px 0}
+.reading-before p{font-size:calc(.56rem * var(--font-scale));color:var(--text-2);line-height:1.4}
+.reading-before small{display:block;margin-top:6px;font-size:calc(.48rem * var(--font-scale));color:var(--muted)}
+.reading-predictions button{border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:5px 7px;font-size:calc(.51rem * var(--font-scale));color:var(--text-2)}
+.reading-predictions button.active{background:var(--phase-soft);color:var(--phase-color);border-color:color-mix(in srgb,var(--phase-color) 35%,white)}
+.reading-purpose{padding:8px;border-radius:9px;background:var(--phase-soft);color:var(--phase-color);font-size:calc(.54rem * var(--font-scale));line-height:1.4}
+
+/* Symptom workshop */
+.symptom-workshop{display:grid;grid-template-rows:auto auto 1fr;gap:9px;height:100%}
+.symptom-model{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:5px;align-items:stretch}
+.strategy-arrow{display:grid;place-items:center;color:var(--muted)}
+.symptom-your-turn{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px;overflow:auto}
+.your-turn-head{grid-column:1/-1}
+.your-turn-head span{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;color:var(--phase-color);font-weight:900}
+.your-turn-head strong{display:block;font-size:calc(.6rem * var(--font-scale));margin-top:2px}
+.lab-comparison{grid-column:1/-1;display:none;padding:9px;border-radius:9px;background:var(--phase-soft);color:var(--phase-color);font-size:calc(.56rem * var(--font-scale));line-height:1.42}
+.lab-comparison.show{display:block}
+
+/* Map v2 */
+.management-map-v2{display:grid;grid-template-rows:auto 1fr;gap:8px;height:100%}
+.map-instructions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.map-instructions>div{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px;display:grid;grid-template-columns:27px 1fr;column-gap:7px}
+.map-level{grid-row:1/3;width:27px;height:27px;border-radius:8px;display:grid;place-items:center;font-weight:900}
+.level1{background:var(--success-soft);color:#55723f}.level2{background:var(--warning-soft);color:#84601b}.level3{background:var(--danger-soft);color:#8e5663}
+.map-instructions strong{font-size:calc(.56rem * var(--font-scale))}
+.map-instructions small{font-size:calc(.48rem * var(--font-scale));color:var(--muted)}
+.map-workspace{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:9px;min-height:0}
+
+/* Checkpoint guided */
+.checkpoint-guided{display:grid;grid-template-rows:auto 1fr auto;gap:9px;height:100%}
+.checkpoint-concept{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.checkpoint-concept>div{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px;display:grid;grid-template-columns:27px 1fr;column-gap:6px}
+.checkpoint-concept span{grid-row:1/3;width:27px;height:27px;border-radius:8px;background:var(--phase-soft);color:var(--phase-color);display:grid;place-items:center;font-weight:900}
+.checkpoint-concept strong{font-size:calc(.55rem * var(--font-scale))}
+.checkpoint-concept small{font-size:calc(.47rem * var(--font-scale));color:var(--muted)}
+.checkpoint-single{border:1px solid var(--line);background:#fff;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center}
+.checkpoint-single blockquote{font-family:var(--fd);font-size:calc(1.15rem * var(--font-scale));line-height:1.3;margin:10px 0}
+.checkpoint-options{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.checkpoint-options button{border:1px solid var(--line);background:#fafafd;border-radius:9px;padding:8px;font-size:calc(.57rem * var(--font-scale));font-weight:850;color:var(--text-2)}
+.checkpoint-options button.correct{background:var(--success-soft);color:#55723f;border-color:#cfe0c8}
+.checkpoint-options button.wrong{background:var(--danger-soft);color:#8e5663;border-color:#ead0d6}
+.checkpoint-guided-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.checkpoint-guided-nav button:first-child{justify-self:start}.checkpoint-guided-nav button:last-child{justify-self:end}
+.checkpoint-guided-nav>div{text-align:center}
+.checkpoint-guided-nav strong{display:block;font-family:var(--fd);font-size:calc(.9rem * var(--font-scale));color:var(--phase-color)}
+.checkpoint-guided-nav span{font-size:calc(.48rem * var(--font-scale));color:var(--muted)}
+
+/* Metacognitive close */
+.metacognitive-close{display:grid;grid-template-columns:.8fr 1.1fr .7fr;gap:9px;height:100%}
+.before-panel,.after-panel{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;overflow:auto}
+.before-panel h3{font-family:var(--fd);font-size:calc(.9rem * var(--font-scale));margin:4px 0}
+.metacog-question{margin-top:9px}
+.metacog-question>strong{font-size:calc(.56rem * var(--font-scale))}
+#metacogPills button{border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:5px 7px;font-size:calc(.5rem * var(--font-scale));color:var(--text-2)}
+#metacogPills button.active{background:var(--phase-soft);color:var(--phase-color)}
+.quality-check{display:grid;gap:5px;margin-top:8px;padding:9px;border-radius:9px;background:#fafafd}
+.quality-check strong{font-size:calc(.56rem * var(--font-scale))}
+.quality-check label{font-size:calc(.51rem * var(--font-scale));color:var(--text-2)}
+.quality-check input{accent-color:var(--phase-color)}
+
+@media(max-width:1200px){
+  .model-learning-layout{grid-template-columns:1fr 260px}
+  .dimension-check{grid-column:1/-1}
+  .reading-strategy-layout{grid-template-columns:190px 1fr}
+  .reading-margin{grid-column:1/-1;min-height:120px}
+}
+@media(max-width:900px){
+  .profile-pane,.process-studio,.ecosystem-studio,.information-studio,.snapshot-learning-layout,
+  .prediction-case,.evidence-learning-layout,.question-discovery,.model-learning-layout,
+  .reading-strategy-layout,.map-workspace,.metacognitive-close{grid-template-columns:1fr}
+  .symptom-model{grid-template-columns:1fr}
+  .strategy-arrow{transform:rotate(90deg)}
+  .symptom-your-turn{grid-template-columns:1fr}
+  .your-turn-head,.lab-comparison{grid-column:1}
+}
+
 </style>
 </head>
 <body>
@@ -1297,89 +1880,230 @@ button[disabled]{
           </div>
         </article>
 
-        <article class="screen m0" data-module="0" data-title="Este es mi negocio">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">02</span> Caracterización</div>
-                <h2>Cuéntanos qué negocio tienes hoy</h2>
-                <p>Usa palabras simples. No necesitamos todavía una definición técnica ni una propuesta de valor perfecta.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="identity-layout">
-                  <div class="identity-choices">
-                    <div class="card">
-                      <h3>¿Tu actividad es principalmente…?</h3>
-                      <div class="choice-grid" id="businessType">
-                        <button class="choice-card" data-value="Producto"><strong>Producto</strong><span>Vendes bienes físicos o digitales.</span></button>
-                        <button class="choice-card" data-value="Servicio"><strong>Servicio</strong><span>Entregas una prestación o experiencia.</span></button>
-                        <button class="choice-card" data-value="Producto + servicio"><strong>Producto + servicio</strong><span>Combinas ambas cosas.</span></button>
-                        <button class="choice-card" data-value="Otro"><strong>Otro</strong><span>Tu actividad no encaja del todo aquí.</span></button>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <h3>¿Cómo trabajas actualmente?</h3>
-                      <div class="segmented" id="workMode"><button data-value="Solo/a">Solo/a</button><button data-value="Con otras personas">Con otras personas</button></div>
-                    </div>
-                    <div class="card accent">
-                      <h3>Una idea importante</h3>
-                      <p>Que algo esté poco organizado no significa que esté “mal”. En esta etapa queremos describirlo con precisión suficiente para poder volver sobre ello después.</p>
-                    </div>
-                  </div>
-                  <div class="identity-form">
-                    <div class="field"><label>Nombre del negocio</label><input id="bizName" placeholder="Ej.: Taller Norte"></div>
-                    <div class="field"><label>¿Hace cuánto funciona?</label><select id="bizAge"><option value="">Selecciona</option><option>Estoy comenzando</option><option>Menos de 1 año</option><option>1 a 3 años</option><option>4 a 7 años</option><option>Más de 7 años</option></select></div>
-                    <div class="field wide"><label>¿Qué haces, vendes o prestas?</label><textarea id="bizOffer" placeholder="Explícalo como si una persona te preguntara por primera vez qué hace tu negocio."></textarea></div>
-                    <div class="field"><label>¿Quiénes son tus principales clientes?</label><textarea id="bizClients" placeholder="Personas, empresas, instituciones, tipo de público..."></textarea></div>
-                    <div class="field"><label>¿Cómo llegan hoy esos clientes?</label><textarea id="bizReach" placeholder="Recomendaciones, redes, local, web, licitaciones..."></textarea></div>
-                    <div class="field wide"><label>Durante los próximos 12 meses me gustaría que...</label><textarea id="bizGoal" placeholder="Escribe lo que esperas que ocurra con tu negocio."></textarea><small>Más adelante transformaremos esta expectativa en objetivos y prioridades.</small></div>
-                  </div>
+        
+<article class="screen m0" data-module="0" data-title="Este es mi negocio">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">02</span> Construcción guiada</div>
+        <h2>Construye una presentación útil de tu negocio</h2>
+        <p>No buscamos una descripción publicitaria. Queremos una explicación suficientemente clara para que otra persona entienda qué haces, para quién y qué esperas que ocurra.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="activity-contract">
+          <div><span>Harás</span><strong>Una ficha en 3 pasos</strong></div>
+          <div><span>Usarás</span><strong>Ejemplos y preguntas guía</strong></div>
+          <div><span>Sabrás que está listo cuando</span><strong>alguien externo pueda entender tu negocio</strong></div>
+        </div>
+
+        <div class="profile-builder">
+          <nav class="profile-steps">
+            <button class="profile-step active" data-profile-step="0" onclick="showProfileStep(0)"><b>1</b><span><strong>Qué haces</strong><small>Actividad y oferta</small></span></button>
+            <button class="profile-step" data-profile-step="1" onclick="showProfileStep(1)"><b>2</b><span><strong>Para quién</strong><small>Clientes y llegada</small></span></button>
+            <button class="profile-step" data-profile-step="2" onclick="showProfileStep(2)"><b>3</b><span><strong>Hacia dónde</strong><small>Situación y expectativa</small></span></button>
+          </nav>
+
+          <div class="profile-stage">
+            <section class="profile-pane active" data-profile-pane="0">
+              <div class="profile-task">
+                <div class="task-prompt">
+                  <span class="task-number">1</span>
+                  <div><strong>Primero ubica el tipo de actividad.</strong><p>Esto cambia el tipo de preguntas que haremos más adelante.</p></div>
+                </div>
+
+                <div class="choice-grid compact-choice" id="businessType">
+                  <button class="choice-card" data-value="Producto"><strong>Producto</strong><span>Vendes bienes físicos o digitales.</span></button>
+                  <button class="choice-card" data-value="Servicio"><strong>Servicio</strong><span>Entregas una prestación o experiencia.</span></button>
+                  <button class="choice-card" data-value="Producto + servicio"><strong>Producto + servicio</strong><span>Combinas ambas cosas.</span></button>
+                  <button class="choice-card" data-value="Otro"><strong>Otro</strong><span>Tu actividad no encaja del todo aquí.</span></button>
+                </div>
+
+                <div class="profile-fields">
+                  <div class="field"><label>Nombre del negocio</label><input id="bizName" placeholder="Ej.: Taller Norte"></div>
+                  <div class="field wide"><label>¿Qué haces, vendes o prestas?</label><textarea id="bizOffer" placeholder="Empieza con un verbo: fabrico…, vendo…, asesoro…, reparo…, diseño…"></textarea></div>
                 </div>
               </div>
+
+              <aside class="worked-example">
+                <span class="example-label">Ejemplo comentado</span>
+                <h3>“Hago asesorías” dice muy poco</h3>
+                <div class="example-before">“Hago asesorías para empresas.”</div>
+                <div class="example-arrow">↓ más específico</div>
+                <div class="example-after">“Ayudo a pequeños restaurantes a ordenar sus costos, precios y registros de venta.”</div>
+                <p><strong>¿Qué mejoró?</strong> Ahora sabemos qué hace, con quién trabaja y sobre qué problema.</p>
+              </aside>
             </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">No necesitas</div><h3>Lenguaje empresarial</h3><p>El curso irá poniendo nombre a cosas que probablemente ya haces.</p></div>
-              <div class="aside-card"><div class="aside-tag">Se guarda</div><h3>Tu identidad inicial</h3><p>Oferta, clientes, forma de trabajo y expectativa de futuro.</p></div>
-              <div class="aside-output"><h3>Mi negocio</h3><div class="output-item"><div class="output-icon">1</div><div><strong>Ficha básica</strong><span>Primera capa del expediente.</span></div></div></div>
-            </aside>
+
+            <section class="profile-pane" data-profile-pane="1">
+              <div class="profile-task">
+                <div class="task-prompt">
+                  <span class="task-number">2</span>
+                  <div><strong>Ahora mira a tus clientes.</strong><p>No escribas “todo público”. Piensa en quienes realmente compran o contratan hoy.</p></div>
+                </div>
+                <div class="profile-fields">
+                  <div class="field"><label>¿Quiénes son tus principales clientes?</label><textarea id="bizClients" placeholder="Ej.: emprendedoras que venden alimentos y trabajan desde casa."></textarea></div>
+                  <div class="field"><label>¿Cómo llegan hoy esos clientes?</label><textarea id="bizReach" placeholder="Ej.: recomendaciones, Instagram y WhatsApp."></textarea></div>
+                </div>
+
+                <div class="self-check">
+                  <strong>Comprueba tu respuesta</strong>
+                  <label><input type="checkbox" class="profile-check"> Puedo imaginar a una persona o empresa concreta.</label>
+                  <label><input type="checkbox" class="profile-check"> Identifiqué al menos un canal real por el que llegan.</label>
+                </div>
+              </div>
+
+              <aside class="worked-example blue">
+                <span class="example-label">Pregunta útil</span>
+                <h3>¿A quién atendiste las últimas cinco veces?</h3>
+                <p>Si cuesta definir “tu cliente”, no partas por una categoría de marketing. Recuerda tus últimas ventas o servicios y busca patrones.</p>
+              </aside>
+            </section>
+
+            <section class="profile-pane" data-profile-pane="2">
+              <div class="profile-task">
+                <div class="task-prompt">
+                  <span class="task-number">3</span>
+                  <div><strong>Cierra la fotografía con contexto.</strong><p>Queremos saber en qué etapa estás y qué cambio esperas ver durante el próximo año.</p></div>
+                </div>
+
+                <div class="profile-fields">
+                  <div class="field"><label>¿Hace cuánto funciona?</label><select id="bizAge"><option value="">Selecciona</option><option>Estoy comenzando</option><option>Menos de 1 año</option><option>1 a 3 años</option><option>4 a 7 años</option><option>Más de 7 años</option></select></div>
+                  <div class="field"><label>¿Cómo trabajas actualmente?</label><div class="segmented" id="workMode"><button data-value="Solo/a">Solo/a</button><button data-value="Con otras personas">Con otras personas</button></div></div>
+                  <div class="field wide"><label>Durante los próximos 12 meses me gustaría que...</label><textarea id="bizGoal" placeholder="Ej.: poder atender más pedidos sin que todo dependa de mí."></textarea><small>No tiene que ser todavía un objetivo técnico.</small></div>
+                </div>
+              </div>
+
+              <aside class="worked-example green">
+                <span class="example-label">Criterio de calidad</span>
+                <h3>Describe un cambio observable</h3>
+                <p>Es más útil “quiero poder responder cotizaciones en menos de un día” que “quiero mejorar la empresa”.</p>
+              </aside>
+            </section>
           </div>
-        </article>
+
+          <footer class="profile-footer">
+            <div class="profile-completion"><span id="profileCompletion">0%</span><small>ficha completada</small></div>
+            <button class="btn primary" onclick="nextProfileStep()" id="profileNext">Continuar →</button>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Estrategia</div><h3>De lo general a lo concreto</h3><p>Actividad → oferta → cliente → canal → expectativa.</p></div>
+      <div class="aside-card"><div class="aside-tag">Evita</div><h3>Frases que sirven para todo</h3><p>“Dar un buen servicio”, “crecer” o “llegar a más personas” necesitan mayor precisión.</p></div>
+      <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">1</div><div><strong>Ficha básica</strong><span>Primera capa de “Mi negocio”.</span></div></div></div>
+    </aside>
+  </div>
+</article>
 
 
+
+        
         <article class="screen m0" data-module="0" data-title="Practica: descripción o interpretación">
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">03</span> Análisis de caso</div>
-                <h2>Ayuda a Paula a separar hechos de interpretaciones</h2>
-                <p>Lee cada frase de una pequeña panadería y decide si describe algo observable o si ya interpreta lo que ocurre.</p>
+                <div class="phase"><span class="phase-badge">03</span> Práctica guiada</div>
+                <h2>¿Estoy describiendo lo que ocurre o ya lo estoy interpretando?</h2>
+                <p>Trabajaremos una frase a la vez. La clave no es memorizar dos definiciones, sino aprender a reconocer cuándo una afirmación todavía puede comprobarse y cuándo ya contiene un juicio, una explicación o una recomendación.</p>
               </div>
               <div class="lesson-body">
-                <div class="case-practice-layout">
-                  <div class="case-context">
+                <div class="guided-classification-layout">
+                  <aside class="guided-case-context">
                     <span class="case-kicker">Caso · Panadería Los Aromos</span>
-                    <h3>Paula siente que el negocio “está cada vez más desordenado”.</h3>
-                    <p>Antes de aceptar esa conclusión, revisaremos las frases con las que ella explica su situación.</p>
-                    <div class="case-rule"><strong>Tu criterio:</strong> ¿otra persona podría comprobar la frase directamente?</div>
-                  </div>
-                  <div class="classify-board" id="describeCaseBoard">
-                    <div class="classify-item" data-answer="obs"><p>Durante marzo se agotó el pan integral en seis jornadas.</p><div><button data-pick="obs">Descripción</button><button data-pick="int">Interpretación</button></div><span class="classify-feedback"></span></div>
-                    <div class="classify-item" data-answer="int"><p>El inventario está mal manejado.</p><div><button data-pick="obs">Descripción</button><button data-pick="int">Interpretación</button></div><span class="classify-feedback"></span></div>
-                    <div class="classify-item" data-answer="obs"><p>Dos personas registran pedidos en cuadernos diferentes.</p><div><button data-pick="obs">Descripción</button><button data-pick="int">Interpretación</button></div><span class="classify-feedback"></span></div>
-                    <div class="classify-item" data-answer="int"><p>El equipo es poco ordenado.</p><div><button data-pick="obs">Descripción</button><button data-pick="int">Interpretación</button></div><span class="classify-feedback"></span></div>
-                    <div class="classify-item" data-answer="obs"><p>Paula responde personalmente todas las cotizaciones.</p><div><button data-pick="obs">Descripción</button><button data-pick="int">Interpretación</button></div><span class="classify-feedback"></span></div>
-                    <div class="classify-item" data-answer="int"><p>Paula debería delegar más.</p><div><button data-pick="obs">Descripción</button><button data-pick="int">Interpretación</button></div><span class="classify-feedback"></span></div>
-                  </div>
+                    <h3>Paula dice: “El negocio está cada vez más desordenado”.</h3>
+                    <p>Antes de aceptar esa conclusión, necesitamos convertir su impresión en información que podamos observar y revisar.</p>
+
+                    <div class="criterion-card">
+                      <span class="criterion-label">Pregunta que te ayuda a decidir</span>
+                      <strong>¿Otra persona podría comprobar esta frase sin tener que interpretar lo que Paula “quiso decir”?</strong>
+                    </div>
+
+                    <div class="criterion-examples">
+                      <div class="criterion-example observable">
+                        <span>Se puede comprobar</span>
+                        <p>“Dos personas registran pedidos en cuadernos diferentes.”</p>
+                      </div>
+                      <div class="criterion-example interpretative">
+                        <span>Ya interpreta</span>
+                        <p>“El equipo es poco ordenado.”</p>
+                      </div>
+                    </div>
+                  </aside>
+
+                  <section class="guided-classification-work">
+                    <div class="guided-progress">
+                      <div>
+                        <span class="guided-step-label">Situación <b id="guidedCaseNumber">1</b> de 6</span>
+                        <strong id="guidedCasePrompt">Lee la frase y decide.</strong>
+                      </div>
+                      <div class="guided-progress-bar"><span id="guidedProgressBar"></span></div>
+                    </div>
+
+                    <div class="guided-statement-card" id="guidedStatementCard">
+                      <span class="statement-badge">Frase de Paula</span>
+                      <blockquote id="guidedStatement">Durante marzo se agotó el pan integral en seis jornadas.</blockquote>
+
+                      <div class="guided-question">
+                        <strong>¿Qué tipo de frase es?</strong>
+                        <p>Piensa primero si podrías buscar evidencia directa para comprobarla.</p>
+                      </div>
+
+                      <div class="guided-answer-options">
+                        <button id="guidedObsBtn" onclick="answerGuidedCase('obs')">
+                          <span class="answer-icon">👁</span>
+                          <span><strong>Describe algo observable</strong><small>Puedo comprobar qué ocurrió.</small></span>
+                        </button>
+                        <button id="guidedIntBtn" onclick="answerGuidedCase('int')">
+                          <span class="answer-icon">💭</span>
+                          <span><strong>Ya interpreta lo que ocurre</strong><small>Incluye un juicio, explicación o recomendación.</small></span>
+                        </button>
+                      </div>
+
+                      <div class="guided-feedback" id="guidedFeedback"></div>
+
+                      <div class="guided-rewrite" id="guidedRewrite">
+                        <div>
+                          <span class="rewrite-label">Hazla observable</span>
+                          <strong>¿Cómo podrías reescribir esta frase para que otra persona pueda comprobarla?</strong>
+                        </div>
+                        <textarea id="guidedRewriteInput" placeholder="Ej.: En los últimos cinco días..."></textarea>
+                        <button class="btn accent" onclick="showGuidedModel()">Ver un ejemplo posible</button>
+                        <div class="guided-model" id="guidedModel"></div>
+                      </div>
+                    </div>
+
+                    <div class="guided-nav">
+                      <button class="btn ghost" id="guidedPrevBtn" onclick="guidedMove(-1)">← Anterior</button>
+                      <div class="guided-score"><span id="guidedCorrectCount">0</span> correctas</div>
+                      <button class="btn primary" id="guidedNextBtn" onclick="guidedMove(1)">Siguiente frase →</button>
+                    </div>
+                  </section>
                 </div>
               </div>
             </section>
+
             <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Caso</div><h3>No corrijas todavía</h3><p>Primero necesitamos reformular frases vagas en situaciones observables.</p></div>
-              <div class="aside-card"><div class="aside-tag">Retroalimentación</div><h3>Inmediata</h3><p>Cada decisión muestra por qué la frase abre o cierra el análisis.</p></div>
-              <div class="aside-output"><h3>Meta</h3><div class="output-item"><div class="output-icon" id="describeScore">0</div><div><strong>Respuestas correctas</strong><span>6 situaciones breves.</span></div></div></div>
+              <div class="aside-card">
+                <div class="aside-tag">Estrategia</div>
+                <h3>Primero pregunta: “¿se puede comprobar?”</h3>
+                <p>Si necesitas agregar una explicación, un juicio o una recomendación para entender la frase, probablemente ya estás interpretando.</p>
+              </div>
+              <div class="aside-card">
+                <div class="aside-tag">Importante</div>
+                <h3>Interpretar no está “mal”</h3>
+                <p>El problema es interpretar demasiado pronto. Primero necesitamos hechos suficientemente claros para poder investigar.</p>
+              </div>
+              <div class="aside-output">
+                <h3>Progreso</h3>
+                <div class="output-item"><div class="output-icon" id="guidedScoreIcon">0</div><div><strong>Frases resueltas correctamente</strong><span id="guidedScoreText">de 6 situaciones.</span></div></div>
+                <div class="output-item"><div class="output-icon">↻</div><div><strong>Reformular</strong><span>Cuando una frase interpreta, practicarás cómo volverla observable.</span></div></div>
+              </div>
             </aside>
           </div>
         </article>
+
 
 
         <article class="screen m0" data-module="0" data-title="Estrategia: seguir al cliente">
@@ -1418,256 +2142,425 @@ button[disabled]{
           </div>
         </article>
 
-        <article class="screen m0" data-module="0" data-title="Así funciona">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">05</span> Mapa de funcionamiento</div>
-                <h2>Construye el recorrido real de un cliente</h2>
-                <p>No uses el proceso “ideal”. Escribe lo que efectivamente suele ocurrir. Puedes agregar, borrar y mover pasos.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="flow-layout">
-                  <div class="flow-board">
-                    <div class="flow-top"><strong>Recorrido actual</strong><button class="btn accent" onclick="addFlowStep()">＋ Agregar paso</button></div>
-                    <div class="flow-list" id="flowList"></div>
-                  </div>
-                  <div class="flow-side">
-                    <div class="card accent"><h3>Ejemplo</h3><p>“Me escriben por WhatsApp → respondo disponibilidad → cotizo → confirmo → realizo el servicio → transfieren → anoto en una planilla”.</p></div>
-                    <div class="field card"><label>¿Qué parte depende especialmente de ti?</label><textarea id="ownerOnly" placeholder="Algo que solo tú sabes, decides o puedes hacer hoy."></textarea></div>
-                    <div class="card"><h3>¿Qué estás haciendo aquí?</h3><p>Estás transformando una actividad cotidiana en un <strong>mapa de proceso</strong>, aunque todavía no usemos formalmente ese concepto.</p></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Observa</div><h3>Los problemas suelen estar entre pasos</h3><p>Retrasos, errores y pérdidas de información muchas veces aparecen en los traspasos.</p></div>
-              <div class="aside-card"><div class="aside-tag">No evalúes</div><h3>Improvisar también se registra</h3><p>Si un paso cambia cada vez, escribe eso mismo.</p></div>
-              <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">→</div><div><strong>Mapa de funcionamiento</strong><span>Recorrido actual del cliente.</span></div></div></div>
-            </aside>
-          </div>
-        </article>
+        
+<article class="screen m0" data-module="0" data-title="Así funciona">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">05</span> Aplicación de estrategia</div>
+        <h2>Reconstruye el recorrido real de un cliente</h2>
+        <p>Ya aprendiste a “seguir al cliente”. Ahora úsalo para representar lo que efectivamente ocurre en tu negocio, desde el primer contacto hasta el cierre.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="activity-contract">
+          <div><span>Harás</span><strong>Un mapa editable</strong></div>
+          <div><span>Buscarás</span><strong>acciones y traspasos</strong></div>
+          <div><span>Evitarás</span><strong>describir el proceso ideal</strong></div>
+        </div>
 
-        <article class="screen m0" data-module="0" data-title="Quién y qué lo hace posible">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">06</span> Ecosistema</div>
-                <h2>Haz visible lo que sostiene tu negocio</h2>
-                <p>Agrega personas, roles, recursos y proveedores. En un negocio unipersonal también existen varios roles, aunque todos los cumpla la misma persona.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="eco-layout">
-                  <div class="eco-board">
-                    <div class="bucket"><div><h3>Personas / roles</h3><p>Quién hace cosas importantes.</p></div><div class="addline"><input id="addPeople" placeholder="Ej.: Yo — ventas"><button onclick="addTag('people')">＋</button></div><div class="taglist" id="peopleTags"></div></div>
-                    <div class="bucket"><div><h3>Recursos</h3><p>Herramientas, espacios, equipos.</p></div><div class="addline"><input id="addResources" placeholder="Ej.: computador"><button onclick="addTag('resources')">＋</button></div><div class="taglist" id="resourcesTags"></div></div>
-                    <div class="bucket"><div><h3>Proveedores / apoyos</h3><p>Terceros necesarios para operar.</p></div><div class="addline"><input id="addProviders" placeholder="Ej.: proveedor de insumos"><button onclick="addTag('providers')">＋</button></div><div class="taglist" id="providersTags"></div></div>
-                    <div class="bucket"><div><h3>Canales</h3><p>Cómo te comunicas o vendes.</p></div><div class="addline"><input id="addChannels" placeholder="Ej.: WhatsApp"><button onclick="addTag('channels')">＋</button></div><div class="taglist" id="channelsTags"></div></div>
-                  </div>
-                  <div class="eco-reflect">
-                    <div class="card accent"><h3>Si tú no estuvieras por tres días...</h3><p>¿Qué se detendría, qué podría seguir y qué información sería difícil encontrar?</p></div>
-                    <div class="field card"><label>Lo que probablemente se detendría</label><textarea id="wouldStop" placeholder="Describe tareas, decisiones o contactos que dependen especialmente de ti."></textarea></div>
-                    <div class="card"><h3>Por ahora no busques solucionarlo</h3><p>Esta respuesta quedará guardada para cuando trabajemos roles, procesos, delegación y contratación.</p></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Clave</div><h3>El negocio no es solo su producto</h3><p>También es la red de personas, recursos y relaciones que permite entregarlo.</p></div>
-              <div class="aside-card"><div class="aside-tag">Se retomará</div><h3>Dependencia del dueño</h3><p>Más adelante decidirás qué conviene mantener, delegar, aprender o contratar.</p></div>
-              <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">E</div><div><strong>Ecosistema</strong><span>Quién y qué hace posible el negocio.</span></div></div></div>
-            </aside>
+        <div class="process-studio">
+          <div class="process-builder">
+            <div class="process-toolbar">
+              <div><span class="studio-label">Mi recorrido</span><strong>Ordena lo que ocurre de verdad</strong></div>
+              <button class="btn accent" onclick="addFlowStep()">＋ Agregar paso</button>
+            </div>
+            <div class="process-hints">
+              <span>① empieza con un contacto</span><span>② usa verbos</span><span>③ marca cambios de persona/canal</span><span>④ termina con un cierre</span>
+            </div>
+            <div class="flow-list" id="flowList"></div>
           </div>
-        </article>
 
-        <article class="screen m0" data-module="0" data-title="Cómo sé lo que ocurre">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">07</span> Información cotidiana</div>
-                <h2>¿Qué registras y dónde vive esa información?</h2>
-                <p>Tener datos no significa todavía utilizarlos para decidir. Por ahora identificaremos qué existe, qué no y dónde lo encuentras.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="info-layout">
-                  <div class="info-table">
-                    <table>
-                      <thead><tr><th>Información</th><th>¿La registras?</th><th>¿Dónde?</th></tr></thead>
-                      <tbody id="infoRows"></tbody>
-                    </table>
-                  </div>
-                  <div class="info-reflect">
-                    <div class="card"><h3>¿Cómo decides hoy?</h3><p>Piensa en decisiones como subir precios, comprar, contratar apoyo o aceptar un trabajo grande.</p></div>
-                    <div class="field card"><label>Lo que más se parece a mi situación</label><select id="decisionStyle"><option value="">Selecciona</option><option>Principalmente memoria e intuición</option><option>Tengo registros, pero están dispersos</option><option>Tengo registros organizados</option><option>Además de registrar, comparo datos para decidir</option></select></div>
-                    <div class="field card"><label>Una decisión que me cuesta tomar</label><textarea id="hardDecision" placeholder="Ej.: no sé cuándo conviene subir precios."></textarea></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Distinción</div><h3>Dato ≠ información útil</h3><p>Más adelante aprenderás a seleccionar qué necesitas mirar para decidir.</p></div>
-              <div class="aside-card"><div class="aside-tag">Se retomará</div><h3>Indicadores</h3><p>En módulos posteriores convertirás algunos registros en indicadores de gestión.</p></div>
-              <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">i</div><div><strong>Mapa de información</strong><span>Qué existe y dónde se encuentra.</span></div></div></div>
-            </aside>
-          </div>
-        </article>
+          <aside class="process-review">
+            <div class="review-header"><span>Revisión del mapa</span><strong>¿Está suficientemente claro?</strong></div>
+            <div class="review-list" id="processReviewList">
+              <div data-review="start"><i>○</i><span>Tiene un inicio reconocible.</span></div>
+              <div data-review="actions"><i>○</i><span>Los pasos describen acciones.</span></div>
+              <div data-review="enough"><i>○</i><span>Hay suficiente detalle para seguir el recorrido.</span></div>
+              <div data-review="owner"><i>○</i><span>Identificaste algo que depende especialmente de ti.</span></div>
+            </div>
 
-        <article class="screen m0" data-module="0" data-title="Mi fotografía de hoy">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">08</span> Integración</div>
-                <h2>Esta es tu fotografía inicial</h2>
-                <p>Ahora sí registra tu preocupación principal. La guardaremos como una hipótesis inicial, no como un diagnóstico.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="snapshot-layout">
-                  <div class="snapshot">
-                    <h3>Mi negocio hoy</h3>
-                    <div class="snapshot-grid">
-                      <div class="snap-card"><span class="k">Negocio</span><strong id="snapName">Sin nombre aún</strong><span id="snapOffer">Oferta pendiente</span></div>
-                      <div class="snap-card"><span class="k">Clientes</span><strong id="snapClients">Por completar</strong><span>Quién sostiene la demanda actual.</span></div>
-                      <div class="snap-card"><span class="k">Recorrido</span><strong id="snapFlow">0 pasos</strong><span>Cómo ocurre la atención o venta.</span></div>
-                      <div class="snap-card"><span class="k">Ecosistema</span><strong id="snapEco">0 elementos</strong><span>Personas, recursos y terceros.</span></div>
-                      <div class="snap-card"><span class="k">Información</span><strong id="snapInfo">0 registros descritos</strong><span>Qué información existe hoy.</span></div>
-                      <div class="snap-card"><span class="k">Decisiones</span><strong id="snapDecision">Por completar</strong><span>Cómo decides actualmente.</span></div>
-                    </div>
-                  </div>
-                  <div class="snapshot-reflect">
-                    <div class="card accent"><h3>Mi hipótesis inicial</h3><p>Lo que escribas puede cambiar después. Eso es parte del aprendizaje.</p></div>
-                    <div class="field"><label>Hoy creo que mi principal problema o preocupación es...</label><textarea id="mainConcern" placeholder="Escríbelo con tus propias palabras."></textarea></div>
-                    <div class="field"><label>La parte de mi negocio que siento más clara es...</label><textarea id="clearArea" placeholder="¿Qué comprendes o controlas mejor?"></textarea></div>
-                    <div class="field"><label>La pregunta que me gustaría poder responder es...</label><textarea id="bridgeQuestion" placeholder="Ej.: ¿cómo sé si realmente gano dinero con cada servicio?"></textarea></div>
-                    <button class="btn primary" onclick="completeModule0()">Guardar fotografía y continuar</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Cierre</div><h3>Descripción ≠ diagnóstico</h3><p>El Módulo 0 termina con una pregunta, no con una solución.</p></div>
-              <div class="aside-card"><div class="aside-tag">Siguiente</div><h3>Mirar el negocio completo</h3><p>Aprenderás un marco para reinterpretar esta fotografía.</p></div>
-              <div class="aside-output"><h3>Mi negocio</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Fotografía inicial</strong><span>Primera versión de tu negocio en la plataforma.</span></div></div></div>
-            </aside>
+            <div class="field process-owner"><label>¿Qué parte depende especialmente de ti?</label><textarea id="ownerOnly" placeholder="Ej.: solo yo autorizo descuentos y respondo reclamos complejos."></textarea></div>
+
+            <button class="btn primary" onclick="reviewProcessMap()">Revisar mi recorrido</button>
+            <div class="process-feedback" id="processFeedback"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Pregunta guía</div><h3>¿Qué hace el cliente y qué hacemos nosotros?</h3><p>Si un paso no contiene una acción, probablemente todavía está demasiado general.</p></div>
+      <div class="aside-card"><div class="aside-tag">Busca</div><h3>Traspasos</h3><p>Cambios de persona, canal o registro son lugares donde suelen aparecer problemas.</p></div>
+      <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">→</div><div><strong>Mapa de funcionamiento</strong><span>Recorrido real del cliente.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
+
+        
+<article class="screen m0" data-module="0" data-title="Quién y qué lo hace posible">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">06</span> Mapa de soporte</div>
+        <h2>Identifica qué sostiene cada parte de tu negocio</h2>
+        <p>No hagas una lista infinita. Agrega solo aquello cuya ausencia afectaría realmente la posibilidad de vender, producir, atender o cobrar.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="activity-contract">
+          <div><span>Harás</span><strong>Un mapa de dependencias</strong></div>
+          <div><span>Priorizarás</span><strong>elementos realmente críticos</strong></div>
+          <div><span>Después probarás</span><strong>qué pasa si uno falta</strong></div>
+        </div>
+
+        <div class="ecosystem-studio">
+          <div class="eco-board">
+            <div class="bucket">
+              <div class="bucket-head"><span class="bucket-icon">P</span><div><h3>Personas / roles</h3><p>Quién realiza decisiones o tareas clave.</p></div></div>
+              <div class="addline"><input id="addPeople" placeholder="Ej.: Yo — ventas"><button onclick="addTag('people')">＋</button></div>
+              <div class="taglist" id="peopleTags"></div>
+            </div>
+
+            <div class="bucket">
+              <div class="bucket-head"><span class="bucket-icon">R</span><div><h3>Recursos</h3><p>Herramientas, espacios o equipos necesarios.</p></div></div>
+              <div class="addline"><input id="addResources" placeholder="Ej.: horno, computador"><button onclick="addTag('resources')">＋</button></div>
+              <div class="taglist" id="resourcesTags"></div>
+            </div>
+
+            <div class="bucket">
+              <div class="bucket-head"><span class="bucket-icon">A</span><div><h3>Proveedores / apoyos</h3><p>Terceros de los que dependes para operar.</p></div></div>
+              <div class="addline"><input id="addProviders" placeholder="Ej.: proveedor de insumos"><button onclick="addTag('providers')">＋</button></div>
+              <div class="taglist" id="providersTags"></div>
+            </div>
+
+            <div class="bucket">
+              <div class="bucket-head"><span class="bucket-icon">C</span><div><h3>Canales</h3><p>Dónde llegan consultas, ventas o información.</p></div></div>
+              <div class="addline"><input id="addChannels" placeholder="Ej.: WhatsApp"><button onclick="addTag('channels')">＋</button></div>
+              <div class="taglist" id="channelsTags"></div>
+            </div>
           </div>
-        </article>
+
+          <aside class="dependency-test">
+            <div class="dependency-header">
+              <span>Prueba de dependencia</span>
+              <h3>Imagina que mañana uno de estos elementos no está disponible.</h3>
+              <p>¿Qué se detiene, se retrasa o se vuelve difícil?</p>
+            </div>
+
+            <div class="dependency-progress">
+              <div><strong id="ecoCountTotal">0</strong><span>elementos mapeados</span></div>
+              <div><strong id="ecoCategories">0/4</strong><span>categorías con información</span></div>
+            </div>
+
+            <div class="field"><label>Lo que probablemente se detendría</label><textarea id="wouldStop" placeholder="Ej.: sin acceso a WhatsApp no veo las solicitudes nuevas y no puedo confirmar pedidos."></textarea></div>
+
+            <button class="btn primary" onclick="reviewEcosystem()">Revisar mi mapa</button>
+            <div class="process-feedback" id="ecoFeedback"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Criterio</div><h3>No agregues “todo”</h3><p>Incluye aquello que cumple una función necesaria para que el negocio opere.</p></div>
+      <div class="aside-card"><div class="aside-tag">Pregunta</div><h3>¿Qué pasa si falta?</h3><p>La respuesta te ayuda a distinguir lo importante de lo accesorio.</p></div>
+      <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">E</div><div><strong>Ecosistema</strong><span>Red que hace posible el negocio.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
+
+        
+<article class="screen m0" data-module="0" data-title="Cómo sé lo que ocurre">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">07</span> Información para decidir</div>
+        <h2>Distingue entre registrar datos y usarlos para decidir</h2>
+        <p>Primero ubica qué información existe. Después conecta una decisión real de tu negocio con los datos que necesitarías para tomarla mejor.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="activity-contract">
+          <div><span>Paso 1</span><strong>Mapea lo que registras</strong></div>
+          <div><span>Paso 2</span><strong>Elige una decisión difícil</strong></div>
+          <div><span>Paso 3</span><strong>Pregunta qué información ayudaría</strong></div>
+        </div>
+
+        <div class="information-studio">
+          <div class="info-table">
+            <div class="table-intro"><strong>Mi mapa de información</strong><span>No importa si hoy está en tu memoria o en un cuaderno.</span></div>
+            <table>
+              <thead><tr><th>Información</th><th>¿La registras?</th><th>¿Dónde?</th></tr></thead>
+              <tbody id="infoRows"></tbody>
+            </table>
+          </div>
+
+          <aside class="decision-lab">
+            <div class="decision-stage">
+              <span class="studio-label">Conecta datos con una decisión</span>
+              <h3>Piensa en algo que hoy te cuesta decidir.</h3>
+            </div>
+
+            <div class="field"><label>¿Cómo decides normalmente?</label><select id="decisionStyle"><option value="">Selecciona</option><option>Principalmente memoria e intuición</option><option>Tengo registros, pero están dispersos</option><option>Tengo registros organizados</option><option>Además de registrar, comparo datos para decidir</option></select></div>
+
+            <div class="field"><label>Una decisión que me cuesta tomar</label><textarea id="hardDecision" placeholder="Ej.: no sé cuándo conviene subir precios."></textarea></div>
+
+            <div class="decision-prompts">
+              <strong>Para responder esa decisión, quizá necesitarías saber...</strong>
+              <div class="prompt-chips">
+                <button onclick="insertInfoPrompt('costos')">costos</button>
+                <button onclick="insertInfoPrompt('ventas')">ventas</button>
+                <button onclick="insertInfoPrompt('tiempos')">tiempos</button>
+                <button onclick="insertInfoPrompt('clientes')">clientes</button>
+                <button onclick="insertInfoPrompt('stock')">stock</button>
+              </div>
+            </div>
+
+            <div class="field"><label>¿Qué información te ayudaría?</label><textarea id="neededInfo" placeholder="Ej.: necesito comparar el costo actual con el precio y el margen de los productos más vendidos."></textarea></div>
+
+            <button class="btn primary" onclick="reviewInformation()">Revisar mi análisis</button>
+            <div class="process-feedback" id="informationFeedback"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Distinción</div><h3>Registrar ≠ decidir</h3><p>Un dato se vuelve útil cuando responde una pregunta o ayuda a elegir entre alternativas.</p></div>
+      <div class="aside-card"><div class="aside-tag">Ejemplo</div><h3>“Tengo las ventas”</h3><p>Puede no bastar para decidir un precio si no conoces costos o margen.</p></div>
+      <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">i</div><div><strong>Mapa de información</strong><span>Qué existe y para qué puede servir.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
+
+        
+<article class="screen m0" data-module="0" data-title="Mi fotografía de hoy">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">08</span> Integración</div>
+        <h2>Separa lo que sabes, lo que supones y lo que necesitas investigar</h2>
+        <p>Tu fotografía inicial no es un diagnóstico. Por eso cerramos diferenciando información disponible, percepciones e interrogantes.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="snapshot-learning-layout">
+          <div class="snapshot">
+            <div class="snapshot-title"><span>Lo que ya construiste</span><h3>Mi negocio hoy</h3></div>
+            <div class="snapshot-grid">
+              <div class="snap-card"><span class="k">Negocio</span><strong id="snapName">Sin nombre aún</strong><span id="snapOffer">Oferta pendiente</span></div>
+              <div class="snap-card"><span class="k">Clientes</span><strong id="snapClients">Por completar</strong><span>Quién sostiene la demanda actual.</span></div>
+              <div class="snap-card"><span class="k">Recorrido</span><strong id="snapFlow">0 pasos</strong><span>Cómo ocurre la atención o venta.</span></div>
+              <div class="snap-card"><span class="k">Ecosistema</span><strong id="snapEco">0 elementos</strong><span>Personas, recursos y terceros.</span></div>
+              <div class="snap-card"><span class="k">Información</span><strong id="snapInfo">0 registros descritos</strong><span>Qué información existe hoy.</span></div>
+              <div class="snap-card"><span class="k">Decisiones</span><strong id="snapDecision">Por completar</strong><span>Cómo decides actualmente.</span></div>
+            </div>
+          </div>
+
+          <div class="reflection-ladder">
+            <div class="reflection-intro"><span>Escalera de reflexión</span><strong>No confundas una percepción con una conclusión.</strong></div>
+
+            <div class="reflection-step know">
+              <span>1 · Lo que sé</span>
+              <label>La parte de mi negocio que puedo describir con mayor claridad es...</label>
+              <textarea id="clearArea" placeholder="Usa información que ya registraste en el módulo."></textarea>
+            </div>
+
+            <div class="reflection-step suppose">
+              <span>2 · Lo que supongo</span>
+              <label>Hoy creo que mi principal problema o preocupación es...</label>
+              <textarea id="mainConcern" placeholder="Es una hipótesis inicial; puede cambiar."></textarea>
+            </div>
+
+            <div class="reflection-step investigate">
+              <span>3 · Lo que necesito investigar</span>
+              <label>La pregunta que me gustaría poder responder es...</label>
+              <textarea id="bridgeQuestion" placeholder="Ej.: ¿qué servicios realmente dejan mejor margen?"></textarea>
+            </div>
+
+            <button class="btn primary" onclick="completeModule0()">Guardar fotografía y continuar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Metacognición</div><h3>Saber / suponer / investigar</h3><p>Estas tres categorías preparan el paso hacia un análisis más riguroso.</p></div>
+      <div class="aside-card"><div class="aside-tag">Puente</div><h3>Tu pregunta importa</h3><p>El Módulo 1 te dará categorías para empezar a responderla mejor.</p></div>
+      <div class="aside-output"><h3>Producto final</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Fotografía inicial</strong><span>Punto de partida del curso.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
 
         <!-- ================= MÓDULO 1 ================= -->
-        <article class="screen m1" data-module="1" data-title="Algo no cuadra">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">01</span> Activación de problema</div>
-                <h2>Las ventas aumentaron. ¿Entonces el negocio está mejor?</h2>
-                <p>Antes de presentar un modelo, vamos a enfrentarnos a una situación que obliga a mirar más de una cosa al mismo tiempo.</p>
+        
+<article class="screen m1" data-module="1" data-title="Algo no cuadra">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">01</span> Predicción</div>
+        <h2>Las ventas aumentaron. ¿Eso basta para decir que el negocio está mejor?</h2>
+        <p>Antes de aprender el modelo, registra tu explicación inicial. La volveremos a mirar cuando aparezcan nuevos datos.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="prediction-case">
+          <article class="case-story">
+            <div class="mini">Caso · Café Buen Día</div>
+            <h3>Más clientes, más trabajo… y menos tranquilidad</h3>
+            <p>El café lleva tres años funcionando. Las ventas aumentaron y las evaluaciones siguen siendo buenas.</p>
+            <div class="case-signals">
+              <span>↑ ventas</span><span>↑ clientes</span><span>↑ carga de trabajo</span><span>? margen</span><span>? inventario</span>
+            </div>
+            <p>El dueño comenta: <strong>“Vendemos más, pero siento que tengo menos control del negocio”.</strong></p>
+          </article>
+
+          <section class="prediction-work">
+            <div class="activity-contract compact">
+              <div><span>Primero</span><strong>Toma posición</strong></div>
+              <div><span>Después</span><strong>Justifica</strong></div>
+              <div><span>Finalmente</span><strong>Identifica qué falta saber</strong></div>
+            </div>
+
+            <div class="prediction-question">
+              <strong>Con esta información, ¿podemos decir que el negocio está mejor?</strong>
+              <div class="segmented big-segmented" id="caseVerdict">
+                <button data-value="Sí">Sí</button>
+                <button data-value="No">No</button>
+                <button data-value="No hay información suficiente">Todavía no puedo saberlo</button>
               </div>
-              <div class="lesson-body">
-                <div class="case-hook">
-                  <div class="case-story">
-                    <div class="mini">Caso · Café Buen Día</div>
-                    <h3>Más clientes, más trabajo… y menos tranquilidad</h3>
-                    <p>El café lleva tres años funcionando. Durante el último año aumentaron las ventas y las evaluaciones de clientes siguen siendo buenas.</p>
-                    <ul>
-                      <li>El dueño compra y conoce de memoria a los proveedores.</li>
-                      <li>Los precios no se revisan hace más de un año.</li>
-                      <li>Cada trabajador prepara algunos productos de manera distinta.</li>
-                      <li>El inventario se revisa cuando falta algo.</li>
-                      <li>No hay claridad sobre el margen de cada producto.</li>
-                      <li>Las ventas se registran, pero rara vez se analizan.</li>
-                      <li>Si el dueño falta, varias decisiones quedan pendientes.</li>
-                    </ul>
-                  </div>
-                  <div class="hook-task">
-                    <div class="card accent"><h3>Primera reacción</h3><p>No busques todavía “la respuesta correcta”. Registra qué te llama la atención.</p></div>
-                    <div class="field card"><label>¿Qué crees que está pasando?</label><textarea id="caseInitial" placeholder="Escribe tu primera lectura del caso."></textarea></div>
-                    <div class="card"><h3>¿Podemos decir que funciona bien?</h3><div class="segmented" id="caseVerdict"><button data-value="Sí">Sí</button><button data-value="No">No</button><button data-value="No hay información suficiente">No hay información suficiente</button></div><div class="feedback" id="caseVerdictFeedback">Una respuesta útil no depende de elegir “sí” o “no”, sino de reconocer qué información necesitamos antes de evaluar el negocio.</div></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Propósito</div><h3>Crear una necesidad de análisis</h3><p>El modelo aparece después de que el caso demuestra que mirar solo las ventas no basta.</p></div>
-              <div class="aside-card"><div class="aside-tag">Recuerda</div><h3>Tu negocio ya está aquí</h3><p>Más adelante aplicarás el mismo criterio a tu propia fotografía.</p></div>
-              <div class="aside-output"><h3>Habilidad</h3><div class="output-item"><div class="output-icon">?</div><div><strong>Suspender el juicio</strong><span>Antes de recomendar una solución.</span></div></div></div>
-            </aside>
-          </div>
-        </article>
+            </div>
+
+            <div class="field"><label>Explica tu decisión en 2–3 frases</label><textarea id="caseInitial" placeholder="No necesitas usar lenguaje técnico."></textarea></div>
+
+            <div class="prediction-confidence">
+              <span>¿Qué tan seguro/a estás?</span>
+              <input id="caseConfidence" type="range" min="1" max="5" value="3">
+              <small>1 = muy poco · 5 = muy seguro/a</small>
+            </div>
+
+            <button class="btn primary" onclick="revealCaseNeed()">¿Qué información falta? →</button>
+            <div class="feedback" id="caseVerdictFeedback"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Predicción</div><h3>No busques acertar</h3><p>Nos interesa registrar cómo estás razonando antes de ver más evidencia.</p></div>
+      <div class="aside-card"><div class="aside-tag">Después</div><h3>Volverás a esta explicación</h3><p>Podrás observar si los nuevos datos cambian tu hipótesis.</p></div>
+      <div class="aside-output"><h3>Habilidad</h3><div class="output-item"><div class="output-icon">?</div><div><strong>Suspender el juicio</strong><span>No confundir una señal con una conclusión.</span></div></div></div>
+    </aside>
+  </div>
+</article>
 
 
-        <article class="screen m1" data-module="1" data-title="El caso cambia con la evidencia">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">02</span> Caso guiado</div>
-                <h2>La misma situación se ve distinta cuando aparecen datos</h2>
-                <p>Abre las evidencias del Café Buen Día una por una. Observa cómo cada dato puede modificar tu primera explicación.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="evidence-case-layout">
-                  <div class="evidence-tabs" id="evidenceTabs">
-                    <button class="evidence-tab active" data-evidence="sales"><span>01</span><strong>Ventas</strong></button>
-                    <button class="evidence-tab" data-evidence="costs"><span>02</span><strong>Costos</strong></button>
-                    <button class="evidence-tab" data-evidence="stock"><span>03</span><strong>Operación</strong></button>
-                    <button class="evidence-tab" data-evidence="owner"><span>04</span><strong>Dueño</strong></button>
-                  </div>
-                  <div class="evidence-card" id="evidenceCard">
-                    <div class="evidence-kicker">Evidencia 1 · Ventas</div>
-                    <h3>Las ventas mensuales subieron 18% respecto del mismo periodo anterior.</h3>
-                    <p>Este dato confirma crecimiento comercial, pero por sí solo todavía no permite saber si el negocio está generando mejores resultados.</p>
-                    <div class="evidence-question">¿Qué información pedirías ahora para interpretar este aumento?</div>
-                  </div>
-                  <div class="field evidence-reflect">
-                    <label>Después de revisar las evidencias, mi explicación del caso cambia porque...</label>
-                    <textarea id="caseEvidenceReflection" placeholder="Escribe qué hipótesis mantendrías, cambiarías o dejarías en suspenso."></textarea>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Aprendizaje</div><h3>La evidencia modifica hipótesis</h3><p>Una explicación inicial no se “defiende”: se ajusta cuando aparecen datos relevantes.</p></div>
-              <div class="aside-card"><div class="aside-tag">Caso ficticio</div><h3>Datos para aprender</h3><p>Las cifras del Café Buen Día fueron creadas para esta actividad.</p></div>
-              <div class="aside-output"><h3>Movimiento</h3><div class="output-item"><div class="output-icon">↻</div><div><strong>Revisar la explicación</strong><span>En vez de buscar confirmarla.</span></div></div></div>
-            </aside>
-          </div>
-        </article>
 
-        <article class="screen m1" data-module="1" data-title="Qué necesitamos mirar">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">03</span> Descubrimiento</div>
-                <h2>¿Qué información pedirías antes de decidir?</h2>
-                <p>Selecciona las pistas que investigarías. A medida que eliges, la plataforma mostrará qué dimensión de gestión estás activando.</p>
+        
+<article class="screen m1" data-module="1" data-title="El caso cambia con la evidencia">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">02</span> Caso guiado</div>
+        <h2>Revisa tu hipótesis a medida que aparece evidencia</h2>
+        <p>Abre las cuatro evidencias en orden. Después de cada una, pregúntate: ¿confirma mi explicación, la complica o la obliga a cambiar?</p>
+      </div>
+      <div class="lesson-body">
+        <div class="evidence-learning-layout">
+          <nav class="evidence-tabs" id="evidenceTabs">
+            <button class="evidence-tab active" data-evidence="sales"><span>01</span><strong>Ventas</strong><small id="evState-sales">por revisar</small></button>
+            <button class="evidence-tab" data-evidence="costs"><span>02</span><strong>Costos</strong><small id="evState-costs">por revisar</small></button>
+            <button class="evidence-tab" data-evidence="stock"><span>03</span><strong>Operación</strong><small id="evState-stock">por revisar</small></button>
+            <button class="evidence-tab" data-evidence="owner"><span>04</span><strong>Dueño</strong><small id="evState-owner">por revisar</small></button>
+          </nav>
+
+          <section class="evidence-analysis">
+            <div class="evidence-card" id="evidenceCard">
+              <div class="evidence-kicker">Evidencia 1 · Ventas</div>
+              <h3>Las ventas mensuales subieron 18% respecto del mismo periodo anterior.</h3>
+              <p>Este dato confirma crecimiento comercial, pero por sí solo todavía no permite saber si el negocio está generando mejores resultados.</p>
+              <div class="evidence-question">¿Qué información pedirías ahora para interpretar este aumento?</div>
+            </div>
+
+            <div class="evidence-reaction">
+              <strong>Esta evidencia...</strong>
+              <div class="segmented evidence-reaction-buttons">
+                <button onclick="markEvidenceReaction('confirma',this)">confirma mi idea</button>
+                <button onclick="markEvidenceReaction('complica',this)">la vuelve más compleja</button>
+                <button onclick="markEvidenceReaction('cambia',this)">me hace cambiarla</button>
               </div>
-              <div class="lesson-body">
-                <div class="discovery-layout">
-                  <div class="clue-board">
-                    <div class="clue-grid" id="clueGrid">
-                      <button class="clue" data-dim="Clientes y resultados"><strong>Margen por producto</strong><span>¿Cuánto deja realmente cada venta?</span></button>
-                      <button class="clue" data-dim="Información"><strong>Datos de ventas</strong><span>¿Qué se vende, cuándo y cuánto?</span></button>
-                      <button class="clue" data-dim="Procesos"><strong>Forma de preparar productos</strong><span>¿Existe una manera común de hacerlo?</span></button>
-                      <button class="clue" data-dim="Proveedores y alianzas"><strong>Compras e inventario</strong><span>¿Cómo se repone y controla el stock?</span></button>
-                      <button class="clue" data-dim="Personas"><strong>Decisiones del dueño</strong><span>¿Qué depende exclusivamente de él?</span></button>
-                      <button class="clue" data-dim="Control y mejora"><strong>Revisión periódica</strong><span>¿Qué se controla y con qué frecuencia?</span></button>
-                      <button class="clue" data-dim="Dirección"><strong>Prioridades del negocio</strong><span>¿Qué quiere lograr y qué está priorizando?</span></button>
-                      <button class="clue" data-dim="Recursos y tecnología"><strong>Herramientas de registro</strong><span>¿Qué sistemas sostienen la operación?</span></button>
-                    </div>
-                  </div>
-                  <div class="discovery-panel">
-                    <div class="card accent"><h3>Lo que estás haciendo</h3><p>Estás abriendo distintas “ventanas” para comprender el mismo negocio.</p></div>
-                    <div><strong style="font-size:calc(.67rem * var(--font-scale))">Dimensiones descubiertas</strong></div>
-                    <div class="discovered" id="discoveredList"><span class="empty">Selecciona al menos una pista.</span></div>
-                    <button class="btn primary" onclick="revealModel()">Continuar: entender el negocio como sistema →</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Descubrimiento</div><h3>Las categorías vienen después</h3><p>Primero surge la necesidad de mirar algo; luego aprendemos cómo se llama esa dimensión.</p></div>
-              <div class="aside-card"><div class="aside-tag">Pregunta</div><h3>¿Qué falta mirar?</h3><p>Ninguna de estas dimensiones explica por sí sola el negocio completo.</p></div>
-              <div class="aside-output"><h3>Avance</h3><div class="output-item"><div class="output-icon" id="discoveryCount">0</div><div><strong>Dimensiones descubiertas</strong><span>El modelo tiene ocho.</span></div></div></div>
-            </aside>
+              <textarea id="evidenceMicroNote" placeholder="¿Qué cambia en tu explicación? Escribe una frase breve."></textarea>
+              <button class="btn accent" onclick="saveEvidenceReaction()">Guardar y marcar como revisada</button>
+            </div>
+          </section>
+
+          <aside class="evidence-synthesis">
+            <span class="studio-label">Después de las cuatro evidencias</span>
+            <h3>Reformula tu explicación.</h3>
+            <p>No enumeres los datos. Explica qué relación ves entre ellos.</p>
+            <div class="field evidence-reflect">
+              <textarea id="caseEvidenceReflection" placeholder="Ahora pienso que el caso no se explica solo por las ventas porque..."></textarea>
+            </div>
+            <div class="evidence-visited"><strong id="evidenceVisitedCount">0/4</strong><span>evidencias trabajadas</span></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Estrategia</div><h3>Hipótesis revisable</h3><p>No “defiendas” tu primera explicación: ajústala cuando aparezcan datos relevantes.</p></div>
+      <div class="aside-card"><div class="aside-tag">Pregunta</div><h3>¿Qué relación aparece?</h3><p>Busca conexiones entre ventas, costos, operación y decisiones.</p></div>
+      <div class="aside-output"><h3>Progreso</h3><div class="output-item"><div class="output-icon" id="evidenceAsideCount">0</div><div><strong>Evidencias trabajadas</strong><span>Necesitas revisar cuatro.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
+
+        
+<article class="screen m1" data-module="1" data-title="Qué necesitamos mirar">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">03</span> Descubrimiento</div>
+        <h2>Elige las preguntas que realmente ayudan a comprender el caso</h2>
+        <p>No todas las preguntas tienen el mismo valor. Selecciona las que aportarían evidencia para explicar lo que está ocurriendo en el Café Buen Día.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="question-discovery">
+          <div class="question-bank">
+            <div class="question-bank-head"><span>Banco de preguntas</span><strong>Elige al menos 4</strong><small>Después veremos qué dimensiones estás activando.</small></div>
+            <div class="clue-grid" id="clueGrid">
+              <button class="clue" data-dim="Clientes y resultados"><strong>¿Qué margen deja cada producto?</strong><span>Relaciona precio, costo y resultado.</span></button>
+              <button class="clue" data-dim="Información"><strong>¿Qué se vende, cuándo y cuánto?</strong><span>Busca patrones en los datos de venta.</span></button>
+              <button class="clue" data-dim="Procesos"><strong>¿Todos preparan los productos de la misma manera?</strong><span>Observa consistencia del trabajo.</span></button>
+              <button class="clue" data-dim="Proveedores y alianzas"><strong>¿Cómo se decide cuándo reponer stock?</strong><span>Conecta compras e inventario.</span></button>
+              <button class="clue" data-dim="Personas"><strong>¿Qué decisiones dependen solo del dueño?</strong><span>Revisa roles y autonomía.</span></button>
+              <button class="clue" data-dim="Control y mejora"><strong>¿Qué se revisa periódicamente?</strong><span>Busca seguimiento y ajuste.</span></button>
+              <button class="clue" data-dim="Dirección"><strong>¿Qué quiere priorizar el negocio?</strong><span>Conecta decisiones con rumbo.</span></button>
+              <button class="clue" data-dim="Recursos y tecnología"><strong>¿Qué herramientas sostienen los registros?</strong><span>Revisa soporte tecnológico.</span></button>
+            </div>
           </div>
-        </article>
+
+          <aside class="question-discovery-panel">
+            <span class="studio-label">Lo que estás descubriendo</span>
+            <h3>Cada buena pregunta abre una dimensión.</h3>
+            <p>No se trata de “usar las ocho” siempre. Se trata de elegir las que permiten comprender mejor una situación.</p>
+            <div class="discovered" id="discoveredList"><span class="empty">Selecciona una pregunta.</span></div>
+            <div class="discovery-count"><strong id="discoveryCount">0</strong><span>dimensiones activadas</span></div>
+            <button class="btn primary" onclick="revealModel()">Continuar: entender el negocio como sistema →</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Criterio</div><h3>Pregunta que produce evidencia</h3><p>Una buena pregunta indica qué información necesitarías buscar o comparar.</p></div>
+      <div class="aside-card"><div class="aside-tag">Evita</div><h3>Preguntas que ya traen una solución</h3><p>“¿Qué software deberíamos comprar?” llega demasiado pronto.</p></div>
+      <div class="aside-output"><h3>Aprendizaje</h3><div class="output-item"><div class="output-icon">?</div><div><strong>Preguntar antes de intervenir</strong><span>Base del diagnóstico.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
 
 
         <article class="screen m1" data-module="1" data-title="Cápsula: el negocio como sistema">
@@ -1737,61 +2630,111 @@ button[disabled]{
           </div>
         </article>
 
-        <article class="screen m1" data-module="1" data-title="Mirar el negocio completo">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">05</span> Marco conceptual</div>
-                <h2>Ocho dimensiones para leer un negocio</h2>
-                <p>Ahora sí ponemos nombre al modelo. Las ocho dimensiones se organizan en cuatro preguntas mayores para que no se transformen en una lista que memorizar.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="model-layout">
-                  <div class="model-board">
-                    <div class="dimension-group"><strong>1 · Dirección</strong><p>¿Hacia dónde vamos?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Dirección"><strong>Dirección</strong><span>Objetivos, prioridades y rumbo.</span></button></div></div>
-                    <div class="dimension-group"><strong>2 · Operación</strong><p>¿Cómo hacemos que funcione?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Personas"><strong>Personas</strong><span>Roles, capacidades y coordinación.</span></button><button class="dimension-btn" data-dimension="Procesos"><strong>Procesos</strong><span>Cómo se realiza el trabajo.</span></button><button class="dimension-btn" data-dimension="Recursos y tecnología"><strong>Recursos y tecnología</strong><span>Herramientas y soporte.</span></button><button class="dimension-btn" data-dimension="Proveedores y alianzas"><strong>Proveedores y alianzas</strong><span>Compras y relaciones externas.</span></button></div></div>
-                    <div class="dimension-group"><strong>3 · Información y resultados</strong><p>¿Cómo sabemos qué ocurre?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Clientes y resultados"><strong>Clientes y resultados</strong><span>Valor, ventas y desempeño.</span></button><button class="dimension-btn" data-dimension="Información"><strong>Información</strong><span>Datos y registros para decidir.</span></button></div></div>
-                    <div class="dimension-group"><strong>4 · Aprendizaje y mejora</strong><p>¿Cómo corregimos y mejoramos?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Control y mejora"><strong>Control y mejora</strong><span>Seguimiento, evaluación y ajustes.</span></button></div></div>
-                  </div>
-                  <div class="model-detail" id="modelDetail">
-                    <div class="eyebrow">Selecciona una dimensión</div>
-                    <h3>Mirar el negocio completo</h3>
-                    <p>Haz clic en una dimensión para ver qué incluye y cuál es su pregunta guía.</p>
-                    <div class="question-box">Un problema visible puede originarse en otra dimensión. Por eso necesitamos relacionarlas.</div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">No memorices</div><h3>Usa las preguntas</h3><p>La utilidad del modelo está en lo que te permite preguntar sobre tu negocio.</p></div>
-              <div class="aside-card"><div class="aside-tag">Clave</div><h3>Las dimensiones se relacionan</h3><p>Un problema de ventas puede involucrar procesos, precios, información o personas.</p></div>
-              <div class="aside-output"><h3>Modelo</h3><div class="output-item"><div class="output-icon">8</div><div><strong>Ocho lentes</strong><span>Organizados en cuatro preguntas.</span></div></div></div>
-            </aside>
+        
+<article class="screen m1" data-module="1" data-title="Mirar el negocio completo">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">05</span> Modelo interactivo</div>
+        <h2>Explora las ocho dimensiones a través de preguntas y ejemplos</h2>
+        <p>No memorices los nombres. Para cada dimensión aprende tres cosas: qué mira, qué pregunta y qué tipo de evidencia podría ayudarte.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="model-learning-layout">
+          <div class="model-board">
+            <div class="dimension-group"><strong>1 · Dirección</strong><p>¿Hacia dónde vamos?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Dirección"><strong>Dirección</strong><span>Objetivos, prioridades y rumbo.</span></button></div></div>
+            <div class="dimension-group"><strong>2 · Operación</strong><p>¿Cómo hacemos que funcione?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Personas"><strong>Personas</strong><span>Roles, capacidades y coordinación.</span></button><button class="dimension-btn" data-dimension="Procesos"><strong>Procesos</strong><span>Cómo se realiza el trabajo.</span></button><button class="dimension-btn" data-dimension="Recursos y tecnología"><strong>Recursos y tecnología</strong><span>Herramientas y soporte.</span></button><button class="dimension-btn" data-dimension="Proveedores y alianzas"><strong>Proveedores y alianzas</strong><span>Compras y relaciones externas.</span></button></div></div>
+            <div class="dimension-group"><strong>3 · Información y resultados</strong><p>¿Cómo sabemos qué ocurre?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Clientes y resultados"><strong>Clientes y resultados</strong><span>Valor, ventas y desempeño.</span></button><button class="dimension-btn" data-dimension="Información"><strong>Información</strong><span>Datos y registros para decidir.</span></button></div></div>
+            <div class="dimension-group"><strong>4 · Aprendizaje y mejora</strong><p>¿Cómo corregimos y mejoramos?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Control y mejora"><strong>Control y mejora</strong><span>Seguimiento, evaluación y ajustes.</span></button></div></div>
           </div>
-        </article>
+
+          <aside class="model-detail" id="modelDetail">
+            <div class="eyebrow">Cómo usar el modelo</div>
+            <h3>Selecciona una dimensión</h3>
+            <p>Verás su pregunta guía, un ejemplo y una señal de evidencia que podrías buscar.</p>
+            <div class="question-box">No necesitas revisar las ocho dimensiones con la misma profundidad en cada problema.</div>
+          </aside>
+
+          <div class="dimension-check">
+            <span class="studio-label">Prueba rápida</span>
+            <h3>¿Qué dimensión mirarías primero?</h3>
+            <p id="dimensionCheckScenario">“Los clientes reclaman porque reciben respuestas diferentes según quién los atienda.”</p>
+            <div class="dimension-check-options">
+              <button onclick="answerDimensionCheck('Personas')">Personas</button>
+              <button onclick="answerDimensionCheck('Información')">Información</button>
+              <button onclick="answerDimensionCheck('Dirección')">Dirección</button>
+            </div>
+            <div class="process-feedback" id="dimensionCheckFeedback"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">No memorices</div><h3>Recuerda preguntas</h3><p>Las preguntas son más transferibles que una lista de conceptos.</p></div>
+      <div class="aside-card"><div class="aside-tag">Cuidado</div><h3>Una señal puede cruzar dimensiones</h3><p>Elegir una primera dimensión no significa que sea la única involucrada.</p></div>
+      <div class="aside-output"><h3>Modelo</h3><div class="output-item"><div class="output-icon">8</div><div><strong>Ocho lentes</strong><span>Para organizar la investigación.</span></div></div></div>
+    </aside>
+  </div>
+</article>
 
 
-        <article class="screen m1" data-module="1" data-title="Lectura guiada: leer relaciones">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">06</span> Texto interactivo</div>
-                <h2>Una venta puede esconder varios problemas</h2>
-                <p>Lee este texto breve y abre las notas al margen. La meta no es memorizar, sino reconocer relaciones entre dimensiones.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="guided-reading-layout">
-                  <article class="guided-text">
-                    <h3>Cuando “vender más” no basta</h3>
-                    <p>Un negocio puede aumentar sus ventas y, sin embargo, enfrentar más dificultades para sostenerse. <button class="inline-note" data-note="n1">¿Por qué?</button> Si el crecimiento obliga a trabajar más horas, aumenta los errores o exige compras urgentes, el resultado comercial puede venir acompañado de costos y tensiones que no eran visibles al mirar solo la facturación.</p>
-                    <p>Algo similar ocurre con la información. Registrar ventas es útil, pero no necesariamente suficiente. <button class="inline-note" data-note="n2">Mira la diferencia</button> Para decidir, muchas veces necesitamos relacionar esos datos con costos, márgenes, tiempos, devoluciones o capacidad de atención.</p>
-                    <p>Por eso una mirada integral no significa revisar “todo” sin criterio. Significa elegir las dimensiones que ayudan a formular mejores preguntas y conectarlas con evidencia. <button class="inline-note" data-note="n3">Idea clave</button></p>
-                    <div class="reading-question">
-                      <strong>Pregunta de lectura</strong>
-                      <p>¿Qué error de análisis comete una persona si concluye que “el negocio está mejor” solo porque aumentaron las ventas?</p>
-                      <textarea id="guidedReadingAnswer" placeholder="Responde en dos o tres frases."></textarea>
-                    </div>
-                  </article>
+
+        
+<article class="screen m1" data-module="1" data-title="Lectura guiada: leer relaciones">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">06</span> Lectura estratégica</div>
+        <h2>Lee buscando relaciones, no datos aislados</h2>
+        <p>Antes de leer, formula una predicción. Durante la lectura, abre las notas. Después, responde usando una relación causal.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="reading-strategy-layout">
+          <aside class="reading-before">
+            <span class="studio-label">Antes de leer</span>
+            <h3>Predice</h3>
+            <p>Si un negocio vende más, ¿qué otras partes podrían tensionarse?</p>
+            <div class="pills reading-predictions" id="readingPredictions">
+              <button onclick="toggleReadingPrediction(this)">personas</button>
+              <button onclick="toggleReadingPrediction(this)">stock</button>
+              <button onclick="toggleReadingPrediction(this)">costos</button>
+              <button onclick="toggleReadingPrediction(this)">tiempos</button>
+            </div>
+            <small>No hay una única respuesta correcta.</small>
+          </aside>
+
+          <article class="guided-text">
+            <div class="reading-purpose">Durante la lectura: busca conectores como <b>si</b>, <b>por eso</b>, <b>sin embargo</b>, <b>puede provocar</b>.</div>
+            <h3>Cuando “vender más” no basta</h3>
+            <p>Un negocio puede aumentar sus ventas y, sin embargo, enfrentar más dificultades para sostenerse. <button class="inline-note" data-note="n1">¿Qué relación aparece?</button> Si el crecimiento obliga a trabajar más horas, aumenta los errores o exige compras urgentes, el resultado comercial puede venir acompañado de costos y tensiones que no eran visibles al mirar solo la facturación.</p>
+            <p>Algo similar ocurre con la información. Registrar ventas es útil, pero no necesariamente suficiente. <button class="inline-note" data-note="n2">Dato vs. decisión</button> Para decidir, muchas veces necesitamos relacionar esos datos con costos, márgenes, tiempos, devoluciones o capacidad de atención.</p>
+            <p>Por eso una mirada integral no significa revisar “todo” sin criterio. Significa elegir las dimensiones que ayudan a formular mejores preguntas y conectarlas con evidencia. <button class="inline-note" data-note="n3">Idea central</button></p>
+
+            <div class="reading-question">
+              <strong>Después de leer</strong>
+              <p>Completa la relación: “Vender más no significa necesariamente estar mejor porque...”</p>
+              <textarea id="guidedReadingAnswer" placeholder="Explica al menos una relación entre resultado y funcionamiento."></textarea>
+              <button class="btn accent" onclick="reviewGuidedReading()">Revisar mi respuesta</button>
+              <div class="process-feedback" id="guidedReadingFeedback"></div>
+            </div>
+          </article>
+
+          <aside class="reading-margin" id="readingMargin">
+            <div class="margin-placeholder">Abre una nota dentro del texto para ver cómo se analiza una relación.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Estrategia</div><h3>Antes / durante / después</h3><p>Predice → busca relaciones → explica una conexión.</p></div>
+      <div class="aside-card"><div class="aside-tag">Criterio</div><h3>No basta enumerar</h3><p>Una buena respuesta conecta al menos dos variables con un “porque”.</p></div>
+      <div class="aside-output"><h3>Habilidad</h3><div class="output-item"><div class="output-icon">R</div><div><strong>Leer relaciones</strong><span>Detectar conexiones causales o condicionales.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
                   <aside class="reading-margin" id="readingMargin">
                     <div class="margin-placeholder">Selecciona una nota dentro del texto.</div>
                   </aside>
@@ -1806,46 +2749,53 @@ button[disabled]{
           </div>
         </article>
 
-        <article class="screen m1" data-module="1" data-title="Síntoma, evidencia y problema">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">07</span> Herramienta de pensamiento</div>
-                <h2>No compres una solución antes de entender el problema</h2>
-                <p>Practica cómo transformar una necesidad expresada en preguntas y evidencia útil antes de decidir una intervención.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="lab-layout">
-                  <div class="lab-model">
-                    <div class="mini">Secuencia de análisis</div>
-                    <h3>Síntoma → preguntas → evidencia → problema</h3>
-                    <p>El síntoma es lo que vemos o sentimos. El problema se formula cuando la evidencia permite explicar qué necesita intervención.</p>
-                    <div class="flow-mini"><div><b>1</b>Síntoma</div><div><b>2</b>Preguntas</div><div><b>3</b>Evidencia</div><div><b>4</b>Problema</div></div>
-                  </div>
-                  <div class="lab-tool">
-                    <div class="scenario-tabs" id="scenarioTabs">
-                      <button class="scenario-tab active" data-scenario="sales">Necesito vender más</button>
-                      <button class="scenario-tab" data-scenario="people">Necesito contratar gente</button>
-                      <button class="scenario-tab" data-scenario="ads">Necesito publicidad</button>
-                      <button class="scenario-tab" data-scenario="software">Necesito un software</button>
-                    </div>
-                    <div class="lab-columns">
-                      <div class="lab-cell"><span class="lab">Síntoma</span><strong id="labA">“Necesito vender más”</strong><p id="labAP">Es la necesidad expresada inicialmente.</p></div>
-                      <div class="lab-cell"><span class="lab">Preguntas</span><strong id="labB">¿Ventas, margen o costos?</strong><p id="labBP">¿La baja rentabilidad se explica por pocas ventas, precio, costos o mezcla de productos?</p></div>
-                      <div class="lab-cell"><span class="lab">Evidencia</span><strong id="labC">Ventas, costos y márgenes</strong><p id="labCP">Necesitamos revisar datos antes de elegir una intervención.</p></div>
-                      <div class="lab-cell"><span class="lab">Problema</span><strong id="labD">Todavía no lo sabemos</strong><p id="labDP">El diagnóstico aparece después de analizar la evidencia, no antes.</p></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Regla</div><h3>Problema ≠ solución deseada</h3><p>“Necesito un software” ya presupone una intervención.</p></div>
-              <div class="aside-card"><div class="aside-tag">Conecta</div><h3>Piensa en tu preocupación inicial</h3><p>En la siguiente pantalla la mirarás con estas nuevas categorías.</p></div>
-              <div class="aside-output"><h3>Herramienta</h3><div class="output-item"><div class="output-icon">S</div><div><strong>Síntoma → evidencia</strong><span>Puente hacia el diagnóstico.</span></div></div></div>
-            </aside>
+        
+<article class="screen m1" data-module="1" data-title="Síntoma, evidencia y problema">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">07</span> Taller de estrategia</div>
+        <h2>Transforma una “solución rápida” en una investigación</h2>
+        <p>Primero observa un ejemplo modelado. Después construye tú las preguntas y la evidencia antes de comparar con una propuesta.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="symptom-workshop">
+          <nav class="scenario-tabs" id="scenarioTabs">
+            <button class="scenario-tab active" data-scenario="sales">Necesito vender más</button>
+            <button class="scenario-tab" data-scenario="people">Necesito contratar gente</button>
+            <button class="scenario-tab" data-scenario="ads">Necesito publicidad</button>
+            <button class="scenario-tab" data-scenario="software">Necesito un software</button>
+          </nav>
+
+          <div class="symptom-model">
+            <div class="lab-cell symptom"><span class="lab">1 · Síntoma / solución expresada</span><strong id="labA">“Necesito vender más”</strong><p id="labAP">Es la necesidad expresada inicialmente.</p></div>
+            <div class="strategy-arrow">→</div>
+            <div class="lab-cell question"><span class="lab">2 · Pregunta</span><strong id="labB">¿Ventas, margen o costos?</strong><p id="labBP">¿La baja rentabilidad se explica por pocas ventas, precio, costos o mezcla de productos?</p></div>
+            <div class="strategy-arrow">→</div>
+            <div class="lab-cell evidence"><span class="lab">3 · Evidencia</span><strong id="labC">Ventas, costos y márgenes</strong><p id="labCP">Necesitamos revisar datos antes de elegir una intervención.</p></div>
+            <div class="strategy-arrow">→</div>
+            <div class="lab-cell problem"><span class="lab">4 · Problema</span><strong id="labD">Todavía no lo sabemos</strong><p id="labDP">El diagnóstico aparece después de analizar la evidencia, no antes.</p></div>
           </div>
-        </article>
+
+          <div class="symptom-your-turn">
+            <div class="your-turn-head"><span>Ahora tú</span><strong>Construye el paso 2 y el paso 3 antes de mirar el ejemplo.</strong></div>
+            <div class="field"><label>Pregunta que haría antes de decidir</label><textarea id="labOwnQuestion" placeholder="¿Qué tendría que saber para entender mejor la situación?"></textarea></div>
+            <div class="field"><label>Evidencia que buscaría</label><textarea id="labOwnEvidence" placeholder="¿Qué datos, registros u observaciones ayudarían?"></textarea></div>
+            <button class="btn primary" onclick="compareLabStrategy()">Comparar con el modelo</button>
+            <div class="lab-comparison" id="labComparison"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Regla</div><h3>“Necesito X” no siempre nombra el problema</h3><p>Muchas veces nombra una solución que todavía no ha sido justificada.</p></div>
+      <div class="aside-card"><div class="aside-tag">Secuencia</div><h3>Pregunta antes de comprar</h3><p>Preguntar → buscar evidencia → recién después decidir.</p></div>
+      <div class="aside-output"><h3>Herramienta</h3><div class="output-item"><div class="output-icon">S</div><div><strong>Del síntoma al problema</strong><span>Estrategia para frenar soluciones prematuras.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
 
 
         <article class="screen m1" data-module="1" data-title="Entrena la estrategia">
@@ -1853,8 +2803,8 @@ button[disabled]{
             <section class="lesson">
               <div class="lesson-head">
                 <div class="phase"><span class="phase-badge">08</span> Práctica con retroalimentación</div>
-                <h2>¿Cuál es el mejor siguiente paso?</h2>
-                <p>En cada situación el emprendedor ya propone una solución. Tu tarea es elegir qué conviene hacer antes de comprarla o implementarla.</p>
+                <h2>Decide qué conviene investigar antes de actuar</h2>
+                <p>En cada caso hay tres opciones. Una produce información para comprender; las otras saltan directamente a una solución. Tu tarea es distinguirlas.</p>
               </div>
               <div class="lesson-body">
                 <div class="scenario-practice" id="strategyPractice">
@@ -1894,99 +2844,158 @@ button[disabled]{
           </div>
         </article>
 
-        <article class="screen m1" data-module="1" data-title="Ahora mira el tuyo">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">09</span> Transferencia</div>
-                <h2>Aplica las ocho dimensiones a tu propio negocio</h2>
-                <p>No es todavía un diagnóstico técnico. Es una nueva lectura de la fotografía que construiste en el Módulo 0.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="map-layout">
-                  <div class="map-cards" id="mapCards"></div>
-                  <div class="map-side">
-                    <div><h3 id="mapSelected">Selecciona una dimensión</h3><p id="mapHelp">Marca tu nivel de claridad y escribe una evidencia que explique tu percepción.</p></div>
-                    <div class="pills"><span class="tag" style="background:var(--success-soft)">1 · claro</span><span class="tag" style="background:var(--warning-soft)">2 · dudas</span><span class="tag" style="background:var(--danger-soft)">3 · revisar</span></div>
-                    <textarea id="mapEvidence" placeholder="Ej.: sé cuánto vendo al mes, pero no conozco el margen por servicio."></textarea>
-                    <button class="btn primary" onclick="saveMapEvidence()">Guardar evidencia</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Importante</div><h3>Percepción informada</h3><p>Ahora tienes más categorías que en el Módulo 0, pero todavía deberás contrastarlas con evidencia en el diagnóstico.</p></div>
-              <div class="aside-card"><div class="aside-tag">Producto</div><h3>Mapa inicial de gestión</h3><p>Será una pieza central de “Mi negocio”.</p></div>
-              <div class="aside-output" id="mapSummary"><h3>Tu mapa</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Dimensiones marcadas</strong><span>Completa varias para ver patrones.</span></div></div></div>
+        
+<article class="screen m1" data-module="1" data-title="Ahora mira el tuyo">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">09</span> Transferencia</div>
+        <h2>Usa las ocho dimensiones para decidir qué necesitas investigar</h2>
+        <p>No marques “bueno” o “malo”. Evalúa cuánto respaldo tienes para afirmar que comprendes cada dimensión de tu negocio.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="management-map-v2">
+          <div class="map-instructions">
+            <div><span class="map-level level1">1</span><strong>Tengo evidencia</strong><small>Puedo explicar cómo funciona y mostrar información.</small></div>
+            <div><span class="map-level level2">2</span><strong>Tengo una idea parcial</strong><small>Sé algunas cosas, pero me faltan datos.</small></div>
+            <div><span class="map-level level3">3</span><strong>Necesito investigar</strong><small>No tengo suficiente claridad para decidir.</small></div>
+          </div>
+
+          <div class="map-workspace">
+            <div class="map-cards" id="mapCards"></div>
+
+            <aside class="map-side">
+              <div class="map-selected-head"><span class="studio-label">Dimensión seleccionada</span><h3 id="mapSelected">Selecciona una dimensión</h3><p id="mapHelp">Marca tu nivel y justifica con una evidencia concreta.</p></div>
+
+              <div class="field"><label>¿Qué evidencia tienes hoy?</label><textarea id="mapEvidence" placeholder="Ej.: tengo ventas mensuales, pero no margen por servicio."></textarea></div>
+
+              <div class="field"><label>¿Qué pregunta te queda abierta?</label><textarea id="mapQuestion" placeholder="Ej.: ¿qué servicios dejan mejor margen?"></textarea></div>
+
+              <button class="btn primary" onclick="saveMapEvidence()">Guardar esta dimensión</button>
+              <div class="process-feedback" id="mapSaveFeedback"></div>
             </aside>
           </div>
-        </article>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Cambio clave</div><h3>No estás calificando tu empresa</h3><p>Estás evaluando qué tan sólida es tu comprensión de cada dimensión.</p></div>
+      <div class="aside-card"><div class="aside-tag">Producto</div><h3>Mapa de investigación</h3><p>Las dimensiones nivel 3 se convierten en candidatas para el diagnóstico.</p></div>
+      <div class="aside-output" id="mapSummary"><h3>Tu mapa</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Dimensiones marcadas</strong><span>Completa varias para ver patrones.</span></div></div></div>
+    </aside>
+  </div>
+</article>
 
 
-        <article class="screen m1" data-module="1" data-title="Checkpoint">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">10</span> Comprobación</div>
-                <h2>Comprueba si el criterio quedó instalado</h2>
-                <p>Clasifica cada frase como síntoma, pregunta, evidencia o problema. No hay nota: puedes corregir y volver a intentar.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="checkpoint-layout">
-                  <div class="checkpoint-items" id="checkpointItems">
-                    <div class="checkpoint-row" data-answer="symptom"><span>“Últimamente siento que necesito vender más.”</span><select><option value="">Clasificar...</option><option value="symptom">Síntoma</option><option value="question">Pregunta</option><option value="evidence">Evidencia</option><option value="problem">Problema</option></select></div>
-                    <div class="checkpoint-row" data-answer="question"><span>“¿En qué parte del proceso se producen más retrasos?”</span><select><option value="">Clasificar...</option><option value="symptom">Síntoma</option><option value="question">Pregunta</option><option value="evidence">Evidencia</option><option value="problem">Problema</option></select></div>
-                    <div class="checkpoint-row" data-answer="evidence"><span>“En 7 de las últimas 20 entregas hubo más de 24 horas de retraso.”</span><select><option value="">Clasificar...</option><option value="symptom">Síntoma</option><option value="question">Pregunta</option><option value="evidence">Evidencia</option><option value="problem">Problema</option></select></div>
-                    <div class="checkpoint-row" data-answer="problem"><span>“El proceso de confirmación depende de una sola persona y eso genera retrasos frecuentes.”</span><select><option value="">Clasificar...</option><option value="symptom">Síntoma</option><option value="question">Pregunta</option><option value="evidence">Evidencia</option><option value="problem">Problema</option></select></div>
-                  </div>
-                  <div class="checkpoint-result">
-                    <div class="checkpoint-score" id="checkpointScore">0/4</div>
-                    <h3>Tu criterio de análisis</h3>
-                    <p id="checkpointMessage">Clasifica las cuatro frases y revisa la retroalimentación.</p>
-                    <button class="btn primary" onclick="checkCheckpoint()">Revisar respuestas</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Sin nota</div><h3>Comprobar antes de transferir</h3><p>Si algo todavía se confunde, vuelve al laboratorio de síntoma y evidencia.</p></div>
-              <div class="aside-card"><div class="aside-tag">Meta</div><h3>Distinguir funciones</h3><p>Cada tipo de frase cumple un papel distinto en el análisis.</p></div>
-              <div class="aside-output"><h3>Checkpoint</h3><div class="output-item"><div class="output-icon">4</div><div><strong>Cuatro categorías</strong><span>Síntoma, pregunta, evidencia, problema.</span></div></div></div>
-            </aside>
+
+        
+<article class="screen m1" data-module="1" data-title="Checkpoint">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">10</span> Comprobación</div>
+        <h2>Identifica qué función cumple cada frase dentro de un diagnóstico</h2>
+        <p>Resuelve una frase a la vez. Después de responder, recibirás una explicación antes de continuar.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="checkpoint-guided">
+          <div class="checkpoint-concept">
+            <div><span>S</span><strong>Síntoma</strong><small>Lo que se percibe.</small></div>
+            <div><span>?</span><strong>Pregunta</strong><small>Lo que necesitamos averiguar.</small></div>
+            <div><span>E</span><strong>Evidencia</strong><small>Información observable.</small></div>
+            <div><span>P</span><strong>Problema</strong><small>Explicación sustentada.</small></div>
           </div>
-        </article>
 
-        <article class="screen m1" data-module="1" data-title="Mi nueva lectura">
-          <div class="lesson-shell">
-            <section class="lesson">
-              <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">11</span> Reinterpretación</div>
-                <h2>Vuelve a mirar tu preocupación inicial</h2>
-                <p>El cierre consiste en reinterpretar tu propia experiencia usando el marco que acabas de aprender.</p>
-              </div>
-              <div class="lesson-body">
-                <div class="reinterpret-layout">
-                  <div class="before-after">
-                    <div class="quote-card"><strong>Lo que escribiste en el Módulo 0</strong><span id="concernMirror">Aún no has definido una preocupación inicial.</span></div>
-                    <div class="field"><label>Ahora describiría mi situación de esta manera...</label><textarea id="newReading" placeholder="Reformula tu lectura incorporando lo que aprendiste sobre dimensiones, evidencia y problemas."></textarea></div>
-                    <div class="field"><label>En el diagnóstico quiero comprobar...</label><textarea id="diagnosticQuestion" placeholder="Escribe una pregunta concreta que necesite evidencia para responderse."></textarea></div>
-                  </div>
-                  <div class="finish">
-                    <div class="mini">Transformación del módulo</div>
-                    <h3>Pasaste de describir tu negocio a empezar a interpretarlo.</h3>
-                    <p>Ya puedes mirar distintas dimensiones, distinguir una preocupación de un diagnóstico y formular preguntas que necesitan evidencia antes de decidir una solución.</p>
-                    <button onclick="completeModule1()">Completar Módulo 1</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside class="aside">
-              <div class="aside-card"><div class="aside-tag">Antes / después</div><h3>La evidencia está en tu explicación</h3><p>Compara cómo nombrabas el problema antes y cómo lo haces ahora.</p></div>
-              <div class="aside-card"><div class="aside-tag">Siguiente</div><h3>Módulo 2 · Diagnosticar</h3><p>Transformarás percepciones en evidencia, causas y necesidades priorizadas.</p></div>
-              <div class="aside-output"><h3>Productos guardados</h3><div class="output-item"><div class="output-icon">M</div><div><strong>Mapa de gestión</strong><span>Lectura inicial por dimensiones.</span></div></div><div class="output-item"><div class="output-icon">?</div><div><strong>Pregunta diagnóstica</strong><span>Puente al Módulo 2.</span></div></div></div>
-            </aside>
+          <div class="checkpoint-single">
+            <span class="studio-label">Frase <b id="checkpointCurrent">1</b> de 4</span>
+            <blockquote id="checkpointStatement">“Últimamente siento que necesito vender más.”</blockquote>
+            <div class="checkpoint-options">
+              <button onclick="answerCheckpointGuided('symptom')">Síntoma</button>
+              <button onclick="answerCheckpointGuided('question')">Pregunta</button>
+              <button onclick="answerCheckpointGuided('evidence')">Evidencia</button>
+              <button onclick="answerCheckpointGuided('problem')">Problema</button>
+            </div>
+            <div class="guided-feedback" id="checkpointGuidedFeedback"></div>
           </div>
-        </article>
+
+          <div class="checkpoint-guided-nav">
+            <button class="btn ghost" id="checkpointPrevGuided" onclick="moveCheckpointGuided(-1)">← Anterior</button>
+            <div><strong id="checkpointScore">0/4</strong><span id="checkpointMessage">respuestas correctas</span></div>
+            <button class="btn primary" id="checkpointNextGuided" onclick="moveCheckpointGuided(1)">Siguiente →</button>
+          </div>
+
+          <div id="checkpointItems" class="hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Criterio</div><h3>Pregunta por la función</h3><p>¿La frase expresa una percepción, abre una investigación, aporta un dato o explica una causa?</p></div>
+      <div class="aside-card"><div class="aside-tag">Sin nota</div><h3>Puedes corregir</h3><p>La meta es llegar al cierre distinguiendo claramente las cuatro funciones.</p></div>
+      <div class="aside-output"><h3>Checkpoint</h3><div class="output-item"><div class="output-icon">4</div><div><strong>Cuatro funciones</strong><span>Síntoma, pregunta, evidencia, problema.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
+
+        
+<article class="screen m1" data-module="1" data-title="Mi nueva lectura">
+  <div class="lesson-shell">
+    <section class="lesson">
+      <div class="lesson-head">
+        <div class="phase"><span class="phase-badge">11</span> Reinterpretación</div>
+        <h2>Compara cómo pensabas al inicio con cómo analizas ahora</h2>
+        <p>El aprendizaje del módulo no está en repetir las ocho dimensiones, sino en que tu explicación sea ahora más precisa, investigable y prudente.</p>
+      </div>
+      <div class="lesson-body">
+        <div class="metacognitive-close">
+          <div class="before-panel">
+            <span class="studio-label">Antes</span>
+            <h3>Mi preocupación inicial</h3>
+            <div class="quote-card"><span id="concernMirror">Aún no has definido una preocupación inicial.</span></div>
+            <div class="metacog-question">
+              <strong>¿Qué le faltaba a esta explicación?</strong>
+              <div class="pills" id="metacogPills">
+                <button onclick="toggleMetaPill(this)">evidencia</button>
+                <button onclick="toggleMetaPill(this)">precisión</button>
+                <button onclick="toggleMetaPill(this)">otras dimensiones</button>
+                <button onclick="toggleMetaPill(this)">preguntas</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="after-panel">
+            <span class="studio-label">Ahora</span>
+            <div class="field"><label>Ahora describiría mi situación de esta manera...</label><textarea id="newReading" placeholder="Integra dimensiones, relaciones y límites de lo que todavía no sabes."></textarea></div>
+            <div class="field"><label>En el diagnóstico quiero comprobar...</label><textarea id="diagnosticQuestion" placeholder="Formula una pregunta concreta que necesite evidencia."></textarea></div>
+
+            <div class="quality-check">
+              <strong>Revisa tu nueva lectura</strong>
+              <label><input type="checkbox"> No presenta una solución como si fuera el problema.</label>
+              <label><input type="checkbox"> Distingue lo que sé de lo que necesito investigar.</label>
+              <label><input type="checkbox"> La pregunta final puede responderse con evidencia.</label>
+            </div>
+          </div>
+
+          <div class="finish">
+            <div class="mini">Transformación del módulo</div>
+            <h3>De una preocupación a una pregunta investigable.</h3>
+            <p>Ese es el punto de partida del diagnóstico del Módulo 2.</p>
+            <button onclick="completeModule1()">Completar Módulo 1</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="aside-card"><div class="aside-tag">Metacognición</div><h3>Compara, no repitas</h3><p>Busca qué cambió en tu forma de explicar la situación.</p></div>
+      <div class="aside-card"><div class="aside-tag">Puente</div><h3>El próximo módulo pide evidencia</h3><p>Tu pregunta diagnóstica será la entrada al trabajo siguiente.</p></div>
+      <div class="aside-output"><h3>Productos</h3><div class="output-item"><div class="output-icon">M</div><div><strong>Nueva lectura</strong><span>Interpretación más rigurosa.</span></div></div><div class="output-item"><div class="output-icon">?</div><div><strong>Pregunta diagnóstica</strong><span>Lista para investigar.</span></div></div></div>
+    </aside>
+  </div>
+</article>
+
       </section>
 
       <footer class="footer">
@@ -2698,6 +3707,418 @@ document.addEventListener('keydown',(ev)=>{
     document.getElementById('drawer')?.classList.remove('open');
   }
 });
+
+
+/* ---------- V3.6 · PRÁCTICA GUIADA: DESCRIPCIÓN VS INTERPRETACIÓN ---------- */
+const guidedCases=[
+  {
+    statement:'Durante marzo se agotó el pan integral en seis jornadas.',
+    answer:'obs',
+    feedback:'Se puede comprobar directamente: hay un periodo concreto, un producto y una frecuencia observable.',
+    model:'No necesita reformulación: ya describe un hecho observable.'
+  },
+  {
+    statement:'El inventario está mal manejado.',
+    answer:'int',
+    feedback:'“Mal manejado” es una valoración. Todavía no sabemos qué ocurre exactamente con el inventario.',
+    model:'Ejemplo: “En marzo hubo seis quiebres de stock y cuatro compras se realizaron de urgencia”.'
+  },
+  {
+    statement:'Dos personas registran pedidos en cuadernos diferentes.',
+    answer:'obs',
+    feedback:'Describe una situación observable: podemos comprobar cuántas personas registran y dónde lo hacen.',
+    model:'No necesita reformulación: ya contiene información observable.'
+  },
+  {
+    statement:'El equipo es poco ordenado.',
+    answer:'int',
+    feedback:'“Poco ordenado” resume una interpretación, pero no dice qué conductas o situaciones la sostienen.',
+    model:'Ejemplo: “Los pedidos se registran en tres lugares distintos y no existe un registro común para revisar su estado”.'
+  },
+  {
+    statement:'Paula responde personalmente todas las cotizaciones.',
+    answer:'obs',
+    feedback:'Es una descripción verificable: podemos observar quién responde las cotizaciones.',
+    model:'No necesita reformulación: ya describe quién realiza una acción concreta.'
+  },
+  {
+    statement:'Paula debería delegar más.',
+    answer:'int',
+    feedback:'Esta frase ya propone una solución. Antes necesitamos describir qué tareas concentra Paula y qué efectos tiene esa concentración.',
+    model:'Ejemplo: “Paula responde todas las cotizaciones, autoriza descuentos y resuelve personalmente los reclamos”.'
+  }
+];
+let guidedIndex=0;
+const guidedAnswered={};
+
+function renderGuidedCase(){
+  const c=guidedCases[guidedIndex];
+  document.getElementById('guidedCaseNumber').textContent=guidedIndex+1;
+  document.getElementById('guidedStatement').textContent=c.statement;
+  document.getElementById('guidedProgressBar').style.width=`${((guidedIndex+1)/guidedCases.length)*100}%`;
+
+  const obs=document.getElementById('guidedObsBtn');
+  const int=document.getElementById('guidedIntBtn');
+  [obs,int].forEach(b=>b.classList.remove('correct','wrong'));
+
+  const feedback=document.getElementById('guidedFeedback');
+  feedback.className='guided-feedback';
+  feedback.textContent='';
+
+  const rewrite=document.getElementById('guidedRewrite');
+  rewrite.classList.remove('show');
+  document.getElementById('guidedRewriteInput').value=localStorage.getItem('pyu_guided_rewrite_'+guidedIndex)||'';
+  const model=document.getElementById('guidedModel');
+  model.classList.remove('show');model.textContent='';
+
+  if(guidedAnswered[guidedIndex]){
+    const picked=guidedAnswered[guidedIndex];
+    const isCorrect=picked===c.answer;
+    const target=picked==='obs'?obs:int;
+    target.classList.add(isCorrect?'correct':'wrong');
+    feedback.classList.add('show',isCorrect?'good':'bad');
+    feedback.textContent=(isCorrect?'Bien. ':'Revisa tu decisión. ')+c.feedback;
+    if(c.answer==='int')rewrite.classList.add('show');
+  }
+
+  document.getElementById('guidedPrevBtn').disabled=guidedIndex===0;
+  const next=document.getElementById('guidedNextBtn');
+  const last=guidedIndex===guidedCases.length-1;
+  next.textContent=last?'Terminar práctica →':'Siguiente frase →';
+
+  const correct=Object.entries(guidedAnswered).filter(([i,v])=>v===guidedCases[Number(i)].answer).length;
+  document.getElementById('guidedCorrectCount').textContent=correct;
+  document.getElementById('guidedScoreIcon').textContent=correct;
+}
+
+function answerGuidedCase(pick){
+  const c=guidedCases[guidedIndex];
+  guidedAnswered[guidedIndex]=pick;
+  localStorage.setItem('pyu_guided_answers',JSON.stringify(guidedAnswered));
+
+  const obs=document.getElementById('guidedObsBtn');
+  const int=document.getElementById('guidedIntBtn');
+  [obs,int].forEach(b=>b.classList.remove('correct','wrong'));
+  const isCorrect=pick===c.answer;
+  (pick==='obs'?obs:int).classList.add(isCorrect?'correct':'wrong');
+
+  const feedback=document.getElementById('guidedFeedback');
+  feedback.className='guided-feedback show '+(isCorrect?'good':'bad');
+  feedback.textContent=(isCorrect?'Bien. ':'Revisa: ')+c.feedback;
+
+  if(c.answer==='int'){
+    document.getElementById('guidedRewrite').classList.add('show');
+  }else{
+    document.getElementById('guidedRewrite').classList.remove('show');
+  }
+
+  const correct=Object.entries(guidedAnswered).filter(([i,v])=>v===guidedCases[Number(i)].answer).length;
+  document.getElementById('guidedCorrectCount').textContent=correct;
+  document.getElementById('guidedScoreIcon').textContent=correct;
+}
+
+function guidedMove(dir){
+  if(dir>0 && !guidedAnswered[guidedIndex]){
+    toast('Primero decide si la frase describe o interpreta.');
+    return;
+  }
+  if(dir>0 && guidedIndex===guidedCases.length-1){
+    toast('Práctica completada. Ya puedes continuar.');
+    move(1);
+    return;
+  }
+  guidedIndex=Math.max(0,Math.min(guidedCases.length-1,guidedIndex+dir));
+  renderGuidedCase();
+}
+
+function showGuidedModel(){
+  const input=document.getElementById('guidedRewriteInput');
+  localStorage.setItem('pyu_guided_rewrite_'+guidedIndex,input.value);
+  const model=document.getElementById('guidedModel');
+  model.textContent=guidedCases[guidedIndex].model;
+  model.classList.add('show');
+}
+
+try{
+  const savedGuided=JSON.parse(localStorage.getItem('pyu_guided_answers')||'{}');
+  Object.assign(guidedAnswered,savedGuided);
+}catch(e){}
+renderGuidedCase();
+
+document.getElementById('guidedRewriteInput')?.addEventListener('input',e=>{
+  localStorage.setItem('pyu_guided_rewrite_'+guidedIndex,e.target.value);
+});
+
+
+/* =========================================================
+   V4 · LÓGICA DIDÁCTICA DE ACTIVIDADES
+   ========================================================= */
+
+/* Ficha guiada M0 */
+let profileIndex=0;
+function showProfileStep(i){
+  profileIndex=Math.max(0,Math.min(2,i));
+  document.querySelectorAll('.profile-pane').forEach((p,n)=>p.classList.toggle('active',n===profileIndex));
+  document.querySelectorAll('.profile-step').forEach((b,n)=>b.classList.toggle('active',n===profileIndex));
+  const btn=document.getElementById('profileNext');
+  if(btn)btn.textContent=profileIndex===2?'Ficha lista ✓':'Continuar →';
+  updateProfileCompletion();
+}
+function nextProfileStep(){
+  if(profileIndex<2){showProfileStep(profileIndex+1);return}
+  toast('Tu ficha básica quedó guardada. Puedes continuar con la siguiente pantalla.');
+  move(1);
+}
+function updateProfileCompletion(){
+  const ids=['bizName','bizOffer','bizClients','bizReach','bizAge','bizGoal'];
+  const filled=ids.filter(id=>document.getElementById(id)?.value.trim()).length;
+  const hasType=!!localStorage.getItem('pyu_businessType');
+  const hasMode=!!localStorage.getItem('pyu_workMode');
+  const pct=Math.round(((filled+(hasType?1:0)+(hasMode?1:0))/8)*100);
+  const out=document.getElementById('profileCompletion');
+  if(out)out.textContent=pct+'%';
+}
+['bizName','bizOffer','bizClients','bizReach','bizAge','bizGoal'].forEach(id=>{
+  document.getElementById(id)?.addEventListener('input',updateProfileCompletion);
+  document.getElementById(id)?.addEventListener('change',updateProfileCompletion);
+});
+document.querySelectorAll('#businessType button,#workMode button').forEach(b=>b.addEventListener('click',()=>setTimeout(updateProfileCompletion,0)));
+showProfileStep(0);
+
+/* Revisión de proceso */
+function reviewProcessMap(){
+  const steps=flowSteps.filter(x=>x.trim());
+  const verbs=/^(recibe|llega|consulta|escribe|responde|cotiza|confirma|agenda|prepara|realiza|entrega|cobra|paga|registra|revisa|envía|envia|solicita|compra|atiende)/i;
+  const checks={
+    start:steps.length>0,
+    actions:steps.filter(s=>verbs.test(s.trim())).length>=Math.min(3,steps.length),
+    enough:steps.length>=4,
+    owner:!!document.getElementById('ownerOnly')?.value.trim()
+  };
+  Object.entries(checks).forEach(([k,v])=>{
+    const row=document.querySelector(`[data-review="${k}"]`);
+    if(row){row.classList.toggle('ok',v);row.querySelector('i').textContent=v?'✓':'○'}
+  });
+  const score=Object.values(checks).filter(Boolean).length;
+  const fb=document.getElementById('processFeedback');
+  fb.className='process-feedback show '+(score===4?'good':'warn');
+  fb.textContent=score===4
+    ?'Tu recorrido ya es suficientemente concreto para analizarlo más adelante. No tiene que ser perfecto.'
+    :'Tu mapa puede mejorar. Revisa los criterios que todavía aparecen sin marcar.';
+}
+
+/* Ecosistema */
+function refreshEcoLearning(){
+  if(typeof buckets==='undefined')return;
+  const total=Object.values(buckets).reduce((a,b)=>a+b.length,0);
+  const cats=Object.values(buckets).filter(a=>a.length>0).length;
+  const t=document.getElementById('ecoCountTotal'),c=document.getElementById('ecoCategories');
+  if(t)t.textContent=total;if(c)c.textContent=cats+'/4';
+}
+function reviewEcosystem(){
+  refreshEcoLearning();
+  const total=Object.values(buckets).reduce((a,b)=>a+b.length,0);
+  const cats=Object.values(buckets).filter(a=>a.length>0).length;
+  const dep=!!document.getElementById('wouldStop')?.value.trim();
+  const fb=document.getElementById('ecoFeedback');
+  fb.className='process-feedback show '+(total>=4 && cats>=3 && dep?'good':'warn');
+  fb.textContent=total>=4 && cats>=3 && dep
+    ?'Tu mapa ya muestra una red suficientemente diversa y una dependencia concreta.'
+    :'Intenta incluir elementos de al menos tres categorías y explica qué se detendría si uno faltara.';
+}
+const _oldRenderTags=renderTags;
+renderTags=function(kind){_oldRenderTags(kind);refreshEcoLearning();}
+setTimeout(refreshEcoLearning,0);
+
+/* Información para decidir */
+bind('neededInfo','pyu_neededInfo',[]);
+function insertInfoPrompt(word){
+  const ta=document.getElementById('neededInfo');if(!ta)return;
+  const prefix=ta.value.trim()?ta.value.trim()+', ':'Necesitaría revisar ';
+  ta.value=prefix+word;
+  ta.dispatchEvent(new Event('input',{bubbles:true}));
+}
+function reviewInformation(){
+  const decision=document.getElementById('hardDecision')?.value.trim();
+  const need=document.getElementById('neededInfo')?.value.trim();
+  const regs=infoCount();
+  const fb=document.getElementById('informationFeedback');
+  fb.className='process-feedback show '+(decision && need?'good':'warn');
+  fb.textContent=decision && need
+    ?`Bien: conectaste una decisión concreta con información que podría ayudar a responderla. Actualmente has descrito ${regs} tipos de registro.`
+    :'Completa una decisión real y explica qué información necesitarías para tomarla mejor.';
+}
+
+/* Caso inicial M1 */
+bind('caseConfidence','pyu_caseConfidence',[]);
+function revealCaseNeed(){
+  const verdict=localStorage.getItem('pyu_caseVerdict');
+  const reason=document.getElementById('caseInitial')?.value.trim();
+  const fb=document.getElementById('caseVerdictFeedback');
+  fb.classList.add('show');
+  if(!verdict || !reason){
+    fb.textContent='Primero toma una posición y explica brevemente por qué.';
+    return;
+  }
+  fb.innerHTML='<strong>La clave es reconocer el límite de la información.</strong> Sabemos que las ventas subieron, pero todavía faltan datos sobre costos, margen, operación y dependencia del dueño. En la siguiente pantalla aparecerán evidencias nuevas.';
+}
+
+/* Evidencias: reacción + visita */
+let currentEvidenceKey='sales';
+const evidenceVisited=new Set(JSON.parse(localStorage.getItem('pyu_evidence_visited')||'[]'));
+const evidenceReactions=JSON.parse(localStorage.getItem('pyu_evidence_reactions')||'{}');
+let pendingEvidenceReaction='';
+document.querySelectorAll('.evidence-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{currentEvidenceKey=btn.dataset.evidence;renderEvidenceLearning();});
+});
+function markEvidenceReaction(type,button){
+  pendingEvidenceReaction=type;
+  document.querySelectorAll('.evidence-reaction-buttons button').forEach(b=>b.classList.remove('active'));
+  if(button)button.classList.add('active');
+}
+function saveEvidenceReaction(){
+  const note=document.getElementById('evidenceMicroNote')?.value.trim();
+  if(!pendingEvidenceReaction || !note){toast('Elige cómo afecta tu hipótesis y escribe una frase breve.');return}
+  evidenceVisited.add(currentEvidenceKey);
+  evidenceReactions[currentEvidenceKey]={reaction:pendingEvidenceReaction,note};
+  localStorage.setItem('pyu_evidence_visited',JSON.stringify([...evidenceVisited]));
+  localStorage.setItem('pyu_evidence_reactions',JSON.stringify(evidenceReactions));
+  renderEvidenceLearning();
+  toast('Evidencia trabajada.');
+}
+function renderEvidenceLearning(){
+  document.querySelectorAll('.evidence-tab').forEach(btn=>{
+    const key=btn.dataset.evidence;
+    const s=document.getElementById('evState-'+key);
+    if(s)s.textContent=evidenceVisited.has(key)?'revisada ✓':'por revisar';
+  });
+  const count=evidenceVisited.size;
+  document.getElementById('evidenceVisitedCount')?.replaceChildren(document.createTextNode(count+'/4'));
+  if(document.getElementById('evidenceAsideCount'))document.getElementById('evidenceAsideCount').textContent=count;
+  const saved=evidenceReactions[currentEvidenceKey];
+  const ta=document.getElementById('evidenceMicroNote');
+  if(ta)ta.value=saved?.note||'';
+}
+renderEvidenceLearning();
+
+/* Modelo dimensional enriquecido */
+const dimensionEvidenceExamples={
+ 'Dirección':['Ejemplo','El negocio quiere crecer, pero no ha definido qué tipo de cliente o servicio priorizar.','Evidencia posible','Objetivos, decisiones de inversión, prioridades acordadas.'],
+ 'Personas':['Ejemplo','Todas las decisiones importantes vuelven al dueño.','Evidencia posible','Distribución de tareas, tiempos de respuesta, responsabilidades.'],
+ 'Procesos':['Ejemplo','Cada persona realiza el mismo servicio de forma distinta.','Evidencia posible','Secuencia de trabajo, errores, tiempos, retrabajos.'],
+ 'Recursos y tecnología':['Ejemplo','La información está repartida entre WhatsApp, papel y planillas.','Evidencia posible','Herramientas usadas, duplicación de registros, tiempos de búsqueda.'],
+ 'Proveedores y alianzas':['Ejemplo','Se compra de urgencia porque el stock se revisa cuando ya falta.','Evidencia posible','Frecuencia de compra, quiebres de stock, plazos de proveedor.'],
+ 'Clientes y resultados':['Ejemplo','Las ventas suben, pero no se conoce el margen.','Evidencia posible','Ventas, costos, margen, repetición de clientes, devoluciones.'],
+ 'Información':['Ejemplo','Se registran ventas, pero nunca se comparan con costos.','Evidencia posible','Registros disponibles, frecuencia de análisis, indicadores usados.'],
+ 'Control y mejora':['Ejemplo','Los mismos errores se repiten sin revisión posterior.','Evidencia posible','Reuniones de revisión, indicadores, acciones correctivas, seguimiento.']
+};
+document.querySelectorAll('.dimension-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const dim=btn.dataset.dimension;
+    const base=dimensionInfo[dim];
+    const ex=dimensionEvidenceExamples[dim];
+    document.getElementById('modelDetail').innerHTML=
+      `<div class="eyebrow">Dimensión</div><h3>${dim}</h3><p>${base[0]}</p>
+       <div class="question-box"><strong>Pregunta guía</strong><br>${base[1]}</div>
+       <div class="dimension-example"><span>${ex[0]}</span><p>${ex[1]}</p></div>
+       <div class="dimension-example evidence"><span>${ex[2]}</span><p>${ex[3]}</p></div>`;
+  });
+});
+function answerDimensionCheck(answer){
+  const fb=document.getElementById('dimensionCheckFeedback');
+  fb.className='process-feedback show '+(answer==='Personas'?'good':'warn');
+  fb.textContent=answer==='Personas'
+    ?'Buena primera elección: el caso apunta a roles, criterios compartidos y coordinación. También podría involucrar procesos e información.'
+    :'Puede estar relacionada, pero la señal más directa apunta primero a personas y coordinación: distintas personas están respondiendo de maneras diferentes.';
+}
+
+/* Lectura */
+function toggleReadingPrediction(btn){btn.classList.toggle('active')}
+function reviewGuidedReading(){
+  const text=document.getElementById('guidedReadingAnswer')?.value.trim()||'';
+  const fb=document.getElementById('guidedReadingFeedback');
+  const hasRelation=/porque|puede|provoca|genera|implica|afecta|si |cuando /i.test(text);
+  fb.className='process-feedback show '+(text.length>35 && hasRelation?'good':'warn');
+  fb.textContent=text.length>35 && hasRelation
+    ?'Tu respuesta expresa una relación, no solo una lista. Ese es el criterio de lectura que buscamos.'
+    :'Intenta conectar al menos dos elementos con una relación: “porque…”, “puede provocar…”, “si ocurre X, entonces…”.';
+}
+
+/* Taller síntoma-evidencia */
+bind('labOwnQuestion','pyu_labOwnQuestion',[]);
+bind('labOwnEvidence','pyu_labOwnEvidence',[]);
+function compareLabStrategy(){
+  const q=document.getElementById('labOwnQuestion')?.value.trim();
+  const e=document.getElementById('labOwnEvidence')?.value.trim();
+  const box=document.getElementById('labComparison');
+  if(!q || !e){toast('Escribe primero una pregunta y una evidencia posible.');return}
+  box.classList.add('show');
+  box.innerHTML=`<strong>Compara, no copies.</strong><br>Modelo de pregunta: ${document.getElementById('labB').textContent}<br>Modelo de evidencia: ${document.getElementById('labC').textContent}<br><br>Tu respuesta puede ser distinta si cumple la misma función: abrir una investigación y señalar qué información buscar.`;
+}
+
+/* Mapa: evidencia + pregunta */
+bind('mapQuestion','pyu_mapQuestion',[]);
+const _oldSaveMapEvidence=saveMapEvidence;
+saveMapEvidence=function(){
+  const txt=document.getElementById('mapEvidence')?.value.trim();
+  const q=document.getElementById('mapQuestion')?.value.trim();
+  if(!selectedMapDim){toast('Primero selecciona una dimensión.');return}
+  if(!txt || !q){toast('Escribe una evidencia y una pregunta abierta.');return}
+  localStorage.setItem('pyu_map_evidence_'+selectedMapDim,txt);
+  localStorage.setItem('pyu_map_question_'+selectedMapDim,q);
+  const fb=document.getElementById('mapSaveFeedback');
+  if(fb){fb.className='process-feedback show good';fb.textContent='Dimensión guardada: evidencia actual + pregunta para investigar.'}
+  toast('Dimensión guardada.');
+}
+
+/* Checkpoint uno a uno */
+const checkpointGuidedCases=[
+ {text:'“Últimamente siento que necesito vender más.”',answer:'symptom',why:'Expresa una percepción o necesidad inicial; todavía no explica qué está ocurriendo.'},
+ {text:'“¿En qué parte del proceso se producen más retrasos?”',answer:'question',why:'Abre una investigación y orienta qué observar.'},
+ {text:'“En 7 de las últimas 20 entregas hubo más de 24 horas de retraso.”',answer:'evidence',why:'Aporta información observable y cuantificada.'},
+ {text:'“El proceso de confirmación depende de una sola persona y eso genera retrasos frecuentes.”',answer:'problem',why:'Formula una explicación que relaciona una condición con un efecto y debería estar sustentada por evidencia.'}
+];
+let checkpointGuidedIndex=0;
+const checkpointGuidedAnswers={};
+function renderCheckpointGuided(){
+  const c=checkpointGuidedCases[checkpointGuidedIndex];
+  document.getElementById('checkpointCurrent').textContent=checkpointGuidedIndex+1;
+  document.getElementById('checkpointStatement').textContent=c.text;
+  document.querySelectorAll('.checkpoint-options button').forEach(b=>b.classList.remove('correct','wrong'));
+  const fb=document.getElementById('checkpointGuidedFeedback');fb.className='guided-feedback';fb.textContent='';
+  const prev=document.getElementById('checkpointPrevGuided');if(prev)prev.disabled=checkpointGuidedIndex===0;
+  const next=document.getElementById('checkpointNextGuided');if(next)next.textContent=checkpointGuidedIndex===3?'Terminar →':'Siguiente →';
+  const score=Object.entries(checkpointGuidedAnswers).filter(([i,a])=>a===checkpointGuidedCases[Number(i)].answer).length;
+  document.getElementById('checkpointScore').textContent=score+'/4';
+}
+function answerCheckpointGuided(answer){
+  const c=checkpointGuidedCases[checkpointGuidedIndex];
+  checkpointGuidedAnswers[checkpointGuidedIndex]=answer;
+  const buttons=[...document.querySelectorAll('.checkpoint-options button')];
+  buttons.forEach(b=>b.classList.remove('correct','wrong'));
+  const labels=['symptom','question','evidence','problem'];
+  const btn=buttons[labels.indexOf(answer)];
+  const ok=answer===c.answer;
+  btn?.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById('checkpointGuidedFeedback');
+  fb.className='guided-feedback show '+(ok?'good':'bad');
+  fb.textContent=(ok?'Bien. ':'Revisa: ')+c.why;
+  const score=Object.entries(checkpointGuidedAnswers).filter(([i,a])=>a===checkpointGuidedCases[Number(i)].answer).length;
+  document.getElementById('checkpointScore').textContent=score+'/4';
+}
+function moveCheckpointGuided(dir){
+  if(dir>0 && !checkpointGuidedAnswers[checkpointGuidedIndex]){toast('Responde la frase antes de continuar.');return}
+  if(dir>0 && checkpointGuidedIndex===3){toast('Checkpoint completado.');move(1);return}
+  checkpointGuidedIndex=Math.max(0,Math.min(3,checkpointGuidedIndex+dir));renderCheckpointGuided();
+}
+renderCheckpointGuided();
+
+/* Cierre metacognitivo */
+function toggleMetaPill(btn){btn.classList.toggle('active')}
+
+/* Persistencia adicional */
+bind('neededInfo','pyu_neededInfo',[]);
+bind('mapQuestion','pyu_mapQuestion',[]);
 
 /* ---------- INIT ---------- */
 updateDrawer();updateProgress();render();
