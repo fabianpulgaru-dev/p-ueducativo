@@ -1812,6 +1812,578 @@ button[disabled]{
   .module-entry-cta .btn{width:100%}
 }
 
+
+/* =========================================================
+   V4.5 · ARQUITECTURA DE APRENDIZAJE DESPLEGADA
+   ========================================================= */
+
+/* Más superficie para la experiencia principal */
+.lesson-shell{
+  grid-template-columns:minmax(0,1fr) 214px;
+  gap:11px;
+}
+.right-collapsed .lesson-shell{grid-template-columns:minmax(0,1fr) 54px}
+
+/* La barra derecha deja de competir con la actividad */
+.aside{
+  grid-template-rows:auto 1fr;
+  gap:9px;
+}
+.aside-card.learning-hidden-support{display:none!important}
+
+.learning-support{
+  border:1px solid rgba(255,255,255,.92);
+  background:rgba(255,255,255,.80);
+  border-radius:15px;
+  padding:11px;
+  box-shadow:0 6px 18px rgba(44,49,79,.05);
+}
+.learning-support .support-kicker{
+  display:block;
+  font-size:calc(.49rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:var(--phase-color);
+  font-weight:900;
+}
+.learning-support h3{
+  font-size:calc(.67rem * var(--font-scale));
+  margin:4px 0 7px;
+}
+.learning-support p{
+  margin:0;
+  font-size:calc(.54rem * var(--font-scale));
+  line-height:1.4;
+  color:var(--text-2);
+}
+.learning-support-buttons{
+  display:grid;
+  gap:6px;
+  margin-top:9px;
+}
+.learning-support-buttons button{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:9px;
+  padding:7px 8px;
+  text-align:left;
+  color:var(--text-2);
+  font-size:calc(.53rem * var(--font-scale));
+  font-weight:850;
+}
+.learning-support-buttons button:hover{
+  background:var(--phase-soft);
+  color:var(--phase-color);
+  border-color:color-mix(in srgb,var(--phase-color) 26%,white);
+}
+
+/* Proceso de aprendizaje visible dentro de cada pantalla */
+.learning-process{
+  margin:-2px 0 11px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:10px;
+  align-items:center;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.78);
+  border-radius:13px;
+  padding:8px 10px;
+}
+.learning-process-intro{
+  min-width:124px;
+  padding-right:10px;
+  border-right:1px solid var(--line);
+}
+.learning-process-intro span{
+  display:block;
+  font-size:calc(.48rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:var(--phase-color);
+  font-weight:900;
+}
+.learning-process-intro strong{
+  display:block;
+  margin-top:2px;
+  font-size:calc(.57rem * var(--font-scale));
+  line-height:1.25;
+}
+.learning-process-steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+.learning-process-step{
+  position:relative;
+  min-width:0;
+  padding:6px 7px 6px 30px;
+  border-radius:9px;
+  background:#fafafd;
+  border:1px solid var(--line);
+}
+.learning-process-step b{
+  position:absolute;
+  left:7px;top:50%;
+  transform:translateY(-50%);
+  width:18px;height:18px;
+  border-radius:6px;
+  display:grid;place-items:center;
+  background:var(--phase-soft);
+  color:var(--phase-color);
+  font:900 calc(.48rem * var(--font-scale)) var(--fm);
+}
+.learning-process-step strong{
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:calc(.53rem * var(--font-scale));
+}
+.learning-process-step span{
+  display:block;
+  margin-top:1px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  color:var(--muted);
+  font-size:calc(.45rem * var(--font-scale));
+}
+.learning-process-step.current{
+  background:var(--phase-soft);
+  border-color:color-mix(in srgb,var(--phase-color) 30%,white);
+}
+.learning-process-step.current b{
+  background:var(--phase-color);
+  color:#fff;
+}
+
+/* Un poco más de aire en el área de trabajo */
+.lesson-body{
+  padding:15px 18px 18px;
+}
+.profile-builder,
+.process-studio,
+.ecosystem-studio,
+.information-studio,
+.snapshot-learning-layout,
+.prediction-case,
+.evidence-learning-layout,
+.question-discovery,
+.model-learning-layout,
+.reading-strategy-layout,
+.symptom-workshop,
+.management-map-v2,
+.checkpoint-guided,
+.metacognitive-close{
+  height:calc(100% - 62px);
+}
+
+/* Ventana Mac de profundización */
+.learning-window-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:150;
+  background:rgba(29,33,48,.25);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+  display:none;
+  place-items:center;
+  padding:42px;
+}
+.learning-window-backdrop.open{display:grid}
+.learning-window{
+  width:min(780px,92vw);
+  max-height:min(720px,82vh);
+  display:grid;
+  grid-template-rows:52px 1fr;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.94);
+  background:rgba(251,251,253,.96);
+  box-shadow:0 32px 90px rgba(32,37,64,.26);
+}
+.learning-window-bar{
+  display:grid;
+  grid-template-columns:90px 1fr 90px;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  padding:0 13px;
+  background:rgba(255,255,255,.78);
+}
+.learning-traffic{gap:6px}
+.learning-traffic i{width:11px;height:11px}
+.learning-window-heading{text-align:center}
+.learning-window-heading span{
+  display:block;
+  font-size:calc(.46rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:var(--muted);
+  font-weight:900;
+}
+.learning-window-heading strong{
+  display:block;
+  margin-top:1px;
+  font-family:var(--fd);
+  font-size:calc(.82rem * var(--font-scale));
+}
+.learning-window-close{
+  justify-self:end;
+  width:31px;height:31px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#fff;
+  color:var(--text-2);
+  font-size:1rem;
+  font-weight:900;
+}
+.learning-window-body{
+  overflow:auto;
+  padding:22px 24px 26px;
+}
+.learning-window-section{
+  margin-bottom:18px;
+}
+.learning-window-section:last-child{margin-bottom:0}
+.learning-window-section .eyebrow{
+  display:block;
+  font-size:calc(.5rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:var(--phase-color);
+  font-weight:900;
+}
+.learning-window-section h3{
+  margin:4px 0 7px;
+  font-family:var(--fd);
+  font-size:calc(1.16rem * var(--font-scale));
+}
+.learning-window-section p,
+.learning-window-section li{
+  font-size:calc(.66rem * var(--font-scale));
+  line-height:1.55;
+  color:var(--text-2);
+}
+.learning-window-section ul{padding-left:20px}
+.learning-window-example{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:8px;
+  align-items:stretch;
+}
+.learning-window-example>div{
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:11px;
+  background:#fafafd;
+}
+.learning-window-example>i{
+  align-self:center;
+  font-style:normal;
+  color:var(--phase-color);
+  font-weight:900;
+}
+.learning-window-example span{
+  display:block;
+  font-size:calc(.49rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--muted);
+  font-weight:900;
+  margin-bottom:4px;
+}
+.learning-window-example strong{
+  font-size:calc(.63rem * var(--font-scale));
+  line-height:1.4;
+}
+
+/* En pantallas pequeñas: no comprimir el proceso; permitir desplazamiento horizontal corto */
+@media(max-width:1100px){
+  .lesson-shell{grid-template-columns:minmax(0,1fr) 190px}
+  .learning-process{grid-template-columns:1fr}
+  .learning-process-intro{border-right:0;border-bottom:1px solid var(--line);padding:0 0 6px}
+  .learning-process-steps{overflow-x:auto;grid-template-columns:repeat(4,minmax(145px,1fr))}
+}
+@media(max-width:760px){
+  .learning-window-backdrop{padding:12px}
+  .learning-window{width:100%;max-height:88vh}
+  .learning-window-example{grid-template-columns:1fr}
+  .learning-window-example>i{text-align:center;transform:rotate(90deg)}
+}
+
+
+/* =========================================================
+   V4.6 · AISLAMIENTO REAL DE PANTALLAS
+   =========================================================
+   Solo la pantalla activa existe en la capa interactiva.
+   Esto evita que cápsulas, tarjetas o controles de pantallas
+   ocultas queden por encima de botones visibles.
+*/
+.screen{
+  display:none !important;
+  opacity:1 !important;
+  transform:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  z-index:0 !important;
+}
+.screen.active{
+  display:block !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  z-index:10 !important;
+}
+.screen:not(.active) *{
+  pointer-events:none !important;
+  visibility:hidden !important;
+}
+
+/* Aislamiento interno de cápsulas: solo una diapositiva puede interceptar clics. */
+.capsule-slide{
+  display:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+.capsule-slide.active{
+  display:block !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+}
+
+/* Aislamiento interno del constructor de perfil. */
+.profile-pane{
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+.profile-pane.active{
+  visibility:visible !important;
+  pointer-events:auto !important;
+}
+
+/* Los controles de la pantalla activa siempre quedan sobre elementos decorativos. */
+.screen.active button,
+.screen.active input,
+.screen.active textarea,
+.screen.active select{
+  position:relative;
+  z-index:20;
+}
+
+/* La navegación global debe permanecer en la capa superior de la aplicación. */
+.footer,
+.top,
+.dock{
+  position:relative;
+  z-index:40;
+}
+.dock{
+  position:fixed;
+}
+
+/* Paneles flotantes sobre todo lo demás. */
+.drawer{z-index:120}
+.theme-panel{z-index:130}
+.learning-window-backdrop{z-index:200}
+.toast{z-index:220}
+
+
+/* =========================================================
+   V4.7 · ESPACIO FLEXIBLE + CONTROLES SIEMPRE ALCANZABLES
+   ========================================================= */
+
+/* La altura disponible se reparte entre proceso de aprendizaje y tarea,
+   en vez de sumar bloques hasta sacar controles fuera de la pantalla. */
+.lesson-body{
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  overflow:hidden;
+}
+.lesson-body > .learning-process,
+.lesson-body > .activity-contract{
+  flex:0 0 auto;
+}
+.lesson-body > :not(.learning-process):not(.activity-contract){
+  flex:1 1 auto;
+  min-height:0;
+  height:auto !important;
+}
+
+/* Los grandes espacios de trabajo administran su propio desplazamiento. */
+.orientation,
+.capsule-layout,
+.guided-classification-layout,
+.profile-builder,
+.strategy-layout,
+.process-studio,
+.ecosystem-studio,
+.information-studio,
+.snapshot-learning-layout,
+.prediction-case,
+.evidence-learning-layout,
+.question-discovery,
+.model-learning-layout,
+.reading-strategy-layout,
+.symptom-workshop,
+.scenario-practice,
+.management-map-v2,
+.checkpoint-guided,
+.metacognitive-close{
+  min-height:0;
+  overflow:auto;
+}
+
+/* Barras de acción locales: permanecen visibles dentro del trabajo. */
+.profile-footer,
+.guided-nav,
+.capsule-controls,
+.practice-nav,
+.checkpoint-guided-nav,
+.welcome-start-row{
+  position:sticky;
+  bottom:0;
+  z-index:35;
+  background:rgba(251,251,253,.96);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-radius:10px;
+}
+
+/* Los pasos del proceso son botones reales, no tarjetas que parecen clicables. */
+button.learning-process-step{
+  appearance:none;
+  width:100%;
+  text-align:left;
+  font-family:inherit;
+  color:var(--text);
+  cursor:pointer;
+}
+button.learning-process-step:hover{
+  border-color:color-mix(in srgb,var(--phase-color) 30%,white);
+  background:color-mix(in srgb,var(--phase-soft) 65%,white);
+}
+button.learning-process-step.current:hover{
+  background:var(--phase-soft);
+}
+
+/* Secuencia mostrada dentro de la ventana de proceso */
+.process-step-sequence{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+.process-step-sequence>div{
+  border:1px solid var(--line);
+  background:#fafafd;
+  border-radius:10px;
+  padding:9px;
+}
+.process-step-sequence>div.active{
+  background:var(--phase-soft);
+  border-color:color-mix(in srgb,var(--phase-color) 35%,white);
+}
+.process-step-sequence b{
+  display:grid;
+  place-items:center;
+  width:23px;height:23px;
+  border-radius:7px;
+  background:#fff;
+  color:var(--phase-color);
+  font:900 calc(.53rem * var(--font-scale)) var(--fm);
+  margin-bottom:5px;
+}
+.process-step-sequence span{
+  display:block;
+  font-size:calc(.58rem * var(--font-scale));
+  font-weight:900;
+}
+.process-step-sequence small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:calc(.49rem * var(--font-scale));
+  line-height:1.3;
+}
+
+/* Evitar que controles primarios de paneles se pierdan por debajo del pliegue. */
+.process-review > .btn.primary,
+.dependency-test > .btn.primary,
+.decision-lab > .btn.primary,
+.evidence-reaction > .btn,
+.evidence-synthesis > .btn,
+.map-side > .btn.primary{
+  position:sticky;
+  bottom:0;
+  z-index:25;
+}
+
+/* Estados táctiles claros */
+button:active{
+  transform:translateY(1px);
+}
+.learning-support-buttons button:active,
+.learning-process-step:active{
+  transform:none;
+}
+
+@media(max-width:760px){
+  .process-step-sequence{grid-template-columns:1fr 1fr}
+}
+
+
+/* =========================================================
+   V4.8 · ÚLTIMO AJUSTE DE CAPAS INTERACTIVAS
+   ========================================================= */
+
+/* El dock no bloquea controles que queden visualmente detrás de su fondo.
+   Solo sus botones reciben clics. */
+.dock{
+  pointer-events:none !important;
+}
+.dock button{
+  pointer-events:auto !important;
+}
+.dock-sep{
+  pointer-events:none !important;
+}
+
+/* Los pasos internos no activos quedan completamente fuera de interacción. */
+.profile-pane:not(.active),
+.profile-pane:not(.active) *{
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+
+/* Dentro de áreas desplazables, los controles no deben quedar cubiertos
+   por capas contenedoras transparentes. */
+.model-board,
+.guided-text,
+.process-builder,
+.question-bank,
+.clue-board{
+  position:relative;
+  z-index:1;
+}
+.model-board button,
+.guided-text button,
+.process-builder button,
+.question-bank button,
+.clue-board button{
+  position:relative;
+  z-index:4;
+}
+
+/* Feedback visual inequívoco al pulsar cualquier control. */
+button:not(:disabled){
+  -webkit-tap-highlight-color:transparent;
+}
+button:not(:disabled):active{
+  filter:brightness(.97);
+}
+
 </style>
 </head>
 <body>
@@ -3153,6 +3725,21 @@ button[disabled]{
   <div class="setting"><div class="setting-head"><span>Tamaño de texto</span><span id="fontLabel">Grande</span></div><input id="fontRange" type="range" min="0" max="2" step="1" value="1"></div>
 </section>
 
+
+<section class="learning-window-backdrop" id="learningWindowBackdrop" onclick="closeLearningWindow(event)">
+  <section class="learning-window" role="dialog" aria-modal="true" aria-labelledby="learningWindowTitle" onclick="event.stopPropagation()">
+    <header class="learning-window-bar">
+      <div class="traffic learning-traffic"><i></i><i></i><i></i></div>
+      <div class="learning-window-heading">
+        <span id="learningWindowKicker">Profundiza</span>
+        <strong id="learningWindowTitle">Apoyo de aprendizaje</strong>
+      </div>
+      <button class="learning-window-close" type="button" onclick="closeLearningWindow()" aria-label="Cerrar ventana">×</button>
+    </header>
+    <div class="learning-window-body" id="learningWindowBody"></div>
+  </section>
+</section>
+
 <nav class="dock">
   <button data-label="Módulo 0" onclick="openModule(0)">M0</button>
   <button data-label="Módulo 1" onclick="openModule(1)">M1</button>
@@ -3172,6 +3759,7 @@ let currentModule=0;
 let currentIndex=0;
 function moduleScreens(m){return [...document.querySelectorAll(`.screen[data-module="${m}"]`)]}
 function render(){
+  if(typeof installLearningArchitecture==='function') installLearningArchitecture();
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   const screens=moduleScreens(currentModule);
   currentIndex=Math.max(0,Math.min(currentIndex,screens.length-1));
@@ -4230,6 +4818,299 @@ function toggleMetaPill(btn){btn.classList.toggle('active')}
 /* Persistencia adicional */
 bind('neededInfo','pyu_neededInfo',[]);
 bind('mapQuestion','pyu_mapQuestion',[]);
+
+
+/* =========================================================
+   V4.5 · PROCESO DE APRENDIZAJE + VENTANAS DE PROFUNDIZACIÓN
+   ========================================================= */
+
+const learningArchitecture={
+  'Bienvenida':{
+    current:0,
+    steps:[['Orienta','Comprende la lógica'],['Explora','Mira tu negocio'],['Construye','Produce una fotografía'],['Conecta','Prepara el siguiente módulo']],
+    conceptTitle:'Cómo aprenderás en esta plataforma',
+    concept:`<div class="learning-window-section"><span class="eyebrow">Modelo de aprendizaje</span><h3>Tu negocio es el caso de estudio</h3><p>No vas a recorrer contenidos para después “aplicarlos”. Cada concepto aparece porque necesitas una herramienta para comprender algo de tu propio negocio.</p><ul><li>Partes desde tu experiencia.</li><li>Aprendes una categoría o estrategia.</li><li>La practicas con un ejemplo o caso.</li><li>Vuelves a tu negocio y la utilizas.</li></ul></div>`,
+    exampleTitle:'Qué vas a construir',
+    example:`<div class="learning-window-section"><span class="eyebrow">Producto</span><h3>Una representación progresiva de tu negocio</h3><p>En el Módulo 0 construirás una primera fotografía. En los módulos siguientes la enriquecerás con dimensiones, evidencia, diagnóstico y decisiones.</p></div>`
+  },
+  'Describir antes de diagnosticar':{
+    current:0,
+    steps:[['Comprende','Descripción vs. interpretación'],['Observa','Compara ejemplos'],['Practica','Usa el criterio'],['Transfiere','Describe tu negocio']],
+    conceptTitle:'Por qué describir antes de explicar',
+    concept:`<div class="learning-window-section"><span class="eyebrow">Concepto</span><h3>Una descripción abre preguntas</h3><p>Si decimos “el negocio es desordenado”, ya resumimos muchas situaciones bajo una interpretación. En cambio, una descripción concreta permite decidir qué observar, comparar o medir.</p></div>`,
+    exampleTitle:'Ejemplo ampliado',
+    example:`<div class="learning-window-section"><span class="eyebrow">Ejemplo</span><h3>De una impresión a información útil</h3><div class="learning-window-example"><div><span>Impresión</span><strong>“Atendemos mal a los clientes.”</strong></div><i>→</i><div><span>Descripción</span><strong>“Durante la última semana, 8 consultas de WhatsApp tardaron más de 24 horas en recibir respuesta.”</strong></div></div><p>La segunda frase no resuelve el problema, pero permite investigarlo.</p></div>`
+  },
+  'Este es mi negocio':{
+    current:3,
+    steps:[['Comprende','Qué información importa'],['Observa','Mira un ejemplo'],['Construye','Completa en 3 pasos'],['Comprueba','Revisa si se entiende']],
+    conceptTitle:'Qué hace útil una descripción de negocio',
+    concept:`<div class="learning-window-section"><span class="eyebrow">Criterio</span><h3>Una descripción útil permite entender qué haces, para quién y en qué contexto</h3><p>No necesitas escribir una misión empresarial. Necesitas que otra persona pueda imaginar qué ocurre en tu negocio sin completar los vacíos por ti.</p></div>`,
+    exampleTitle:'Ejemplos de distinto nivel de precisión',
+    example:`<div class="learning-window-section"><span class="eyebrow">Ejemplo</span><h3>De general a concreto</h3><div class="learning-window-example"><div><span>Demasiado general</span><strong>“Tengo un emprendimiento de comida.”</strong></div><i>→</i><div><span>Más útil</span><strong>“Preparo almuerzos caseros por encargo para oficinas pequeñas del centro de la ciudad.”</strong></div></div></div>`
+  },
+  'Practica: descripción o interpretación':{
+    current:2,
+    steps:[['Recuerda','Usa el criterio'],['Observa','Lee una frase'],['Decide','Descripción o interpretación'],['Reformula','Hazla observable']],
+    conceptTitle:'El criterio de comprobación',
+    concept:`<div class="learning-window-section"><span class="eyebrow">Estrategia</span><h3>Pregunta: “¿otra persona podría comprobarlo?”</h3><p>Si la frase exige aceptar un juicio como “malo”, “desordenado”, “poco comprometido” o “ineficiente”, todavía falta describir qué hechos sostienen esa interpretación.</p></div>`,
+    exampleTitle:'Más ejemplos',
+    example:`<div class="learning-window-section"><h3>Practica mentalmente</h3><ul><li><strong>“Hay poca coordinación”</strong> → interpretación.</li><li><strong>“Tres pedidos se duplicaron porque dos personas los ingresaron por separado”</strong> → descripción.</li><li><strong>“Deberíamos contratar a alguien”</strong> → recomendación, no descripción.</li></ul></div>`
+  },
+  'Estrategia: seguir al cliente':{
+    current:1,
+    steps:[['Comprende','Qué es un proceso'],['Modela','Sigue al cliente'],['Detecta','Busca traspasos'],['Aplica','Mapea el tuyo']],
+    conceptTitle:'Por qué seguir al cliente',
+    concept:`<div class="learning-window-section"><span class="eyebrow">Estrategia</span><h3>El cliente ayuda a poner orden temporal</h3><p>Seguir lo que le ocurre desde el primer contacto hasta el cierre permite convertir una actividad difusa en una secuencia observable.</p></div>`,
+    exampleTitle:'Ejemplo completo de recorrido',
+    example:`<div class="learning-window-section"><h3>Servicio de reparación</h3><p>Consulta por WhatsApp → describe la falla → recibe una cotización → agenda → entrega el equipo → se diagnostica → se repara → se confirma el valor → paga → retira → se registra el cierre.</p><p>Los cambios de canal, persona o registro son puntos especialmente útiles para observar.</p></div>`
+  },
+  'Así funciona':{
+    current:3,
+    steps:[['Recuerda','Sigue al cliente'],['Construye','Ordena acciones'],['Detecta','Marca traspasos'],['Comprueba','Revisa claridad']],
+    conceptTitle:'Qué mirar en un mapa de proceso',
+    concept:`<div class="learning-window-section"><h3>No buscamos un diagrama perfecto</h3><p>Un buen primer mapa permite responder: ¿dónde comienza?, ¿qué acciones ocurren?, ¿quién interviene?, ¿dónde cambia de manos la información? y ¿cómo termina?</p></div>`,
+    exampleTitle:'Errores frecuentes',
+    example:`<div class="learning-window-section"><h3>Evita estos tres problemas</h3><ul><li>Usar palabras demasiado amplias: “gestión”, “administración”.</li><li>Describir lo que debería pasar en vez de lo que pasa.</li><li>Omitir esperas, confirmaciones y traspasos porque parecen “obvios”.</li></ul></div>`
+  },
+  'Quién y qué lo hace posible':{
+    current:3,
+    steps:[['Identifica','Personas y recursos'],['Relaciona','Qué función cumplen'],['Prueba','Imagina su ausencia'],['Prioriza','Distingue lo crítico']],
+    conceptTitle:'Dependencia y soporte',
+    concept:`<div class="learning-window-section"><h3>Un recurso es importante por la función que cumple</h3><p>El objetivo no es inventariar todo lo que existe, sino reconocer de qué depende el funcionamiento. Preguntar “¿qué pasaría si faltara?” ayuda a detectar criticidad.</p></div>`,
+    exampleTitle:'Ejemplo de dependencia',
+    example:`<div class="learning-window-section"><h3>WhatsApp puede ser más que un canal</h3><p>Si allí llegan pedidos, se confirma disponibilidad y además se guardan instrucciones de clientes, perder acceso puede detener varias partes del proceso al mismo tiempo.</p></div>`
+  },
+  'Cómo sé lo que ocurre':{
+    current:3,
+    steps:[['Mapea','Qué registras'],['Conecta','Elige una decisión'],['Pregunta','Qué necesitas saber'],['Evalúa','¿El dato ayuda?']],
+    conceptTitle:'Dato, información y decisión',
+    concept:`<div class="learning-window-section"><h3>Registrar no garantiza comprender</h3><p>Un dato se vuelve útil cuando responde una pregunta. Saber cuánto vendiste puede servir para observar demanda, pero no basta necesariamente para decidir un precio.</p></div>`,
+    exampleTitle:'Ejemplo de decisión',
+    example:`<div class="learning-window-section"><h3>“¿Puedo contratar a otra persona?”</h3><p>Podría requerir comparar ingresos, costos fijos, carga de trabajo, horas actuales y proyección de demanda. La decisión determina qué datos adquieren relevancia.</p></div>`
+  },
+  'Mi fotografía de hoy':{
+    current:3,
+    steps:[['Integra','Recupera lo construido'],['Distingue','Sé vs. supongo'],['Pregunta','Qué falta investigar'],['Guarda','Cierra tu fotografía']],
+    conceptTitle:'La fotografía inicial no es diagnóstico',
+    concept:`<div class="learning-window-section"><h3>Tres niveles de certeza</h3><ul><li><strong>Lo que sé:</strong> puedo mostrar o describir evidencia.</li><li><strong>Lo que supongo:</strong> es una interpretación plausible.</li><li><strong>Lo que necesito investigar:</strong> todavía requiere preguntas y datos.</li></ul></div>`,
+    exampleTitle:'Ejemplo de cierre',
+    example:`<div class="learning-window-section"><p><strong>Sé:</strong> las consultas han aumentado.</p><p><strong>Supongo:</strong> estamos perdiendo oportunidades porque respondemos lento.</p><p><strong>Necesito investigar:</strong> ¿cuánto tardamos realmente en responder y qué ocurre con las consultas que demoran más?</p></div>`
+  },
+  'Algo no cuadra':{
+    current:0,
+    steps:[['Predice','Toma posición'],['Justifica','Explica tu razonamiento'],['Duda','Detecta lo que falta'],['Contrasta','Espera evidencia']],
+    conceptTitle:'La predicción como herramienta de aprendizaje',
+    concept:`<div class="learning-window-section"><h3>Equivocarse aquí es útil</h3><p>Registrar una explicación antes de recibir toda la información permite comparar después cómo cambió tu razonamiento. La meta no es acertar a la primera.</p></div>`,
+    exampleTitle:'Qué significa suspender el juicio',
+    example:`<div class="learning-window-section"><p>“Las ventas subieron” es evidencia de una cosa: aumentó la facturación. No demuestra por sí sola que aumentó el margen, mejoró la operación o disminuyó el riesgo.</p></div>`
+  },
+  'El caso cambia con la evidencia':{
+    current:2,
+    steps:[['Lee','Abre una evidencia'],['Compara','Con tu hipótesis'],['Ajusta','Confirma, complica o cambia'],['Sintetiza','Reformula']],
+    conceptTitle:'Trabajar con hipótesis revisables',
+    concept:`<div class="learning-window-section"><h3>Una hipótesis no es una conclusión que debes defender</h3><p>Su valor está en que organiza temporalmente tu explicación y puede ser ajustada cuando aparecen nuevos datos.</p></div>`,
+    exampleTitle:'Ejemplo de ajuste',
+    example:`<div class="learning-window-section"><p><strong>Antes:</strong> “El problema es que venden poco”.</p><p><strong>Nueva evidencia:</strong> las ventas subieron 18%, pero también aumentaron costos y compras de urgencia.</p><p><strong>Después:</strong> “La tensión podría estar en margen y operación, no en volumen de ventas”.</p></div>`
+  },
+  'Qué necesitamos mirar':{
+    current:2,
+    steps:[['Pregunta','Qué falta saber'],['Selecciona','Preguntas útiles'],['Descubre','Qué dimensión activan'],['Conecta','Prepara el modelo']],
+    conceptTitle:'Una dimensión comienza con una pregunta',
+    concept:`<div class="learning-window-section"><h3>El modelo no es una lista para completar</h3><p>Cada dimensión agrupa preguntas de una naturaleza similar. Si no existe una pregunta relevante para el problema, no necesitas profundizar en esa dimensión en ese momento.</p></div>`,
+    exampleTitle:'Pregunta útil vs. solución anticipada',
+    example:`<div class="learning-window-section"><div class="learning-window-example"><div><span>Solución anticipada</span><strong>“¿Qué software deberíamos comprar?”</strong></div><i>→</i><div><span>Pregunta de análisis</span><strong>“¿Dónde se pierde o duplica información durante el proceso?”</strong></div></div></div>`
+  },
+  'Cápsula: el negocio como sistema':{
+    current:0,
+    steps:[['Comprende','Interdependencia'],['Observa','Mira una cadena'],['Relaciona','Cruza dimensiones'],['Organiza','Usa 4 preguntas']],
+    conceptTitle:'Qué significa “sistema” aquí',
+    concept:`<div class="learning-window-section"><h3>Las partes producen efectos juntas</h3><p>Hablar de sistema no significa que todo sea igualmente importante. Significa que una modificación en una parte puede generar efectos en otras.</p></div>`,
+    exampleTitle:'Cadena de efectos',
+    example:`<div class="learning-window-section"><p>Promoción → más pedidos → más carga → compras urgentes → mayor costo → retrasos → reclamos. Un solo resultado comercial puede activar varias dimensiones de gestión.</p></div>`
+  },
+  'Mirar el negocio completo':{
+    current:2,
+    steps:[['Explora','Selecciona dimensión'],['Pregunta','Lee su pregunta guía'],['Ejemplifica','Mira evidencia posible'],['Practica','Elige una primera lente']],
+    conceptTitle:'Cómo utilizar las ocho dimensiones',
+    concept:`<div class="learning-window-section"><h3>Úsalas como lentes, no como checklist</h3><p>Una dimensión ayuda a enfocar preguntas. En problemas complejos probablemente necesitarás combinar varias, pero conviene comenzar por la que esté más cerca de la señal observada.</p></div>`,
+    exampleTitle:'Ejemplo multidimensional',
+    example:`<div class="learning-window-section"><p>“Los clientes reciben respuestas distintas según quién atiende” puede comenzar en <strong>Personas</strong>, pero también puede llevar a revisar <strong>Procesos</strong> e <strong>Información</strong>.</p></div>`
+  },
+  'Lectura guiada: leer relaciones':{
+    current:1,
+    steps:[['Predice','Antes de leer'],['Busca','Relaciones en el texto'],['Explica','Conecta variables'],['Comprueba','Revisa tu respuesta']],
+    conceptTitle:'Estrategia de lectura',
+    concept:`<div class="learning-window-section"><h3>Lee preguntando “¿qué afecta a qué?”</h3><p>Los conectores causales y condicionales —porque, si, cuando, provoca, afecta— suelen señalar relaciones relevantes para el análisis de gestión.</p></div>`,
+    exampleTitle:'Ejemplo de explicación relacional',
+    example:`<div class="learning-window-section"><p>En vez de responder “vender más puede aumentar costos y errores”, construye la relación: “Si el aumento de pedidos supera la capacidad de operación, puede aumentar la carga, provocar compras urgentes y generar errores”.</p></div>`
+  },
+  'Síntoma, evidencia y problema':{
+    current:2,
+    steps:[['Observa','Reconoce el síntoma'],['Pregunta','Abre alternativas'],['Busca','Define evidencia'],['Formula','Recién entonces problema']],
+    conceptTitle:'Por qué no saltar del síntoma a la solución',
+    concept:`<div class="learning-window-section"><h3>Una misma señal admite varias explicaciones</h3><p>“No me alcanza el tiempo” podría relacionarse con volumen de trabajo, organización, tareas innecesarias, falta de herramientas o dotación insuficiente. Sin evidencia, contratar es solo una hipótesis de solución.</p></div>`,
+    exampleTitle:'Ejemplo completo',
+    example:`<div class="learning-window-section"><p><strong>Síntoma:</strong> “Necesito contratar”.</p><p><strong>Pregunta:</strong> ¿qué tareas consumen más tiempo y dónde aparecen esperas?</p><p><strong>Evidencia:</strong> registro de tareas, tiempos y carga.</p><p><strong>Problema:</strong> se formula después de analizar esa información.</p></div>`
+  },
+  'Entrena la estrategia':{
+    current:2,
+    steps:[['Lee','Comprende el caso'],['Frena','No aceptes la solución'],['Elige','Produce información'],['Recibe','Usa feedback']],
+    conceptTitle:'Qué estás entrenando',
+    concept:`<div class="learning-window-section"><h3>El gesto experto es frenar</h3><p>Antes de preguntar “¿qué compro o contrato?”, cambia la pregunta por “¿qué necesito comprender para decidir si eso corresponde?”.</p></div>`,
+    exampleTitle:'Regla práctica',
+    example:`<div class="learning-window-section"><p>Cuando escuches “necesito publicidad / software / contratar / vender más”, tradúcelo mentalmente a: <strong>¿qué evidencia demostraría que esa intervención responde al problema?</strong></p></div>`
+  },
+  'Ahora mira el tuyo':{
+    current:3,
+    steps:[['Selecciona','Una dimensión'],['Valora','Cuánta evidencia tienes'],['Justifica','Escribe evidencia'],['Pregunta','Qué falta investigar']],
+    conceptTitle:'Qué estás evaluando realmente',
+    concept:`<div class="learning-window-section"><h3>No calificas si tu empresa es “buena” o “mala”</h3><p>Evalúas la calidad de tu comprensión actual: ¿puedes explicar la dimensión y respaldarla con información, o todavía necesitas investigar?</p></div>`,
+    exampleTitle:'Ejemplo de nivel 2',
+    example:`<div class="learning-window-section"><p><strong>Procesos — idea parcial:</strong> “Sé los pasos principales del servicio, pero nunca he medido tiempos ni registrado dónde se producen retrabajos”.</p><p><strong>Pregunta:</strong> “¿en qué pasos aparecen más demoras o correcciones?”.</p></div>`
+  },
+  'Checkpoint':{
+    current:2,
+    steps:[['Recuerda','Las 4 funciones'],['Clasifica','Una frase'],['Comprueba','Lee feedback'],['Corrige','Ajusta tu criterio']],
+    conceptTitle:'Las cuatro funciones del diagnóstico',
+    concept:`<div class="learning-window-section"><ul><li><strong>Síntoma:</strong> señal o percepción inicial.</li><li><strong>Pregunta:</strong> abre una investigación.</li><li><strong>Evidencia:</strong> información observable.</li><li><strong>Problema:</strong> explicación sustentada que orienta intervención.</li></ul></div>`,
+    exampleTitle:'Cómo distinguirlas',
+    example:`<div class="learning-window-section"><p>Pregúntate qué hace la frase: ¿expresa algo que preocupa?, ¿pide averiguar?, ¿muestra información?, ¿explica una causa o condición respaldada?</p></div>`
+  },
+  'Mi nueva lectura':{
+    current:3,
+    steps:[['Recupera','Mira tu preocupación'],['Compara','Qué le faltaba'],['Reformula','Usa nuevas categorías'],['Proyecta','Formula pregunta diagnóstica']],
+    conceptTitle:'Qué debería haber cambiado',
+    concept:`<div class="learning-window-section"><h3>Más precisión y menos certeza prematura</h3><p>Una explicación más avanzada no necesariamente es más larga. Distingue mejor lo que sabes, reconoce lo que no sabes y formula preguntas que pueden responderse con evidencia.</p></div>`,
+    exampleTitle:'Antes y después',
+    example:`<div class="learning-window-section"><p><strong>Antes:</strong> “Necesito marketing porque vendo poco”.</p><p><strong>Después:</strong> “No sé todavía si la principal dificultad está en alcance o conversión; necesito revisar de dónde llegan las consultas y qué proporción termina en venta”.</p></div>`
+  }
+};
+
+function installLearningArchitecture(){
+  document.querySelectorAll('.screen').forEach(screen=>{
+    const title=screen.dataset.title;
+    const cfg=learningArchitecture[title];
+    if(!cfg)return;
+
+    const body=screen.querySelector('.lesson-body');
+    if(body && !body.querySelector(':scope > .learning-process')){
+      const process=document.createElement('section');
+      process.className='learning-process';
+      process.innerHTML=`
+        <div class="learning-process-intro">
+          <span>Proceso de aprendizaje</span>
+          <strong>${cfg.steps[cfg.current][0]}: ${cfg.steps[cfg.current][1]}</strong>
+        </div>
+        <div class="learning-process-steps">
+          ${cfg.steps.map((s,i)=>`
+            <button type="button" class="learning-process-step ${i===cfg.current?'current':''}"
+              data-learning-title="${title}" data-learning-index="${i}">
+              <b>${i+1}</b><strong>${s[0]}</strong><span>${s[1]}</span>
+            </button>`).join('')}
+        </div>`;
+      body.prepend(process);
+    }
+
+    const aside=screen.querySelector('.aside');
+    if(aside && !aside.querySelector('.learning-support')){
+      const cards=[...aside.querySelectorAll('.aside-card')];
+      cards.forEach(c=>c.classList.add('learning-hidden-support'));
+
+      const support=document.createElement('section');
+      support.className='learning-support';
+      support.innerHTML=`
+        <span class="support-kicker">Apoyo</span>
+        <h3>${cfg.steps[cfg.current][0]}</h3>
+        <p>${cfg.steps[cfg.current][1]}</p>
+        <div class="learning-support-buttons">
+          <button type="button" data-learning-support="concept" data-learning-title="${title}">⌘ Ver explicación</button>
+          <button type="button" data-learning-support="example" data-learning-title="${title}">↗ Ver ejemplo</button>
+        </div>`;
+      aside.prepend(support);
+    }
+  });
+}
+function escapeJs(s){return String(s).replaceAll("\\","\\\\").replaceAll("'","\\'")}
+
+function openLearningWindow(title,type){
+  const cfg=learningArchitecture[title];
+  if(!cfg)return;
+  const backdrop=document.getElementById('learningWindowBackdrop');
+  document.getElementById('learningWindowKicker').textContent=type==='concept'?'Explicación':'Ejemplo';
+  document.getElementById('learningWindowTitle').textContent=type==='concept'?cfg.conceptTitle:cfg.exampleTitle;
+  document.getElementById('learningWindowBody').innerHTML=type==='concept'?cfg.concept:cfg.example;
+  backdrop.classList.add('open');
+}
+function closeLearningWindow(ev){
+  if(ev && ev.target!==document.getElementById('learningWindowBackdrop'))return;
+  document.getElementById('learningWindowBackdrop')?.classList.remove('open');
+}
+document.addEventListener('keydown',ev=>{
+  if(ev.key==='Escape')document.getElementById('learningWindowBackdrop')?.classList.remove('open');
+});
+
+installLearningArchitecture();
+
+
+/* ---------- V4.6 · QA DE INTERACCIÓN ---------- */
+function interactionHitTest(){
+  const active=document.querySelector('.screen.active');
+  if(!active)return [];
+  return [...active.querySelectorAll('button')].filter(b=>{
+    const s=getComputedStyle(b);
+    return !b.disabled && s.display!=='none' && s.visibility!=='hidden' && b.offsetParent!==null;
+  }).map(b=>{
+    const r=b.getBoundingClientRect();
+    const x=Math.max(0,Math.min(innerWidth-1,r.left+r.width/2));
+    const y=Math.max(0,Math.min(innerHeight-1,r.top+r.height/2));
+    const hit=document.elementFromPoint(x,y);
+    return {
+      text:(b.innerText||b.title||'').trim().slice(0,60),
+      clickable:!!hit && (hit===b || b.contains(hit)),
+      hit:hit?.tagName||null,
+      hitClass:hit?.className||''
+    };
+  });
+}
+
+
+/* ---------- V4.7 · DELEGACIÓN ROBUSTA DE CONTROLES ---------- */
+function openLearningProcessStep(title,index){
+  const cfg=learningArchitecture[title];
+  if(!cfg)return;
+  const step=cfg.steps[index];
+  const backdrop=document.getElementById('learningWindowBackdrop');
+  document.getElementById('learningWindowKicker').textContent='Proceso de aprendizaje';
+  document.getElementById('learningWindowTitle').textContent=step[0];
+  document.getElementById('learningWindowBody').innerHTML=`
+    <div class="learning-window-section">
+      <span class="eyebrow">Paso ${index+1} de ${cfg.steps.length}</span>
+      <h3>${step[0]} · ${step[1]}</h3>
+      <p>Este paso indica qué operación estás realizando dentro de la actividad. No es contenido adicional para memorizar: es una guía para saber <strong>qué hacer con la información</strong> en este momento.</p>
+      <div class="process-step-sequence">
+        ${cfg.steps.map((s,i)=>`<div class="${i===index?'active':''}"><b>${i+1}</b><span>${s[0]}</span><small>${s[1]}</small></div>`).join('')}
+      </div>
+    </div>`;
+  backdrop.classList.add('open');
+}
+
+document.addEventListener('click',(ev)=>{
+  const support=ev.target.closest('[data-learning-support]');
+  if(support){
+    ev.preventDefault();
+    ev.stopPropagation();
+    openLearningWindow(support.dataset.learningTitle,support.dataset.learningSupport);
+    return;
+  }
+
+  const step=ev.target.closest('.learning-process-step[data-learning-title]');
+  if(step){
+    ev.preventDefault();
+    ev.stopPropagation();
+    openLearningProcessStep(step.dataset.learningTitle,Number(step.dataset.learningIndex));
+  }
+});
 
 /* ---------- INIT ---------- */
 updateDrawer();updateProgress();render();
