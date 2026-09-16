@@ -240,13 +240,13 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   border:1px solid var(--line);background:#fafafd;border-radius:9px;padding:7px 9px;
   color:var(--text-2);font-size:calc(.59rem * var(--font-scale));font-weight:850
 }
-.segmented button.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent);color:var(--accent-dark)}
+.segmented button.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 55%,transparent);color:var(--accent-dark);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 12%,transparent)}
 .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .choice-card{
   border:1px solid var(--line);background:#fafafd;border-radius:11px;padding:10px;
   text-align:left;color:var(--text-2)
 }
-.choice-card.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent)}
+.choice-card.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 14%,transparent)}
 .choice-card strong{display:block;font-size:calc(.65rem * var(--font-scale))}
 .choice-card span{display:block;font-size:calc(.57rem * var(--font-scale));color:var(--muted);margin-top:2px;line-height:1.35}
 .pills{display:flex;gap:6px;flex-wrap:wrap}
@@ -941,7 +941,7 @@ td select{width:100%;border:1px solid var(--line);background:#fff;border-radius:
 .strategy-step b{grid-row:1/3;width:29px;height:29px;border-radius:9px;background:#f0f1f5;display:grid;place-items:center;color:var(--muted)}
 .strategy-step strong{font-size:calc(.63rem * var(--font-scale));color:var(--text)}
 .strategy-step span{font-size:calc(.55rem * var(--font-scale));color:var(--muted);margin-top:2px}
-.strategy-step.active{background:var(--phase-soft);border-color:color-mix(in srgb,var(--phase-color) 35%,white)}
+.strategy-step.active{background:var(--phase-soft);border-color:color-mix(in srgb,var(--phase-color) 55%,white);box-shadow:0 0 0 2px color-mix(in srgb,var(--phase-color) 12%,transparent)}
 .strategy-step.active b{background:var(--phase-color);color:#fff}
 .strategy-demo{border:1px solid var(--line);background:#fff;border-radius:15px;padding:16px;display:flex;flex-direction:column;justify-content:center}
 .demo-label{font-size:calc(.53rem * var(--font-scale));text-transform:uppercase;letter-spacing:.09em;color:var(--phase-color);font-weight:900}
@@ -1066,6 +1066,78 @@ button[disabled]{
   0%,100%{box-shadow:0 0 0 0 rgba(184,137,47,0)}
   50%{box-shadow:0 0 0 5px rgba(184,137,47,.12)}
 }
+
+
+/* =========================================================
+   V3.2 · CORRECCIÓN CRÍTICA DE CAPAS E INTERACCIONES
+   =========================================================
+   Las pantallas invisibles ya no pueden capturar clics.
+   Antes, componentes internos con pointer-events:auto
+   podían quedar por encima de la pantalla activa.
+*/
+.screen{
+  visibility:hidden;
+  z-index:0;
+  pointer-events:none!important;
+}
+.screen:not(.active),
+.screen:not(.active) *{
+  pointer-events:none!important;
+}
+.screen.active{
+  visibility:visible;
+  z-index:5;
+  pointer-events:auto!important;
+}
+.screen.active *{
+  /* Los componentes recuperan su comportamiento normal */
+}
+.capsule-slide{
+  visibility:hidden;
+  pointer-events:none!important;
+}
+.capsule-slide.active{
+  visibility:visible;
+  pointer-events:auto!important;
+}
+
+/* Refuerzo: las áreas clicables deben estar por encima
+   de cualquier elemento decorativo de la pantalla activa. */
+.screen.active button,
+.screen.active input,
+.screen.active textarea,
+.screen.active select,
+.screen.active .choice-card,
+.screen.active .strategy-step,
+.screen.active .clue,
+.screen.active .dimension-btn,
+.screen.active .scenario-tab,
+.screen.active .evidence-tab{
+  position:relative;
+  z-index:8;
+}
+
+
+/* V3.5 · CIERRE DE PANEL Y SINCRONIZACIÓN ROBUSTA */
+.theme-panel-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:start;
+  margin-bottom:10px;
+}
+.theme-panel-head h3{margin:0 0 5px}
+.theme-panel-head p{margin:0}
+.theme-close-btn{
+  width:31px;height:31px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#fff;
+  color:var(--text-2);
+  font-size:1rem;
+  font-weight:900;
+}
+.theme-close-btn:hover{background:var(--accent-soft);color:var(--accent-dark)}
 
 </style>
 </head>
@@ -1229,7 +1301,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">01</span> Caracterización</div>
+                <div class="phase"><span class="phase-badge">02</span> Caracterización</div>
                 <h2>Cuéntanos qué negocio tienes hoy</h2>
                 <p>Usa palabras simples. No necesitamos todavía una definición técnica ni una propuesta de valor perfecta.</p>
               </div>
@@ -1278,7 +1350,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">02</span> Análisis de caso</div>
+                <div class="phase"><span class="phase-badge">03</span> Análisis de caso</div>
                 <h2>Ayuda a Paula a separar hechos de interpretaciones</h2>
                 <p>Lee cada frase de una pequeña panadería y decide si describe algo observable o si ya interpreta lo que ocurre.</p>
               </div>
@@ -1314,7 +1386,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">03</span> Aprendizaje de estrategia</div>
+                <div class="phase"><span class="phase-badge">04</span> Aprendizaje de estrategia</div>
                 <h2>Para entender un proceso, sigue al cliente</h2>
                 <p>Cuando cuesta explicar cómo funciona un negocio, una estrategia sencilla es reconstruir lo que le ocurre a un cliente desde el primer contacto hasta el cierre.</p>
               </div>
@@ -1350,7 +1422,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">02</span> Mapa de funcionamiento</div>
+                <div class="phase"><span class="phase-badge">05</span> Mapa de funcionamiento</div>
                 <h2>Construye el recorrido real de un cliente</h2>
                 <p>No uses el proceso “ideal”. Escribe lo que efectivamente suele ocurrir. Puedes agregar, borrar y mover pasos.</p>
               </div>
@@ -1380,7 +1452,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">03</span> Ecosistema</div>
+                <div class="phase"><span class="phase-badge">06</span> Ecosistema</div>
                 <h2>Haz visible lo que sostiene tu negocio</h2>
                 <p>Agrega personas, roles, recursos y proveedores. En un negocio unipersonal también existen varios roles, aunque todos los cumpla la misma persona.</p>
               </div>
@@ -1412,7 +1484,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">04</span> Información cotidiana</div>
+                <div class="phase"><span class="phase-badge">07</span> Información cotidiana</div>
                 <h2>¿Qué registras y dónde vive esa información?</h2>
                 <p>Tener datos no significa todavía utilizarlos para decidir. Por ahora identificaremos qué existe, qué no y dónde lo encuentras.</p>
               </div>
@@ -1444,7 +1516,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">05</span> Integración</div>
+                <div class="phase"><span class="phase-badge">08</span> Integración</div>
                 <h2>Esta es tu fotografía inicial</h2>
                 <p>Ahora sí registra tu preocupación principal. La guardaremos como una hipótesis inicial, no como un diagnóstico.</p>
               </div>
@@ -1562,7 +1634,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">02</span> Descubrimiento</div>
+                <div class="phase"><span class="phase-badge">03</span> Descubrimiento</div>
                 <h2>¿Qué información pedirías antes de decidir?</h2>
                 <p>Selecciona las pistas que investigarías. A medida que eliges, la plataforma mostrará qué dimensión de gestión estás activando.</p>
               </div>
@@ -1669,7 +1741,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">03</span> Marco conceptual</div>
+                <div class="phase"><span class="phase-badge">05</span> Marco conceptual</div>
                 <h2>Ocho dimensiones para leer un negocio</h2>
                 <p>Ahora sí ponemos nombre al modelo. Las ocho dimensiones se organizan en cuatro preguntas mayores para que no se transformen en una lista que memorizar.</p>
               </div>
@@ -1738,7 +1810,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">04</span> Herramienta de pensamiento</div>
+                <div class="phase"><span class="phase-badge">07</span> Herramienta de pensamiento</div>
                 <h2>No compres una solución antes de entender el problema</h2>
                 <p>Practica cómo transformar una necesidad expresada en preguntas y evidencia útil antes de decidir una intervención.</p>
               </div>
@@ -1826,7 +1898,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">05</span> Transferencia</div>
+                <div class="phase"><span class="phase-badge">09</span> Transferencia</div>
                 <h2>Aplica las ocho dimensiones a tu propio negocio</h2>
                 <p>No es todavía un diagnóstico técnico. Es una nueva lectura de la fotografía que construiste en el Módulo 0.</p>
               </div>
@@ -1888,7 +1960,7 @@ button[disabled]{
           <div class="lesson-shell">
             <section class="lesson">
               <div class="lesson-head">
-                <div class="phase"><span class="phase-badge">06</span> Reinterpretación</div>
+                <div class="phase"><span class="phase-badge">11</span> Reinterpretación</div>
                 <h2>Vuelve a mirar tu preocupación inicial</h2>
                 <p>El cierre consiste en reinterpretar tu propia experiencia usando el marco que acabas de aprender.</p>
               </div>
@@ -1956,8 +2028,13 @@ button[disabled]{
 
 <!-- TEMAS -->
 <section class="theme-panel" id="themePanel">
-  <h3>Personaliza tu espacio</h3>
-  <p>El tema cambia color, profundidad e intensidad sin alterar el contenido.</p>
+  <div class="theme-panel-head">
+    <div>
+      <h3>Personaliza tu espacio</h3>
+      <p>El tema cambia color, profundidad e intensidad sin alterar el contenido.</p>
+    </div>
+    <button class="theme-close-btn" type="button" onclick="toggleTheme()" aria-label="Cerrar personalización">×</button>
+  </div>
   <div class="theme-grid">
     <button class="theme-card active" data-theme="aurora"><div class="swatch" style="background:linear-gradient(135deg,#dbe4f3,#f1dfb8,#ddd5ee)"></div><strong>Aurora</strong><span>Dorado suave</span></button>
     <button class="theme-card" data-theme="ocean"><div class="swatch" style="background:linear-gradient(135deg,#d8ebf5,#b9d7e7,#e7edf6)"></div><strong>Océano</strong><span>Azules serenos</span></button>
@@ -2003,13 +2080,18 @@ function render(){
 
   document.getElementById('prevBtn').style.visibility=currentIndex===0?'hidden':'visible';
   const last=currentIndex===screens.length-1;
-  document.getElementById('nextBtn').textContent=last?(currentModule===0?'Ir al Módulo 1 →':'Ir al Módulo 2 →'):'Siguiente →';
+  const currentTitle=screens[currentIndex].dataset.title;
+  const isCapsule=currentTitle==='Describir antes de diagnosticar' || currentTitle==='Cápsula: el negocio como sistema';
+  document.getElementById('nextBtn').textContent=last
+    ?(currentModule===0?'Ir al Módulo 1 →':'Ir al Módulo 2 →')
+    :(isCapsule?'Continuar pantalla →':'Siguiente →');
 
   const holder=document.getElementById('stepDots');holder.innerHTML='';
   screens.forEach((_,i)=>{const d=document.createElement('span');d.className='stepdot'+(i===currentIndex?' active':i<currentIndex?' done':'');holder.appendChild(d)});
 
-  if(currentModule===0 && currentIndex===5) syncSnapshot();
-  if(currentModule===1 && currentIndex===5) syncReinterpretation();
+  const activeScreen=screens[currentIndex];
+  if(activeScreen.querySelector('#snapName')) syncSnapshot();
+  if(activeScreen.querySelector('#concernMirror')) syncReinterpretation();
 }
 function move(dir){
   const screens=moduleScreens(currentModule);
@@ -2063,10 +2145,16 @@ function setupChoice(containerId,key){
   const saved=localStorage.getItem(key);
   wrap.querySelectorAll('button[data-value]').forEach(btn=>{
     if(btn.dataset.value===saved)btn.classList.add('active');
-    btn.addEventListener('click',()=>{
+    btn.addEventListener('click',(ev)=>{
+      ev.preventDefault();
+      ev.stopPropagation();
       wrap.querySelectorAll('button[data-value]').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');localStorage.setItem(key,btn.dataset.value);saveChip();
-      if(containerId==='caseVerdict')document.getElementById('caseVerdictFeedback').classList.add('show');
+      btn.classList.add('active');
+      localStorage.setItem(key,btn.dataset.value);
+      saveChip();
+      if(containerId==='caseVerdict'){
+        document.getElementById('caseVerdictFeedback').classList.add('show');
+      }
     })
   })
 }
@@ -2084,7 +2172,12 @@ if(!flowSteps.length)flowSteps=[
   'Se cobra o registra el pago',
   'Se cierra o hace seguimiento'
 ];
-function saveFlow(){localStorage.setItem('pyu_flow',JSON.stringify(flowSteps));renderFlow();saveChip()}
+function saveFlow(){
+  localStorage.setItem('pyu_flow',JSON.stringify(flowSteps));
+  renderFlow();
+  updateDrawer();
+  saveChip();
+}
 function renderFlow(){
   const wrap=document.getElementById('flowList');wrap.innerHTML='';
   flowSteps.forEach((txt,i)=>{
@@ -2104,7 +2197,6 @@ function renderFlow(){
     del.addEventListener('click',()=>{if(flowSteps.length>1){flowSteps.splice(i,1);saveFlow()}});
     wrap.appendChild(row)
   });
-  updateDrawer()
 }
 function addFlowStep(){flowSteps.push('Nuevo paso');saveFlow()}
 function escapeHtml(s){return String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
@@ -2466,7 +2558,9 @@ const strategyContent=[
   ['Demostración · Paso 3','Marca dónde cambia de manos o de sistema','Los traspasos son puntos críticos: pasar de Instagram a WhatsApp, de ventas a producción, o de una persona a otra puede producir esperas o pérdida de información.','<span>Ventas</span><i>→</i><span>Producción</span><i>→</i><span>Pago</span>']
 ];
 document.querySelectorAll('.strategy-step').forEach(btn=>{
-  btn.addEventListener('click',()=>{
+  btn.addEventListener('click',(ev)=>{
+    ev.preventDefault();
+    ev.stopPropagation();
     document.querySelectorAll('.strategy-step').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const d=strategyContent[Number(btn.dataset.strategyStep)];
@@ -2592,6 +2686,18 @@ function auditInteractiveControls(){
   });
 }
 auditInteractiveControls();
+
+
+/* ---------- NORMALIZACIÓN DE BOTONES ---------- */
+document.querySelectorAll('button:not([type])').forEach(btn=>btn.type='button');
+
+
+document.addEventListener('keydown',(ev)=>{
+  if(ev.key==='Escape'){
+    document.getElementById('themePanel')?.classList.remove('open');
+    document.getElementById('drawer')?.classList.remove('open');
+  }
+});
 
 /* ---------- INIT ---------- */
 updateDrawer();updateProgress();render();
