@@ -3,34 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P&U · Curso de Gestión · Módulo 1</title>
+<title>P&U · Plataforma de aprendizaje · Módulos 0 y 1</title>
 <style>
 :root{
-  --bg:#f3f4f8;
-  --glass:rgba(255,255,255,.76);
-  --glass-2:rgba(250,250,253,.66);
-  --surface:#fff;
-  --line:#e6e7ee;
-  --line2:#d8dae5;
-  --text:#2c2f3d;
-  --text2:#676c7d;
-  --muted:#959aab;
+  --accent:#b8892f;
+  --accent-2:#e3c66f;
+  --accent-dark:#70531d;
+  --accent-soft:#f5ecd6;
 
-  --brand:#b8892f;
-  --brand-dark:#725520;
-  --brand-bg:#f7eed8;
+  --bg-a:#dce5f2;
+  --bg-b:#f0dfba;
+  --bg-c:#ddd5ee;
 
-  --ok:#6f8f36;
-  --ok-bg:#eef5df;
-  --warn:#bd8a22;
-  --warn-bg:#fbf3dc;
-  --violet:#7662b9;
-  --violet-bg:#f0ecfb;
-  --blue:#4c7fa9;
-  --blue-bg:#eaf3f8;
+  --panel-alpha:.80;
+  --panel:rgba(255,255,255,var(--panel-alpha));
+  --panel-strong:rgba(255,255,255,.95);
+  --panel-soft:rgba(250,250,253,.76);
 
-  --shadow:0 24px 70px rgba(39,44,72,.16);
-  --shadow-soft:0 10px 28px rgba(39,44,72,.08);
+  --text:#292d3e;
+  --text-2:#60677b;
+  --muted:#9197a8;
+  --line:rgba(70,76,101,.12);
+  --line-strong:rgba(70,76,101,.19);
+
+  --success:#62854a;
+  --success-soft:#edf4e7;
+  --warning:#aa7922;
+  --warning-soft:#faf1d8;
+  --danger:#985a66;
+  --danger-soft:#f6e8eb;
+  --info:#557da8;
+  --info-soft:#eaf2f8;
+
+  --shadow-alpha:.17;
+  --glow-alpha:.16;
+  --surface-tint:11%;
+
+  --shadow:0 26px 74px rgba(39,44,74,var(--shadow-alpha));
+  --shadow-soft:0 10px 30px rgba(39,44,74,.08);
+
+  --font-scale:1.16;
 
   --fd:"Iowan Old Style","Baskerville","Georgia",serif;
   --fb:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
@@ -42,1106 +54,1353 @@ body{
   font-family:var(--fb);
   color:var(--text);
   background:
-    radial-gradient(circle at 10% 8%,rgba(214,221,240,.95),transparent 31%),
-    radial-gradient(circle at 88% 12%,rgba(245,227,184,.78),transparent 28%),
-    radial-gradient(circle at 73% 88%,rgba(225,218,240,.85),transparent 34%),
-    linear-gradient(145deg,#eef0f5,#f7f5ef);
+    radial-gradient(circle at 9% 8%,var(--bg-a) 0,transparent 34%),
+    radial-gradient(circle at 88% 10%,var(--bg-b) 0,transparent 31%),
+    radial-gradient(circle at 72% 88%,var(--bg-c) 0,transparent 36%),
+    linear-gradient(145deg,#edf0f5,#f7f5ef);
+  transition:.22s ease;
 }
-button,input,textarea{font:inherit}
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 13% 22%,color-mix(in srgb,var(--accent) var(--glow-alpha),transparent),transparent 36%),
+    radial-gradient(circle at 82% 82%,color-mix(in srgb,var(--accent-2) var(--glow-alpha),transparent),transparent 38%);
+}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(184,137,47,.22);outline-offset:2px}
-
-.desktop{
-  height:100%;
-  padding:18px 22px 94px;
-  display:grid;
-  place-items:center;
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 28%, transparent);
+  outline-offset:2px;
 }
+.hidden{display:none!important}
+
+/* MAC WINDOW */
+.desktop{height:100%;padding:16px 20px 94px;display:grid;place-items:center}
 .window{
-  width:min(1440px,100%);
-  height:min(880px,calc(100vh - 112px));
-  min-height:650px;
-  border:1px solid rgba(255,255,255,.82);
-  border-radius:22px;
-  overflow:hidden;
+  width:min(1480px,100%);
+  height:min(915px,calc(100vh - 108px));
+  min-height:690px;
+  display:grid;grid-template-rows:46px 1fr;
+  overflow:hidden;border-radius:24px;
+  border:1px solid rgba(255,255,255,.88);
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb,rgba(255,255,255,var(--panel-alpha)) 89%,var(--accent-soft)),
+      rgba(255,255,255,var(--panel-alpha)));
   box-shadow:var(--shadow);
-  background:var(--glass);
-  backdrop-filter:blur(28px) saturate(150%);
-  -webkit-backdrop-filter:blur(28px) saturate(150%);
-  display:grid;
-  grid-template-rows:44px 1fr;
+  backdrop-filter:blur(30px) saturate(155%);
+  -webkit-backdrop-filter:blur(30px) saturate(155%);
 }
 .titlebar{
-  display:grid;
-  grid-template-columns:120px 1fr 120px;
-  align-items:center;
-  padding:0 14px;
-  background:rgba(255,255,255,.55);
-  border-bottom:1px solid rgba(69,74,99,.08);
+  display:grid;grid-template-columns:130px 1fr 130px;align-items:center;
+  padding:0 15px;background:rgba(255,255,255,.52);border-bottom:1px solid var(--line)
 }
 .traffic{display:flex;gap:7px}
-.traffic i{width:12px;height:12px;border-radius:50%;display:block}
+.traffic i{display:block;width:12px;height:12px;border-radius:50%}
 .traffic i:nth-child(1){background:#ff5f57}.traffic i:nth-child(2){background:#febc2e}.traffic i:nth-child(3){background:#28c840}
-.titlebar-title{text-align:center;font-size:.72rem;font-weight:800;color:#555b6e}
-.titlebar-actions{display:flex;justify-content:flex-end;gap:6px}
-.mini-btn{
-  width:28px;height:28px;border:1px solid rgba(255,255,255,.75);border-radius:8px;
-  background:rgba(255,255,255,.54);color:#666c80;font-weight:800
+.titlebar-title{text-align:center;font-weight:800;color:var(--text-2);font-size:calc(.76rem * var(--font-scale))}
+.titlebar-actions{display:flex;justify-content:flex-end;gap:7px}
+.iconbtn{
+  width:31px;height:31px;border-radius:9px;border:1px solid rgba(255,255,255,.8);
+  background:rgba(255,255,255,.59);color:var(--text-2);font-weight:900
 }
+.iconbtn:hover{background:#fff}
 
-.app{display:grid;grid-template-columns:230px 1fr;min-height:0}
+/* APP */
+.app{display:grid;grid-template-columns:248px 1fr;min-height:0}
 .sidebar{
-  min-height:0;padding:16px 12px 13px;
-  background:rgba(248,249,253,.49);
-  border-right:1px solid rgba(70,75,101,.08);
-  display:flex;flex-direction:column;
+  min-height:0;padding:17px 13px 14px;background:rgba(248,249,253,.46);
+  border-right:1px solid var(--line);display:flex;flex-direction:column
 }
-.brand{display:flex;align-items:center;gap:10px;padding:3px 7px 14px}
+.brand{display:flex;align-items:center;gap:11px;padding:3px 8px 15px}
 .logo{
-  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
-  background:linear-gradient(145deg,#242424,#0c0c0c);color:#e6ca79;
-  box-shadow:0 6px 16px rgba(0,0,0,.13);font-family:var(--fd);font-weight:800
+  width:45px;height:45px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(145deg,#252525,#0e0e0e);color:var(--accent-2);
+  font-family:var(--fd);font-weight:800;font-size:calc(1rem * var(--font-scale));
+  box-shadow:0 7px 18px rgba(0,0,0,.13)
 }
-.brand strong{font-family:var(--fd);font-size:.94rem;display:block}
-.brand span{font-size:.62rem;color:var(--muted);display:block;margin-top:2px}
+.brand strong{display:block;font-family:var(--fd);font-size:calc(1rem * var(--font-scale))}
+.brand span{display:block;color:var(--muted);font-size:calc(.66rem * var(--font-scale));margin-top:2px}
 .side-label{
-  font-size:.56rem;text-transform:uppercase;letter-spacing:.11em;
-  color:var(--muted);font-weight:900;padding:5px 8px
+  padding:5px 8px;font-size:calc(.59rem * var(--font-scale));text-transform:uppercase;
+  letter-spacing:.11em;color:var(--muted);font-weight:900
 }
 .module-list{display:grid;gap:4px}
 .mod{
-  display:grid;grid-template-columns:27px 1fr 18px;gap:8px;align-items:center;
-  border:0;background:transparent;text-align:left;
-  padding:8px;border-radius:10px;color:#63697b;font-size:.68rem;font-weight:750
+  display:grid;grid-template-columns:30px 1fr 18px;align-items:center;gap:8px;
+  border:0;background:transparent;border-radius:11px;padding:9px 8px;text-align:left;
+  color:var(--text-2);font-size:calc(.7rem * var(--font-scale));font-weight:780
 }
-.mod:hover{background:rgba(255,255,255,.54)}
-.mod.active{
-  background:rgba(255,255,255,.92);color:#2f3344;
-  box-shadow:0 5px 15px rgba(44,48,76,.06)
-}
+.mod:hover{background:rgba(255,255,255,.58)}
+.mod.active{background:rgba(255,255,255,.93);color:var(--text);box-shadow:0 5px 16px rgba(44,49,78,.06)}
+.mod.future{opacity:.48}
 .mod .n{
-  width:27px;height:27px;border-radius:8px;display:grid;place-items:center;
-  background:rgba(86,91,114,.07);font:700 .59rem var(--fm)
+  width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:rgba(87,92,118,.07);font:700 calc(.61rem * var(--font-scale)) var(--fm)
 }
-.mod.active .n{background:var(--brand-bg);color:var(--brand-dark)}
-.mod .st{font-size:.67rem;text-align:center;color:#a7abb8}
-.mod.done .st{color:#648a56}
+.mod.active .n{background:var(--accent-soft);color:var(--accent-dark)}
+.mod .st{text-align:center;color:#a8adba}.mod.done .st{color:var(--success)}
+.side-bottom{margin-top:auto;padding:12px 8px 3px}
+.side-progress-head{display:flex;justify-content:space-between;color:var(--text-2);font-size:calc(.64rem * var(--font-scale));font-weight:850}
+.progress{height:7px;border-radius:99px;background:rgba(75,80,105,.08);overflow:hidden;margin-top:7px}
+.progress span{height:100%;display:block;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:99px;transition:.25s}
+.side-bottom p{font-size:calc(.6rem * var(--font-scale));line-height:1.45;color:var(--muted);margin:9px 0 0}
 
-.side-bottom{margin-top:auto;padding:12px 8px 2px}
-.side-progress-head{display:flex;justify-content:space-between;font-size:.61rem;color:var(--text2);font-weight:800}
-.progress{height:6px;border-radius:99px;background:rgba(75,80,105,.08);overflow:hidden;margin-top:7px}
-.progress span{display:block;height:100%;width:14%;background:linear-gradient(90deg,var(--brand),#dfc46f);border-radius:99px;transition:.25s}
-.side-bottom p{font-size:.58rem;line-height:1.4;color:var(--muted);margin:9px 0 0}
-
-.main{min-width:0;min-height:0;display:grid;grid-template-rows:62px 1fr 64px}
+/* MAIN */
+.main{min-width:0;min-height:0;display:grid;grid-template-rows:68px 1fr 68px}
 .top{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 18px;border-bottom:1px solid rgba(70,75,101,.07)
+  padding:10px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)
 }
-.top small{
-  display:block;font-size:.56rem;text-transform:uppercase;letter-spacing:.12em;
-  color:var(--muted);font-weight:900
-}
-.top h1{font-family:var(--fd);font-size:1.28rem;margin:1px 0 0}
-.top-meta{display:flex;gap:7px;align-items:center}
+.top small{display:block;font-size:calc(.6rem * var(--font-scale));text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:900}
+.top h1{font-family:var(--fd);font-size:calc(1.42rem * var(--font-scale));margin:1px 0 0}
+.top-meta{display:flex;align-items:center;gap:7px}
 .chip{
-  border:1px solid rgba(255,255,255,.84);background:rgba(255,255,255,.62);
-  border-radius:999px;padding:6px 10px;font-size:.59rem;color:#62687b;font-weight:750;
-  box-shadow:0 3px 12px rgba(45,50,80,.04)
+  border:1px solid rgba(255,255,255,.86);background:rgba(255,255,255,.64);
+  border-radius:999px;padding:7px 11px;color:var(--text-2);
+  font-size:calc(.63rem * var(--font-scale));font-weight:800
 }
-.biz-btn{
-  border:1px solid rgba(184,137,47,.18);background:var(--brand-bg);color:var(--brand-dark);
-  border-radius:10px;padding:7px 11px;font-size:.61rem;font-weight:900
+.actionbtn{
+  border:1px solid color-mix(in srgb,var(--accent) 19%,transparent);
+  background:var(--accent-soft);color:var(--accent-dark);border-radius:11px;
+  padding:8px 12px;font-size:calc(.64rem * var(--font-scale));font-weight:900
 }
 
-.stage{position:relative;min-height:0;padding:14px 18px}
+.stage{position:relative;min-height:0;padding:15px 20px}
 .screen{
-  position:absolute;inset:14px 18px;
-  opacity:0;pointer-events:none;transform:translateX(12px);
-  transition:.18s ease;min-height:0
+  position:absolute;inset:15px 20px;min-height:0;
+  opacity:0;pointer-events:none;transform:translateX(12px);transition:.18s ease
 }
 .screen.active{opacity:1;pointer-events:auto;transform:none}
-
-.lesson-shell{
-  height:100%;min-height:0;
-  display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:12px
-}
+.lesson-shell{height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 278px;gap:13px}
 .lesson-shell.no-aside{grid-template-columns:1fr}
 .lesson{
-  min-height:0;background:rgba(255,255,255,.91);border:1px solid rgba(255,255,255,.96);
-  border-radius:18px;box-shadow:var(--shadow-soft);overflow:hidden;
-  display:grid;grid-template-rows:auto 1fr
-}
-.lesson-head{
-  padding:15px 18px 12px;border-bottom:1px solid var(--line)
-}
-.phase{
-  display:flex;align-items:center;gap:7px;
-  font-size:.56rem;text-transform:uppercase;letter-spacing:.11em;color:var(--brand-dark);font-weight:900
-}
-.phase-badge{
-  padding:4px 6px;border-radius:6px;background:var(--brand-bg);font:800 .53rem var(--fm)
-}
-.lesson-head h2{font-family:var(--fd);font-size:1.5rem;margin:5px 0 4px;letter-spacing:-.02em}
-.lesson-head p{font-size:.7rem;color:var(--text2);line-height:1.43;margin:0;max-width:900px}
-.lesson-body{padding:14px 18px 17px;overflow:auto;min-height:0}
-
-.aside{
-  min-height:0;display:grid;grid-template-rows:auto auto 1fr;gap:10px
-}
-.aside-card{
-  background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.88);
-  border-radius:15px;padding:13px;box-shadow:0 6px 18px rgba(44,49,79,.05)
-}
-.aside-card h3{font-size:.67rem;margin:0 0 5px}
-.aside-card p{font-size:.61rem;color:var(--text2);line-height:1.42;margin:0}
-.aside-tag{font-size:.52rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:900;margin-bottom:6px}
-.aside-output{
-  min-height:0;background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.88);
-  border-radius:15px;padding:13px;overflow:auto
-}
-.aside-output h3{font-size:.67rem;margin:0 0 8px}
-.output-item{
-  display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)
-}
-.output-item:last-child{border-bottom:0}
-.output-icon{
-  width:23px;height:23px;flex:0 0 23px;border-radius:7px;background:var(--brand-bg);
-  display:grid;place-items:center;font-size:.58rem;color:var(--brand-dark);font-weight:900
-}
-.output-item strong{display:block;font-size:.6rem}
-.output-item span{display:block;font-size:.56rem;color:var(--muted);margin-top:1px}
-
-.orientation{
-  display:grid;grid-template-columns:1.25fr .75fr;gap:11px;height:100%
-}
-.welcome{
-  border-radius:17px;padding:23px;
+  min-height:0;overflow:hidden;display:grid;grid-template-rows:auto 1fr;
+  border-radius:19px;border:1px solid rgba(255,255,255,.97);
   background:
-    radial-gradient(circle at 88% 5%,rgba(230,201,115,.25),transparent 30%),
-    linear-gradient(145deg,#25283a,#393e55);
-  color:white;display:flex;flex-direction:column;justify-content:space-between
+    linear-gradient(150deg,
+      color-mix(in srgb,var(--panel-strong) 92%,var(--accent-soft)),
+      var(--panel-strong));
+  box-shadow:var(--shadow-soft)
 }
-.welcome .mini{font-size:.56rem;text-transform:uppercase;letter-spacing:.12em;color:#dec67e;font-weight:900}
-.welcome h2{font-family:var(--fd);font-size:2.3rem;line-height:1.03;margin:10px 0 12px;max-width:640px}
-.welcome p{color:#d7dae2;font-size:.78rem;line-height:1.5;max-width:670px}
-.welcome-bottom{border-top:1px solid rgba(255,255,255,.13);padding-top:12px;font-size:.65rem;color:#e2e4e8}
-.welcome-bottom strong{color:#f0da91}
+.lesson-head{padding:17px 20px 13px;border-bottom:1px solid var(--line)}
+.phase{display:flex;align-items:center;gap:8px;font-size:calc(.61rem * var(--font-scale));text-transform:uppercase;letter-spacing:.11em;color:var(--accent-dark);font-weight:900}
+.phase-badge{padding:4px 7px;border-radius:7px;background:var(--accent-soft);font:800 calc(.57rem * var(--font-scale)) var(--fm)}
+.lesson-head h2{font-family:var(--fd);font-size:calc(1.67rem * var(--font-scale));margin:6px 0 5px;letter-spacing:-.02em}
+.lesson-head p{font-size:calc(.77rem * var(--font-scale));line-height:1.48;color:var(--text-2);margin:0;max-width:940px}
+.lesson-body{min-height:0;overflow:auto;padding:15px 20px 18px}
 
-.orientation-right{display:grid;grid-template-rows:repeat(3,1fr);gap:9px}
-.ori-card{
-  border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;
-  display:flex;flex-direction:column;justify-content:center
-}
-.ori-card .k{font-size:.54rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:900}
-.ori-card strong{font-size:.72rem;margin-top:4px}
-.ori-card p{font-size:.61rem;color:var(--text2);line-height:1.42;margin:4px 0 0}
+/* ASIDE */
+.aside{min-height:0;display:grid;grid-template-rows:auto auto 1fr;gap:10px}
+.aside-card,.aside-output{background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.9);border-radius:16px;box-shadow:0 6px 18px rgba(44,49,79,.05)}
+.aside-card{padding:14px}
+.aside-tag{font-size:calc(.55rem * var(--font-scale));text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:900;margin-bottom:6px}
+.aside-card h3,.aside-output h3{font-size:calc(.72rem * var(--font-scale));margin:0 0 5px}
+.aside-card p{font-size:calc(.65rem * var(--font-scale));color:var(--text-2);line-height:1.45;margin:0}
+.aside-output{padding:14px;overflow:auto}
+.output-item{display:flex;gap:8px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}
+.output-item:last-child{border-bottom:0}
+.output-icon{width:25px;height:25px;flex:0 0 25px;border-radius:8px;background:var(--accent-soft);color:var(--accent-dark);display:grid;place-items:center;font-size:calc(.58rem * var(--font-scale));font-weight:900}
+.output-item strong{display:block;font-size:calc(.64rem * var(--font-scale))}
+.output-item span{display:block;font-size:calc(.58rem * var(--font-scale));color:var(--muted);margin-top:2px}
 
-.activation-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:12px;height:100%}
-.prompt-card{
-  border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px;
-  display:grid;grid-template-rows:auto 1fr auto;gap:7px
+/* COMMON COMPONENT KIT */
+.card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px}
+.card.soft{background:#fafafd}
+.card.accent{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 18%,transparent)}
+.card h3{font-size:calc(.75rem * var(--font-scale));margin:0 0 5px}
+.card p{font-size:calc(.64rem * var(--font-scale));color:var(--text-2);line-height:1.45;margin:0}
+.field label{display:block;font-size:calc(.62rem * var(--font-scale));font-weight:900;color:var(--text-2);margin-bottom:5px}
+.field input,.field textarea,.field select{
+  width:100%;border:1px solid var(--line);background:#fbfbfd;border-radius:9px;
+  padding:9px 10px;color:var(--text);outline:none;font-size:calc(.69rem * var(--font-scale))
 }
-.prompt-card h3{font-size:.76rem;margin:0}
-.prompt-card p{font-size:.63rem;color:var(--text2);line-height:1.42;margin:0}
-textarea{
-  width:100%;min-height:0;resize:none;border:1px solid var(--line);
-  border-radius:11px;padding:10px;outline:none;color:var(--text);background:#fbfbfd;
-  font-size:.68rem;line-height:1.45
-}
-textarea:focus{border-color:rgba(184,137,47,.5);box-shadow:0 0 0 3px rgba(184,137,47,.10)}
-.save-line{font-size:.55rem;color:var(--muted)}
-
-.quickcheck{
-  border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px;overflow:auto
-}
-.quickcheck h3{font-size:.76rem;margin:0 0 3px}
-.quickcheck>p{font-size:.61rem;color:var(--text2);margin:0 0 10px}
-.scale-item{padding:9px 0;border-top:1px solid var(--line)}
-.scale-item:first-of-type{border-top:0}
-.scale-item strong{display:block;font-size:.64rem;margin-bottom:7px}
-.scale{display:flex;gap:6px}
-.scale button{
-  flex:1;border:1px solid var(--line);background:#fbfbfd;border-radius:8px;
-  padding:6px 4px;font-size:.56rem;color:#666c7f;font-weight:800
-}
-.scale button.active{background:var(--brand-bg);border-color:#ead7a8;color:var(--brand-dark)}
-
-.system-view{display:grid;grid-template-columns:1fr 280px;gap:12px;height:100%}
-.system-canvas{
-  border:1px solid var(--line);background:
-    radial-gradient(circle at 50% 48%,rgba(184,137,47,.09),transparent 25%),#fbfbfd;
-  border-radius:16px;padding:14px;display:grid;place-items:center;min-height:0
-}
-.orbit{
-  width:min(690px,96%);height:min(420px,100%);
-  display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:9px
-}
-.node{
-  border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px;
-  text-align:left;box-shadow:0 4px 12px rgba(40,45,70,.04);min-height:0
-}
-.node:hover,.node.active{border-color:#dccb9f;background:#fffdf8;transform:translateY(-1px)}
-.node .idx{font:700 .5rem var(--fm);color:var(--brand-dark)}
-.node strong{display:block;font-size:.63rem;margin-top:4px}
-.node span{display:block;font-size:.54rem;color:var(--muted);margin-top:2px;line-height:1.25}
-.node.center{
-  grid-column:2/4;grid-row:2;
-  background:linear-gradient(145deg,#292c3e,#3a3f56);color:#fff;border-color:#292c3e;
-  display:flex;flex-direction:column;justify-content:center;text-align:center
-}
-.node.center strong{font-family:var(--fd);font-size:1rem}
-.node.center span{color:#d8dbe4;font-size:.58rem}
-.detail-panel{
-  border:1px solid var(--line);background:#fff;border-radius:16px;padding:15px;overflow:auto
-}
-.detail-panel .tag{font-size:.52rem;text-transform:uppercase;letter-spacing:.09em;color:var(--brand-dark);font-weight:900}
-.detail-panel h3{font-family:var(--fd);font-size:1.2rem;margin:5px 0 7px}
-.detail-panel p{font-size:.63rem;color:var(--text2);line-height:1.45}
-.detail-list{display:grid;gap:6px;margin-top:10px}
-.detail-list div{border-radius:9px;background:#f8f8fb;padding:8px;font-size:.58rem;color:#555b70}
-
-.case-grid{display:grid;grid-template-columns:.87fr 1.13fr;gap:12px;height:100%}
-.case-story{
-  border-radius:15px;padding:16px;background:linear-gradient(145deg,#282b3d,#393e54);
-  color:#fff;overflow:auto
-}
-.case-story .tag{font-size:.52rem;color:#dcc67e;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
-.case-story h3{font-family:var(--fd);font-size:1.35rem;margin:5px 0 7px}
-.case-story p,.case-story li{font-size:.61rem;line-height:1.45;color:#dfe1e8}
-.case-story ul{padding-left:17px;margin:8px 0}
-.case-work{
-  border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;
-  display:grid;grid-template-rows:auto auto 1fr;min-height:0
-}
-.case-tabs{display:flex;gap:6px;margin-bottom:9px}
-.case-tab{
-  border:1px solid var(--line);background:#f9f9fb;border-radius:8px;padding:6px 9px;
-  font-size:.57rem;font-weight:900;color:#6d7284
-}
-.case-tab.active{background:var(--brand-bg);color:var(--brand-dark);border-color:#ead7aa}
-.case-step{display:none;min-height:0;overflow:auto}
-.case-step.active{display:block}
-.case-step h3{font-size:.72rem;margin:0 0 4px}
-.case-step p{font-size:.59rem;color:var(--text2);line-height:1.4;margin:0 0 9px}
-.choice-list{display:grid;gap:6px}
-.choice{
-  border:1px solid var(--line);background:#fbfbfd;border-radius:9px;padding:8px 9px;
-  display:flex;gap:7px;align-items:flex-start;font-size:.59rem;color:#555b70
-}
-.choice input{accent-color:var(--brand);margin-top:1px}
-.step-feedback{
-  margin-top:9px;border-radius:10px;padding:9px;background:var(--brand-bg);
-  color:#65582f;font-size:.59rem;line-height:1.4;display:none
-}
-.step-feedback.show{display:block}
-
-.lens-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:12px;height:100%}
-.lens-model{
-  border:1px solid rgba(184,137,47,.15);background:linear-gradient(145deg,#fbf5e6,#fffdfa);
-  border-radius:16px;padding:17px;display:flex;flex-direction:column;justify-content:center
-}
-.lens-model .mini{font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:var(--brand-dark);font-weight:900}
-.lens-model h3{font-family:var(--fd);font-size:1.5rem;line-height:1.08;margin:7px 0 9px}
-.lens-model p{font-size:.62rem;color:#6a624c;line-height:1.45}
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:12px}
-.flow div{padding:7px 5px;text-align:center;border-radius:8px;background:#fff;font-size:.53rem;font-weight:900;color:#62687a}
-.flow b{display:block;color:var(--brand-dark);margin-bottom:2px}
-.symptom-tool{
-  border:1px solid var(--line);background:#fff;border-radius:16px;padding:15px;overflow:auto
-}
-.symptoms{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.symptom{
-  border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:6px 9px;
-  font-size:.56rem;color:#62687a;font-weight:800
-}
-.symptom.active{background:var(--violet-bg);border-color:#d8cff4;color:#5f4f9f}
-.analysis-box{
-  display:grid;grid-template-columns:1fr 1fr;gap:8px
-}
-.analysis-box>div{
-  border:1px solid var(--line);background:#fbfbfd;border-radius:11px;padding:10px
-}
-.analysis-box .lab{font-size:.51rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900}
-.analysis-box strong{display:block;font-size:.64rem;margin-top:4px}
-.analysis-box p{font-size:.57rem;color:var(--text2);line-height:1.4;margin:4px 0 0}
-
-.transfer-grid{display:grid;grid-template-columns:1fr 285px;gap:12px;height:100%}
-.dimension-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;overflow:auto}
-.dcard{
-  border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px;
-  display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start
-}
-.dcard strong{font-size:.62rem}
-.dcard span{display:block;font-size:.53rem;color:var(--muted);margin-top:2px}
-.tri{display:flex;gap:4px}
-.tri button{
-  width:24px;height:24px;border:1px solid var(--line);border-radius:7px;background:#fafafd;
-  font-size:.52rem;font-weight:900;color:#777d8e
-}
-.tri button.active[data-val="1"]{background:var(--ok-bg);color:#5f7b31;border-color:#d9e8b9}
-.tri button.active[data-val="2"]{background:var(--warn-bg);color:#9a701b;border-color:#ecdcae}
-.tri button.active[data-val="3"]{background:#f4e8ea;color:#975766;border-color:#ead0d5}
-.transfer-aside{
-  border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;
-  display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;min-height:0
-}
-.transfer-aside h3{font-size:.7rem;margin:0}
-.transfer-aside p{font-size:.57rem;color:var(--text2);line-height:1.4;margin:0}
-.transfer-aside textarea{min-height:90px}
-.legend-row{display:flex;gap:5px;flex-wrap:wrap}
-.legend-pill{font-size:.51rem;border-radius:999px;padding:5px 7px;font-weight:900}
-.legend-pill.ok{background:var(--ok-bg);color:#5f7b31}
-.legend-pill.mid{background:var(--warn-bg);color:#9a701b}
-.legend-pill.bad{background:#f4e8ea;color:#975766}
-
-.checkpoint{
-  height:100%;display:grid;grid-template-columns:1fr 290px;gap:12px
-}
-.quiz{
-  border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px;overflow:auto
-}
-.quiz h3{font-size:.73rem;margin:0 0 3px}
-.quiz>p{font-size:.59rem;color:var(--text2);margin:0 0 9px}
-.q{padding:10px 0;border-top:1px solid var(--line)}
-.q:first-of-type{border-top:0}
-.q strong{font-size:.61rem;display:block;margin-bottom:6px}
-.qopts{display:grid;gap:5px}
-.qopt{
-  border:1px solid var(--line);background:#fafafd;border-radius:8px;padding:7px 8px;
-  font-size:.57rem;color:#5d6274;text-align:left
-}
-.qopt.correct{background:var(--ok-bg);border-color:#d6e7b2;color:#59732e}
-.qopt.wrong{background:#f7e8eb;border-color:#ebd0d5;color:#965a66}
-.check-card{
-  border:1px solid var(--line);background:linear-gradient(145deg,#f1edfb,#fff);
-  border-radius:15px;padding:16px;display:flex;flex-direction:column;justify-content:center
-}
-.check-card .score{font-family:var(--fd);font-size:2.5rem;color:#6251a4}
-.check-card strong{font-size:.69rem}
-.check-card p{font-size:.59rem;color:var(--text2);line-height:1.42}
-
-.close-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;height:100%}
-.compare{
-  display:grid;grid-template-rows:auto 1fr 1fr;gap:8px
-}
-.initial-quote{
-  border-radius:12px;background:#f7f7fa;border:1px solid var(--line);padding:10px;
-  font-size:.61rem;color:#62687a
-}
-.initial-quote strong{display:block;font-size:.53rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
-.ref{display:grid;grid-template-rows:auto 1fr;gap:4px;min-height:0}
-.ref label{font-size:.57rem;font-weight:900;color:#5c6274}
-.finish{
-  border-radius:16px;padding:18px;background:linear-gradient(145deg,#282b3e,#3c4158);
-  color:#fff;display:flex;flex-direction:column;justify-content:center
-}
-.finish .mini{font-size:.52rem;color:#dcc67e;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
-.finish h3{font-family:var(--fd);font-size:1.55rem;margin:7px 0 8px}
-.finish p{font-size:.61rem;color:#dadee7;line-height:1.45}
-.finish button{
-  align-self:flex-start;margin-top:11px;border:0;border-radius:10px;padding:8px 11px;
-  background:linear-gradient(90deg,#bf963e,#e0c371);color:#242424;font-size:.59rem;font-weight:900
-}
-
-.controls{
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-  padding:9px 18px;border-top:1px solid rgba(70,75,101,.07)
-}
-.controls .l{justify-self:start}.controls .r{justify-self:end}
+.field textarea{resize:none;min-height:72px}
+.field small{display:block;margin-top:5px;color:var(--muted);font-size:calc(.56rem * var(--font-scale));line-height:1.35}
 .btn{
-  border:1px solid rgba(255,255,255,.86);background:rgba(255,255,255,.65);
-  border-radius:10px;padding:7px 11px;font-size:.59rem;color:#596074;font-weight:900
+  border:1px solid rgba(255,255,255,.86);background:rgba(255,255,255,.68);
+  border-radius:10px;padding:8px 12px;color:var(--text-2);
+  font-size:calc(.63rem * var(--font-scale));font-weight:900
 }
-.btn.primary{background:#303448;color:#fff;border-color:#303448}
-.steps{display:flex;gap:5px}
-.sdot{width:7px;height:7px;border-radius:99px;background:#d6d8e0}
-.sdot.active{width:20px;background:var(--brand)}
-.sdot.done{background:#89aa71}
+.btn.primary{background:#303448;border-color:#303448;color:#fff}
+.btn.accent{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent-dark)}
+.btn.ghost{background:#fafafd;border-color:var(--line)}
+.tag{
+  display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;
+  background:#f5f6f9;border:1px solid var(--line);color:var(--text-2);
+  font-size:calc(.57rem * var(--font-scale));font-weight:850
+}
+.feedback{display:none;margin-top:9px;border-radius:10px;padding:10px;background:var(--accent-soft);color:#66592f;font-size:calc(.61rem * var(--font-scale));line-height:1.43}
+.feedback.show{display:block}
+.feedback.good{background:var(--success-soft);color:#55723f}
+.feedback.warn{background:var(--warning-soft);color:#84601b}
+.controls-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.segmented{display:flex;gap:5px;flex-wrap:wrap}
+.segmented button{
+  border:1px solid var(--line);background:#fafafd;border-radius:9px;padding:7px 9px;
+  color:var(--text-2);font-size:calc(.59rem * var(--font-scale));font-weight:850
+}
+.segmented button.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent);color:var(--accent-dark)}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.choice-card{
+  border:1px solid var(--line);background:#fafafd;border-radius:11px;padding:10px;
+  text-align:left;color:var(--text-2)
+}
+.choice-card.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent)}
+.choice-card strong{display:block;font-size:calc(.65rem * var(--font-scale))}
+.choice-card span{display:block;font-size:calc(.57rem * var(--font-scale));color:var(--muted);margin-top:2px;line-height:1.35}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:6px 9px;color:var(--text-2);font-size:calc(.58rem * var(--font-scale));font-weight:850}
+.pill.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent);color:var(--accent-dark)}
+.empty{color:var(--muted);font-size:calc(.6rem * var(--font-scale));font-style:italic}
+.icon-label{display:flex;align-items:center;gap:8px}
+.iconbox{width:30px;height:30px;border-radius:9px;background:var(--accent-soft);color:var(--accent-dark);display:grid;place-items:center;font-weight:900;font-size:calc(.61rem * var(--font-scale))}
 
+/* ORIENTATION */
+.orientation{display:grid;grid-template-columns:1.22fr .78fr;gap:12px;height:100%}
+.welcome{
+  border-radius:18px;padding:25px;color:#fff;
+  background:
+    radial-gradient(circle at 90% 5%,color-mix(in srgb,var(--accent-2) 25%,transparent),transparent 31%),
+    linear-gradient(145deg,#25283a,#3a4058);
+  display:flex;flex-direction:column;justify-content:space-between
+}
+.welcome .mini{font-size:calc(.61rem * var(--font-scale));text-transform:uppercase;letter-spacing:.12em;color:var(--accent-2);font-weight:900}
+.welcome h2{font-family:var(--fd);font-size:calc(2.4rem * var(--font-scale));line-height:1.03;margin:10px 0 13px;max-width:690px}
+.welcome p{font-size:calc(.82rem * var(--font-scale));line-height:1.52;color:#d8dae3;max-width:700px}
+.welcome-bottom{border-top:1px solid rgba(255,255,255,.13);padding-top:14px;color:#e3e5ea;font-size:calc(.69rem * var(--font-scale))}
+.welcome-bottom strong{color:var(--accent-2)}
+.orientation-right{display:grid;grid-template-rows:repeat(3,1fr);gap:9px}
+.ori-card{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;display:flex;flex-direction:column;justify-content:center}
+.ori-card .k{font-size:calc(.56rem * var(--font-scale));text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:900}
+.ori-card strong{font-size:calc(.76rem * var(--font-scale));margin-top:4px}
+.ori-card p{font-size:calc(.64rem * var(--font-scale));color:var(--text-2);line-height:1.45;margin:4px 0 0}
+
+/* M0 SCREEN 1 */
+.identity-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:12px;height:100%}
+.identity-choices{display:grid;grid-template-rows:auto auto 1fr;gap:9px}
+.identity-form{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.identity-form .wide{grid-column:1/-1}
+
+/* M0 SCREEN 2 FLOW EDITOR */
+.flow-layout{display:grid;grid-template-columns:1fr 280px;gap:12px;height:100%}
+.flow-board{border:1px solid var(--line);background:#fbfbfd;border-radius:15px;padding:13px;overflow:auto}
+.flow-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.flow-top strong{font-size:calc(.72rem * var(--font-scale))}
+.flow-list{display:grid;gap:7px}
+.flow-card{
+  display:grid;grid-template-columns:34px 1fr auto;gap:8px;align-items:center;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:8px
+}
+.flow-index{width:31px;height:31px;border-radius:9px;background:var(--accent-soft);color:var(--accent-dark);display:grid;place-items:center;font:800 calc(.55rem * var(--font-scale)) var(--fm)}
+.flow-card input{width:100%;border:0;background:transparent;outline:none;color:var(--text);font-size:calc(.66rem * var(--font-scale))}
+.flow-actions{display:flex;gap:4px}
+.flow-actions button{width:27px;height:27px;border:1px solid var(--line);border-radius:7px;background:#fafafd;color:var(--text-2);font-weight:900}
+.flow-side{display:grid;grid-template-rows:auto auto 1fr;gap:9px}
+
+/* M0 SCREEN 3 ECOSYSTEM */
+.eco-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;height:100%}
+.eco-board{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;overflow:auto}
+.bucket{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;display:grid;grid-template-rows:auto auto 1fr;gap:7px;min-height:0}
+.bucket h3{font-size:calc(.72rem * var(--font-scale));margin:0}
+.bucket p{font-size:calc(.59rem * var(--font-scale));color:var(--muted);margin:0}
+.addline{display:flex;gap:6px}
+.addline input{min-width:0;flex:1;border:1px solid var(--line);background:#fafafd;border-radius:8px;padding:7px 8px;font-size:calc(.61rem * var(--font-scale))}
+.addline button{border:1px solid var(--line);background:var(--accent-soft);color:var(--accent-dark);border-radius:8px;padding:0 9px;font-weight:900}
+.taglist{display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start}
+.user-tag{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:5px 7px;font-size:calc(.57rem * var(--font-scale));color:var(--text-2)}
+.user-tag button{border:0;background:transparent;color:#a0a5b3;padding:0;font-weight:900}
+.eco-reflect{display:grid;grid-template-rows:auto 1fr auto;gap:9px}
+
+/* M0 SCREEN 4 INFO */
+.info-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;height:100%}
+.info-table{border:1px solid var(--line);background:#fff;border-radius:14px;overflow:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:9px;border-bottom:1px solid var(--line);font-size:calc(.61rem * var(--font-scale));vertical-align:middle}
+th{position:sticky;top:0;background:#f8f9fb;color:var(--text-2);text-align:left;font-size:calc(.55rem * var(--font-scale));z-index:1}
+td select{width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px;color:var(--text);font-size:calc(.58rem * var(--font-scale))}
+.info-reflect{display:grid;grid-template-rows:auto auto 1fr;gap:9px}
+
+/* M0 SCREEN 5 SNAPSHOT */
+.snapshot-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;height:100%}
+.snapshot{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;overflow:auto}
+.snapshot h3{font-size:calc(.76rem * var(--font-scale));margin:0 0 8px}
+.snapshot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.snap-card{border:1px solid var(--line);background:#fafafd;border-radius:11px;padding:10px}
+.snap-card .k{font-size:calc(.52rem * var(--font-scale));text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900}
+.snap-card strong{display:block;margin-top:4px;font-size:calc(.67rem * var(--font-scale));line-height:1.35}
+.snap-card span{display:block;margin-top:3px;color:var(--text-2);font-size:calc(.57rem * var(--font-scale));line-height:1.4}
+.snapshot-reflect{display:grid;grid-template-rows:auto auto 1fr 1fr;gap:8px}
+
+/* M1 SCREEN 0 */
+.case-hook{display:grid;grid-template-columns:.95fr 1.05fr;gap:12px;height:100%}
+.case-story{
+  border-radius:16px;padding:17px;color:#fff;overflow:auto;
+  background:linear-gradient(145deg,#282b3d,#3a3f55)
+}
+.case-story .mini{font-size:calc(.55rem * var(--font-scale));text-transform:uppercase;letter-spacing:.1em;color:var(--accent-2);font-weight:900}
+.case-story h3{font-family:var(--fd);font-size:calc(1.35rem * var(--font-scale));margin:6px 0 8px}
+.case-story p,.case-story li{font-size:calc(.63rem * var(--font-scale));line-height:1.48;color:#dfe2e9}
+.case-story ul{padding-left:18px}
+.hook-task{display:grid;grid-template-rows:auto auto 1fr;gap:9px}
+
+/* M1 SCREEN 1 DISCOVERY */
+.discovery-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;height:100%}
+.clue-board{border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;overflow:auto}
+.clue-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.clue{
+  border:1px solid var(--line);background:#fafafd;border-radius:10px;padding:9px;text-align:left;color:var(--text-2)
+}
+.clue.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent)}
+.clue strong{display:block;font-size:calc(.62rem * var(--font-scale))}
+.clue span{display:block;font-size:calc(.55rem * var(--font-scale));color:var(--muted);margin-top:2px}
+.discovery-panel{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;display:grid;grid-template-rows:auto auto 1fr;gap:8px}
+.discovered{display:grid;gap:6px}
+.discovered-item{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fafafd;border-radius:9px;padding:8px;font-size:calc(.59rem * var(--font-scale));color:var(--text-2)}
+.discovered-item b{width:24px;height:24px;border-radius:7px;background:var(--accent-soft);color:var(--accent-dark);display:grid;place-items:center;font-size:calc(.53rem * var(--font-scale))}
+
+/* M1 SCREEN 2 MODEL */
+.model-layout{display:grid;grid-template-columns:1fr 290px;gap:12px;height:100%}
+.model-board{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;overflow:auto}
+.dimension-group{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px}
+.dimension-group>strong{display:block;font-size:calc(.7rem * var(--font-scale));margin-bottom:4px}
+.dimension-group>p{font-size:calc(.57rem * var(--font-scale));color:var(--muted);line-height:1.4;margin:0 0 8px}
+.dimension-list{display:grid;gap:6px}
+.dimension-btn{border:1px solid var(--line);background:#fafafd;border-radius:9px;padding:8px;text-align:left;color:var(--text-2)}
+.dimension-btn.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent)}
+.dimension-btn strong{display:block;font-size:calc(.62rem * var(--font-scale))}
+.dimension-btn span{display:block;font-size:calc(.55rem * var(--font-scale));color:var(--muted);margin-top:2px}
+.model-detail{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;overflow:auto}
+.model-detail .eyebrow{font-size:calc(.53rem * var(--font-scale));text-transform:uppercase;letter-spacing:.09em;color:var(--accent-dark);font-weight:900}
+.model-detail h3{font-family:var(--fd);font-size:calc(1.15rem * var(--font-scale));margin:5px 0 7px}
+.model-detail p{font-size:calc(.62rem * var(--font-scale));color:var(--text-2);line-height:1.45}
+.question-box{margin-top:9px;border-radius:10px;background:var(--accent-soft);padding:10px;color:#64572f;font-size:calc(.61rem * var(--font-scale));line-height:1.42}
+
+/* M1 SCREEN 3 SYMPTOM LAB */
+.lab-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:12px;height:100%}
+.lab-model{border:1px solid color-mix(in srgb,var(--accent) 16%,transparent);background:linear-gradient(145deg,var(--accent-soft),#fffdfa);border-radius:15px;padding:16px;display:flex;flex-direction:column;justify-content:center}
+.lab-model .mini{font-size:calc(.54rem * var(--font-scale));text-transform:uppercase;letter-spacing:.1em;color:var(--accent-dark);font-weight:900}
+.lab-model h3{font-family:var(--fd);font-size:calc(1.5rem * var(--font-scale));line-height:1.08;margin:7px 0 9px}
+.lab-model p{font-size:calc(.63rem * var(--font-scale));color:#665f4e;line-height:1.45}
+.flow-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:11px}
+.flow-mini div{padding:7px 5px;background:#fff;border-radius:8px;text-align:center;font-size:calc(.52rem * var(--font-scale));font-weight:900;color:var(--text-2)}
+.flow-mini b{display:block;color:var(--accent-dark);margin-bottom:2px}
+.lab-tool{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;overflow:auto}
+.scenario-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.scenario-tab{border:1px solid var(--line);background:#fafafd;border-radius:999px;padding:6px 9px;color:var(--text-2);font-size:calc(.57rem * var(--font-scale));font-weight:850}
+.scenario-tab.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 24%,transparent);color:var(--accent-dark)}
+.lab-columns{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.lab-cell{border:1px solid var(--line);background:#fafafd;border-radius:10px;padding:9px}
+.lab-cell .lab{font-size:calc(.5rem * var(--font-scale));text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900}
+.lab-cell strong{display:block;font-size:calc(.62rem * var(--font-scale));margin-top:4px}
+.lab-cell p{font-size:calc(.56rem * var(--font-scale));color:var(--text-2);line-height:1.4;margin:4px 0 0}
+
+/* M1 SCREEN 4 MAP */
+.map-layout{display:grid;grid-template-columns:1fr 290px;gap:12px;height:100%}
+.map-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;overflow:auto}
+.map-card{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px;display:grid;grid-template-columns:1fr auto;gap:7px}
+.map-card strong{font-size:calc(.63rem * var(--font-scale))}
+.map-card span{display:block;color:var(--muted);font-size:calc(.54rem * var(--font-scale));margin-top:2px}
+.tri{display:flex;gap:4px}
+.tri button{width:27px;height:27px;border:1px solid var(--line);border-radius:8px;background:#fafafd;color:var(--text-2);font-size:calc(.52rem * var(--font-scale));font-weight:900}
+.tri button.active[data-v="1"]{background:var(--success-soft);color:#55723f;border-color:#dbe8d1}
+.tri button.active[data-v="2"]{background:var(--warning-soft);color:#84601b;border-color:#eadbad}
+.tri button.active[data-v="3"]{background:var(--danger-soft);color:#8d5260;border-color:#ead1d6}
+.map-side{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;display:grid;grid-template-rows:auto auto 1fr auto;gap:8px}
+.map-side h3{font-size:calc(.72rem * var(--font-scale));margin:0}
+.map-side p{font-size:calc(.59rem * var(--font-scale));color:var(--text-2);line-height:1.4;margin:0}
+.map-side textarea{width:100%;min-height:90px;border:1px solid var(--line);background:#fafafd;border-radius:9px;resize:none;padding:9px;font-size:calc(.62rem * var(--font-scale));color:var(--text)}
+
+/* M1 SCREEN 5 REINTERPRETATION */
+.reinterpret-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;height:100%}
+.before-after{display:grid;grid-template-rows:auto 1fr 1fr;gap:8px}
+.quote-card{border:1px solid var(--line);background:#fafafd;border-radius:11px;padding:10px;font-size:calc(.61rem * var(--font-scale));color:var(--text-2);line-height:1.42}
+.quote-card strong{display:block;font-size:calc(.53rem * var(--font-scale));text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.finish{
+  border-radius:16px;padding:18px;color:#fff;display:flex;flex-direction:column;justify-content:center;
+  background:
+    radial-gradient(circle at 90% 5%,color-mix(in srgb,var(--accent-2) 24%,transparent),transparent 32%),
+    linear-gradient(145deg,#282b3e,#3d4259)
+}
+.finish .mini{font-size:calc(.55rem * var(--font-scale));color:var(--accent-2);text-transform:uppercase;letter-spacing:.1em;font-weight:900}
+.finish h3{font-family:var(--fd);font-size:calc(1.55rem * var(--font-scale));margin:7px 0 8px}
+.finish p{font-size:calc(.63rem * var(--font-scale));color:#dadee7;line-height:1.46}
+.finish button{align-self:flex-start;margin-top:12px;border:0;border-radius:10px;padding:9px 12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#252525;font-size:calc(.61rem * var(--font-scale));font-weight:900}
+
+/* FOOTER */
+.footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px 20px;border-top:1px solid var(--line)}
+.footer .left{justify-self:start}.footer .right{justify-self:end}
+.stepdots{display:flex;gap:5px;align-items:center}
+.stepdot{width:7px;height:7px;border-radius:99px;background:#d6d8e1}
+.stepdot.active{width:22px;background:var(--accent)}
+.stepdot.done{background:var(--success)}
+
+/* DRAWERS */
 .drawer{
-  position:fixed;top:22px;right:22px;bottom:96px;width:360px;z-index:70;
-  transform:translateX(calc(100% + 35px));transition:.2s ease;
-  background:rgba(251,251,253,.91);border:1px solid rgba(255,255,255,.9);
-  border-radius:19px;box-shadow:0 26px 70px rgba(38,43,72,.20);
-  backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
+  position:fixed;top:22px;right:22px;bottom:96px;width:390px;z-index:80;
+  transform:translateX(calc(100% + 42px));transition:.2s ease;
+  background:rgba(251,251,253,.93);border:1px solid rgba(255,255,255,.9);
+  border-radius:20px;box-shadow:0 28px 76px rgba(38,43,72,.22);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
   display:grid;grid-template-rows:auto 1fr
 }
 .drawer.open{transform:none}
-.drawer-head{
-  padding:14px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between
-}
-.drawer-head h3{font-family:var(--fd);font-size:1.05rem;margin:0}
-.drawer-body{padding:13px;overflow:auto}
-.drawer-section{margin-bottom:15px}
-.drawer-section .k{font-size:.52rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:900;margin-bottom:6px}
-.drawer-box{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px;font-size:.6rem;color:#606679;line-height:1.45}
+.drawer-head{padding:15px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.drawer-head h3{font-family:var(--fd);font-size:calc(1.12rem * var(--font-scale));margin:0}
+.drawer-body{padding:14px;overflow:auto}
+.drawer-section{margin-bottom:16px}
+.drawer-section .k{font-size:calc(.55rem * var(--font-scale));text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:900;margin-bottom:6px}
+.drawer-box{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px;font-size:calc(.63rem * var(--font-scale));color:var(--text-2);line-height:1.45}
 .drawer-list{display:grid;gap:7px}
 .drawer-item{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px}
-.drawer-item strong{display:block;font-size:.59rem}.drawer-item span{font-size:.54rem;color:var(--muted)}
+.drawer-item strong{display:block;font-size:calc(.62rem * var(--font-scale))}
+.drawer-item span{display:block;font-size:calc(.57rem * var(--font-scale));color:var(--muted);margin-top:2px;line-height:1.35}
 
+/* THEME PANEL */
+.theme-panel{
+  position:fixed;top:58px;right:24px;z-index:95;width:350px;padding:14px;border-radius:18px;
+  background:rgba(251,251,253,.95);border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 24px 60px rgba(35,40,70,.18);
+  backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
+  opacity:0;pointer-events:none;transform:translateY(-8px);transition:.18s
+}
+.theme-panel.open{opacity:1;pointer-events:auto;transform:none}
+.theme-panel h3{font-family:var(--fd);font-size:calc(1rem * var(--font-scale));margin:0 0 5px}
+.theme-panel p{font-size:calc(.59rem * var(--font-scale));color:var(--text-2);line-height:1.4;margin:0 0 10px}
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.theme-card{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px;text-align:left}
+.theme-card.active{box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 45%,transparent)}
+.swatch{height:34px;border-radius:8px;margin-bottom:7px;border:1px solid rgba(0,0,0,.05)}
+.theme-card strong{display:block;font-size:calc(.61rem * var(--font-scale))}
+.theme-card span{display:block;color:var(--muted);font-size:calc(.53rem * var(--font-scale));margin-top:2px}
+.setting{margin-top:12px;padding-top:11px;border-top:1px solid var(--line)}
+.setting-head{display:flex;justify-content:space-between;font-size:calc(.57rem * var(--font-scale));color:var(--text-2);font-weight:850}
+.setting input{width:100%;accent-color:var(--accent);margin-top:7px}
+
+/* DOCK */
 .dock{
   position:fixed;left:50%;bottom:14px;transform:translateX(-50%);
-  display:flex;align-items:flex-end;gap:5px;padding:8px 10px;z-index:80;
-  background:rgba(247,248,252,.72);border:1px solid rgba(255,255,255,.88);
-  border-radius:21px;box-shadow:0 16px 40px rgba(36,41,70,.19);
+  display:flex;align-items:flex-end;gap:5px;padding:8px 10px;z-index:85;
+  background:rgba(247,248,252,.74);border:1px solid rgba(255,255,255,.88);
+  border-radius:22px;box-shadow:0 16px 42px rgba(36,41,70,.19);
   backdrop-filter:blur(25px) saturate(160%);-webkit-backdrop-filter:blur(25px) saturate(160%)
 }
 .dock button{
-  width:43px;height:43px;border-radius:12px;border:1px solid rgba(255,255,255,.78);
-  background:rgba(255,255,255,.67);box-shadow:0 5px 12px rgba(45,50,80,.07);
-  color:#35394b;font-size:.58rem;font-weight:900;position:relative;transition:.14s
+  width:45px;height:45px;border-radius:13px;border:1px solid rgba(255,255,255,.8);
+  background:rgba(255,255,255,.69);box-shadow:0 5px 12px rgba(45,50,80,.07);
+  color:#35394b;font-size:calc(.58rem * var(--font-scale));font-weight:900;position:relative;transition:.14s
 }
 .dock button:hover{transform:translateY(-5px) scale(1.06);background:#fff}
 .dock button::after{
-  content:attr(data-label);position:absolute;bottom:50px;left:50%;transform:translateX(-50%);
-  padding:4px 6px;border-radius:6px;background:#292c3d;color:#fff;font-size:.5rem;white-space:nowrap;
-  opacity:0;pointer-events:none
+  content:attr(data-label);position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
+  padding:4px 7px;border-radius:6px;background:#292c3d;color:#fff;
+  font-size:calc(.5rem * var(--font-scale));white-space:nowrap;opacity:0;pointer-events:none
 }
 .dock button:hover::after{opacity:1}
-.dock-sep{width:1px;height:29px;background:rgba(65,70,94,.13);margin:7px 3px}
+.dock-sep{width:1px;height:31px;background:rgba(65,70,94,.13);margin:7px 3px}
 
+/* TOAST */
 .toast{
-  position:fixed;right:24px;top:24px;z-index:100;
-  background:rgba(255,255,255,.94);border:1px solid white;border-radius:11px;
-  box-shadow:0 12px 28px rgba(36,41,70,.14);padding:9px 12px;
-  color:#555b6e;font-size:.59rem;opacity:0;transform:translateY(-8px);transition:.18s;pointer-events:none
+  position:fixed;right:24px;top:24px;z-index:120;
+  background:rgba(255,255,255,.96);border:1px solid #fff;border-radius:11px;
+  box-shadow:0 12px 30px rgba(36,41,70,.14);padding:10px 13px;
+  color:var(--text-2);font-size:calc(.61rem * var(--font-scale));
+  opacity:0;transform:translateY(-8px);transition:.18s;pointer-events:none
 }
 .toast.show{opacity:1;transform:none}
 
-@media(max-width:1100px){
+@media(max-width:1140px){
   .desktop{padding:8px 8px 80px}.window{height:calc(100vh - 88px);min-height:0}
-  .app{grid-template-columns:190px 1fr}.lesson-shell{grid-template-columns:1fr}.aside{display:none}
-  .orientation,.activation-grid,.system-view,.case-grid,.lens-grid,.transfer-grid,.checkpoint,.close-grid{grid-template-columns:1fr}
+  .app{grid-template-columns:198px 1fr}.lesson-shell{grid-template-columns:1fr}.aside{display:none}
+  .orientation,.identity-layout,.flow-layout,.eco-layout,.info-layout,.snapshot-layout,.case-hook,.discovery-layout,.model-layout,.lab-layout,.map-layout,.reinterpret-layout{grid-template-columns:1fr}
   .orientation-right{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr}
 }
 @media(max-width:760px){
-  html,body{overflow:auto}.desktop{height:auto;min-height:100vh;padding:0 0 74px;display:block}
-  .window{height:auto;min-height:calc(100vh - 74px);width:100%;border-radius:0}
-  .app{grid-template-columns:1fr}.sidebar{display:none}.main{min-height:calc(100vh - 44px);grid-template-rows:auto 1fr auto}
-  .stage{min-height:720px}.screen{inset:10px}.top{padding:9px 12px}.top-meta .chip{display:none}
+  html,body{overflow:auto}.desktop{height:auto;min-height:100vh;padding:0 0 78px;display:block}
+  .window{height:auto;min-height:calc(100vh - 78px);width:100%;border-radius:0}
+  .app{grid-template-columns:1fr}.sidebar{display:none}.main{min-height:calc(100vh - 46px);grid-template-rows:auto 1fr auto}
+  .stage{min-height:790px}.screen{inset:10px}.top{padding:9px 12px}.top-meta .chip{display:none}
   .lesson-shell{display:block}.lesson{height:100%}.lesson-body{overflow:auto}
-  .orientation,.activation-grid,.system-view,.case-grid,.lens-grid,.transfer-grid,.checkpoint,.close-grid{display:block}
-  .orientation>* , .activation-grid>* , .system-view>* , .case-grid>* , .lens-grid>* , .transfer-grid>* , .checkpoint>* , .close-grid>*{margin-bottom:9px}
-  .orbit{grid-template-columns:1fr 1fr;height:auto}.node.center{grid-column:1/-1;grid-row:auto}
-  .analysis-box,.dimension-cards{grid-template-columns:1fr}.drawer{left:10px;right:10px;width:auto;bottom:80px;top:10px}
+  .orientation,.identity-layout,.flow-layout,.eco-layout,.info-layout,.snapshot-layout,.case-hook,.discovery-layout,.model-layout,.lab-layout,.map-layout,.reinterpret-layout{display:block}
+  .orientation>* , .identity-layout>* , .flow-layout>* , .eco-layout>* , .info-layout>* , .snapshot-layout>* , .case-hook>* , .discovery-layout>* , .model-layout>* , .lab-layout>* , .map-layout>* , .reinterpret-layout>*{margin-bottom:9px}
+  .choice-grid,.identity-form,.eco-board,.clue-grid,.model-board,.lab-columns,.map-cards,.snapshot-grid{grid-template-columns:1fr}
+  .drawer{left:10px;right:10px;width:auto;top:10px;bottom:82px}.theme-panel{left:10px;right:10px;width:auto;top:52px}
 }
 </style>
 </head>
 <body>
-
 <div class="desktop">
-  <section class="window">
-    <div class="titlebar">
-      <div class="traffic"><i></i><i></i><i></i></div>
-      <div class="titlebar-title">Programa de Gestión para Emprendedores · Pulgar & Umaña Consultores</div>
-      <div class="titlebar-actions">
-        <button class="mini-btn" onclick="toast('Ayuda contextual del módulo')">?</button>
-        <button class="mini-btn">FP</button>
+<section class="window">
+  <div class="titlebar">
+    <div class="traffic"><i></i><i></i><i></i></div>
+    <div class="titlebar-title">Programa de Gestión para Emprendedores · Pulgar & Umaña Consultores</div>
+    <div class="titlebar-actions">
+      <button class="iconbtn" onclick="toggleTheme()" title="Personalizar">◐</button>
+      <button class="iconbtn" onclick="toast('Ayuda contextual disponible en cada actividad')" title="Ayuda">?</button>
+    </div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">P&U</div>
+        <div><strong>Gestión P&U</strong><span>Aprender desde tu negocio</span></div>
       </div>
-    </div>
+      <div class="side-label">Módulos</div>
+      <div class="module-list">
+        <button class="mod active" id="mod0Btn" onclick="openModule(0)"><span class="n">0</span><span>Mi negocio hoy</span><span class="st" id="mod0State">●</span></button>
+        <button class="mod" id="mod1Btn" onclick="openModule(1)"><span class="n">1</span><span>Mirar el negocio completo</span><span class="st" id="mod1State">○</span></button>
+        <button class="mod future"><span class="n">2</span><span>Diagnosticar antes de actuar</span><span class="st">○</span></button>
+        <button class="mod future"><span class="n">3</span><span>Ordenar para crecer</span><span class="st">○</span></button>
+        <button class="mod future"><span class="n">4</span><span>Decidir con información</span><span class="st">○</span></button>
+        <button class="mod future"><span class="n">5</span><span>Elegir qué mejorar primero</span><span class="st">○</span></button>
+        <button class="mod future"><span class="n">6</span><span>Hacer, aprender o contratar</span><span class="st">○</span></button>
+        <button class="mod future"><span class="n">7</span><span>Buscar ayuda correctamente</span><span class="st">○</span></button>
+        <button class="mod future"><span class="n">8</span><span>Mi ruta de mejora</span><span class="st">○</span></button>
+      </div>
+      <div class="side-bottom">
+        <div class="side-progress-head"><span>Progreso del curso</span><strong id="coursePct">0%</strong></div>
+        <div class="progress"><span id="courseBar"></span></div>
+        <p>Lo que produces en cada módulo alimenta tu expediente “Mi negocio”.</p>
+      </div>
+    </aside>
 
-    <div class="app">
-      <aside class="sidebar">
-        <div class="brand">
-          <div class="logo">P&U</div>
-          <div><strong>Gestión P&U</strong><span>Ruta de aprendizaje</span></div>
+    <main class="main">
+      <header class="top">
+        <div><small id="moduleEyebrow">Módulo 0 · Mi negocio hoy</small><h1 id="screenTitle">Bienvenida</h1></div>
+        <div class="top-meta">
+          <div class="chip" id="timeChip">30–40 min</div>
+          <div class="chip" id="saveChip">Guardado automático</div>
+          <button class="actionbtn" onclick="toggleTheme()">Tema ◐</button>
+          <button class="actionbtn" onclick="toggleDrawer()">Mi negocio ▸</button>
         </div>
-        <div class="side-label">Módulos</div>
-        <div class="module-list">
-          <button class="mod done"><span class="n">0</span><span>Mi negocio hoy</span><span class="st">✓</span></button>
-          <button class="mod active"><span class="n">1</span><span>Mirar el negocio completo</span><span class="st">●</span></button>
-          <button class="mod"><span class="n">2</span><span>Diagnosticar antes de actuar</span><span class="st">○</span></button>
-          <button class="mod"><span class="n">3</span><span>Ordenar para crecer</span><span class="st">○</span></button>
-          <button class="mod"><span class="n">4</span><span>Decidir con información</span><span class="st">○</span></button>
-          <button class="mod"><span class="n">5</span><span>Elegir qué mejorar primero</span><span class="st">○</span></button>
-          <button class="mod"><span class="n">6</span><span>Hacer, aprender o contratar</span><span class="st">○</span></button>
-          <button class="mod"><span class="n">7</span><span>Buscar ayuda correctamente</span><span class="st">○</span></button>
-          <button class="mod"><span class="n">8</span><span>Mi ruta de mejora</span><span class="st">○</span></button>
-        </div>
-        <div class="side-bottom">
-          <div class="side-progress-head"><span>Progreso del curso</span><strong id="coursePct">14%</strong></div>
-          <div class="progress"><span id="courseBar"></span></div>
-          <p>Cada módulo agrega evidencias a tu Plan de Gestión y Mejora.</p>
-        </div>
-      </aside>
+      </header>
 
-      <main class="main">
-        <header class="top">
-          <div>
-            <small>Módulo 1 · Mirar el negocio completo</small>
-            <h1 id="screenTitle">Orientación</h1>
+      <section class="stage" id="stage">
+
+        <!-- ================= MÓDULO 0 ================= -->
+        <article class="screen m0 active" data-module="0" data-title="Bienvenida">
+          <div class="lesson-shell no-aside">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">00</span> Orientación</div>
+                <h2>Tu negocio será el caso principal del curso</h2>
+                <p>Antes de evaluar o corregir, vamos a hacer visible cómo funciona hoy. Este módulo recoge tu experiencia; todavía no diagnostica.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="orientation">
+                  <div class="welcome">
+                    <div>
+                      <div class="mini">Pregunta guía</div>
+                      <h2>¿Qué negocio tienes hoy y cómo funciona realmente?</h2>
+                      <p>Construirás una fotografía inicial de tu actividad: qué ofreces, para quién, cómo funciona el recorrido de un cliente, qué personas y recursos participan y qué información utilizas para decidir.</p>
+                    </div>
+                    <div class="welcome-bottom"><strong>Al terminar:</strong> tendrás una ficha “Mi negocio hoy” que servirá como materia prima para todo el programa.</div>
+                  </div>
+                  <div class="orientation-right">
+                    <div class="ori-card"><span class="k">Principio</span><strong>Describir antes de evaluar</strong><p>Primero hacemos visible la realidad; después aprendemos a interpretarla.</p></div>
+                    <div class="ori-card"><span class="k">Método</span><strong>Aprender haciendo</strong><p>Las actividades producen mapas y registros de tu propio negocio.</p></div>
+                    <div class="ori-card"><span class="k">Producto</span><strong>Fotografía inicial</strong><p>La recuperarás más adelante para ver cómo cambia tu comprensión.</p></div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
-          <div class="top-meta">
-            <div class="chip" id="timeChip">35–45 min</div>
-            <div class="chip" id="saveChip">Guardado automático</div>
-            <button class="biz-btn" onclick="toggleDrawer()">Mi negocio ▸</button>
+        </article>
+
+        <article class="screen m0" data-module="0" data-title="Este es mi negocio">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">01</span> Caracterización</div>
+                <h2>Cuéntanos qué negocio tienes hoy</h2>
+                <p>Usa palabras simples. No necesitamos todavía una definición técnica ni una propuesta de valor perfecta.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="identity-layout">
+                  <div class="identity-choices">
+                    <div class="card">
+                      <h3>¿Tu actividad es principalmente…?</h3>
+                      <div class="choice-grid" id="businessType">
+                        <button class="choice-card" data-value="Producto"><strong>Producto</strong><span>Vendes bienes físicos o digitales.</span></button>
+                        <button class="choice-card" data-value="Servicio"><strong>Servicio</strong><span>Entregas una prestación o experiencia.</span></button>
+                        <button class="choice-card" data-value="Producto + servicio"><strong>Producto + servicio</strong><span>Combinas ambas cosas.</span></button>
+                        <button class="choice-card" data-value="Otro"><strong>Otro</strong><span>Tu actividad no encaja del todo aquí.</span></button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <h3>¿Cómo trabajas actualmente?</h3>
+                      <div class="segmented" id="workMode"><button data-value="Solo/a">Solo/a</button><button data-value="Con otras personas">Con otras personas</button></div>
+                    </div>
+                    <div class="card accent">
+                      <h3>Una idea importante</h3>
+                      <p>Que algo esté poco organizado no significa que esté “mal”. En esta etapa queremos describirlo con precisión suficiente para poder volver sobre ello después.</p>
+                    </div>
+                  </div>
+                  <div class="identity-form">
+                    <div class="field"><label>Nombre del negocio</label><input id="bizName" placeholder="Ej.: Taller Norte"></div>
+                    <div class="field"><label>¿Hace cuánto funciona?</label><select id="bizAge"><option value="">Selecciona</option><option>Estoy comenzando</option><option>Menos de 1 año</option><option>1 a 3 años</option><option>4 a 7 años</option><option>Más de 7 años</option></select></div>
+                    <div class="field wide"><label>¿Qué haces, vendes o prestas?</label><textarea id="bizOffer" placeholder="Explícalo como si una persona te preguntara por primera vez qué hace tu negocio."></textarea></div>
+                    <div class="field"><label>¿Quiénes son tus principales clientes?</label><textarea id="bizClients" placeholder="Personas, empresas, instituciones, tipo de público..."></textarea></div>
+                    <div class="field"><label>¿Cómo llegan hoy esos clientes?</label><textarea id="bizReach" placeholder="Recomendaciones, redes, local, web, licitaciones..."></textarea></div>
+                    <div class="field wide"><label>Durante los próximos 12 meses me gustaría que...</label><textarea id="bizGoal" placeholder="Escribe lo que esperas que ocurra con tu negocio."></textarea><small>Más adelante transformaremos esta expectativa en objetivos y prioridades.</small></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">No necesitas</div><h3>Lenguaje empresarial</h3><p>El curso irá poniendo nombre a cosas que probablemente ya haces.</p></div>
+              <div class="aside-card"><div class="aside-tag">Se guarda</div><h3>Tu identidad inicial</h3><p>Oferta, clientes, forma de trabajo y expectativa de futuro.</p></div>
+              <div class="aside-output"><h3>Mi negocio</h3><div class="output-item"><div class="output-icon">1</div><div><strong>Ficha básica</strong><span>Primera capa del expediente.</span></div></div></div>
+            </aside>
           </div>
-        </header>
+        </article>
 
-        <section class="stage">
-
-          <!-- 0 ORIENTACIÓN -->
-          <article class="screen active" data-title="Orientación">
-            <div class="lesson-shell no-aside">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">00</span> Antes de comenzar</div>
-                  <h2>¿Qué vas a aprender y qué vas a producir?</h2>
-                  <p>Este módulo no busca que memorices conceptos. Busca que aprendas una forma más amplia de observar tu negocio.</p>
+        <article class="screen m0" data-module="0" data-title="Así funciona">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">02</span> Mapa de funcionamiento</div>
+                <h2>Construye el recorrido real de un cliente</h2>
+                <p>No uses el proceso “ideal”. Escribe lo que efectivamente suele ocurrir. Puedes agregar, borrar y mover pasos.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="flow-layout">
+                  <div class="flow-board">
+                    <div class="flow-top"><strong>Recorrido actual</strong><button class="btn accent" onclick="addFlowStep()">＋ Agregar paso</button></div>
+                    <div class="flow-list" id="flowList"></div>
+                  </div>
+                  <div class="flow-side">
+                    <div class="card accent"><h3>Ejemplo</h3><p>“Me escriben por WhatsApp → respondo disponibilidad → cotizo → confirmo → realizo el servicio → transfieren → anoto en una planilla”.</p></div>
+                    <div class="field card"><label>¿Qué parte depende especialmente de ti?</label><textarea id="ownerOnly" placeholder="Algo que solo tú sabes, decides o puedes hacer hoy."></textarea></div>
+                    <div class="card"><h3>¿Qué estás haciendo aquí?</h3><p>Estás transformando una actividad cotidiana en un <strong>mapa de proceso</strong>, aunque todavía no usemos formalmente ese concepto.</p></div>
+                  </div>
                 </div>
-                <div class="lesson-body">
-                  <div class="orientation">
-                    <div class="welcome">
-                      <div>
-                        <div class="mini">Pregunta guía</div>
-                        <h2>¿Qué significa realmente gestionar bien un negocio?</h2>
-                        <p>Partiremos desde tu propia experiencia, incorporaremos un modelo de análisis y después volveremos a tu negocio para reinterpretarlo con nuevas categorías.</p>
-                      </div>
-                      <div class="welcome-bottom"><strong>Al terminar:</strong> tendrás un primer mapa de gestión de tu empresa y sabrás qué dimensiones necesitas observar con mayor profundidad.</div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Observa</div><h3>Los problemas suelen estar entre pasos</h3><p>Retrasos, errores y pérdidas de información muchas veces aparecen en los traspasos.</p></div>
+              <div class="aside-card"><div class="aside-tag">No evalúes</div><h3>Improvisar también se registra</h3><p>Si un paso cambia cada vez, escribe eso mismo.</p></div>
+              <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">→</div><div><strong>Mapa de funcionamiento</strong><span>Recorrido actual del cliente.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="screen m0" data-module="0" data-title="Quién y qué lo hace posible">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">03</span> Ecosistema</div>
+                <h2>Haz visible lo que sostiene tu negocio</h2>
+                <p>Agrega personas, roles, recursos y proveedores. En un negocio unipersonal también existen varios roles, aunque todos los cumpla la misma persona.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="eco-layout">
+                  <div class="eco-board">
+                    <div class="bucket"><div><h3>Personas / roles</h3><p>Quién hace cosas importantes.</p></div><div class="addline"><input id="addPeople" placeholder="Ej.: Yo — ventas"><button onclick="addTag('people')">＋</button></div><div class="taglist" id="peopleTags"></div></div>
+                    <div class="bucket"><div><h3>Recursos</h3><p>Herramientas, espacios, equipos.</p></div><div class="addline"><input id="addResources" placeholder="Ej.: computador"><button onclick="addTag('resources')">＋</button></div><div class="taglist" id="resourcesTags"></div></div>
+                    <div class="bucket"><div><h3>Proveedores / apoyos</h3><p>Terceros necesarios para operar.</p></div><div class="addline"><input id="addProviders" placeholder="Ej.: proveedor de insumos"><button onclick="addTag('providers')">＋</button></div><div class="taglist" id="providersTags"></div></div>
+                    <div class="bucket"><div><h3>Canales</h3><p>Cómo te comunicas o vendes.</p></div><div class="addline"><input id="addChannels" placeholder="Ej.: WhatsApp"><button onclick="addTag('channels')">＋</button></div><div class="taglist" id="channelsTags"></div></div>
+                  </div>
+                  <div class="eco-reflect">
+                    <div class="card accent"><h3>Si tú no estuvieras por tres días...</h3><p>¿Qué se detendría, qué podría seguir y qué información sería difícil encontrar?</p></div>
+                    <div class="field card"><label>Lo que probablemente se detendría</label><textarea id="wouldStop" placeholder="Describe tareas, decisiones o contactos que dependen especialmente de ti."></textarea></div>
+                    <div class="card"><h3>Por ahora no busques solucionarlo</h3><p>Esta respuesta quedará guardada para cuando trabajemos roles, procesos, delegación y contratación.</p></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Clave</div><h3>El negocio no es solo su producto</h3><p>También es la red de personas, recursos y relaciones que permite entregarlo.</p></div>
+              <div class="aside-card"><div class="aside-tag">Se retomará</div><h3>Dependencia del dueño</h3><p>Más adelante decidirás qué conviene mantener, delegar, aprender o contratar.</p></div>
+              <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">E</div><div><strong>Ecosistema</strong><span>Quién y qué hace posible el negocio.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="screen m0" data-module="0" data-title="Cómo sé lo que ocurre">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">04</span> Información cotidiana</div>
+                <h2>¿Qué registras y dónde vive esa información?</h2>
+                <p>Tener datos no significa todavía utilizarlos para decidir. Por ahora identificaremos qué existe, qué no y dónde lo encuentras.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="info-layout">
+                  <div class="info-table">
+                    <table>
+                      <thead><tr><th>Información</th><th>¿La registras?</th><th>¿Dónde?</th></tr></thead>
+                      <tbody id="infoRows"></tbody>
+                    </table>
+                  </div>
+                  <div class="info-reflect">
+                    <div class="card"><h3>¿Cómo decides hoy?</h3><p>Piensa en decisiones como subir precios, comprar, contratar apoyo o aceptar un trabajo grande.</p></div>
+                    <div class="field card"><label>Lo que más se parece a mi situación</label><select id="decisionStyle"><option value="">Selecciona</option><option>Principalmente memoria e intuición</option><option>Tengo registros, pero están dispersos</option><option>Tengo registros organizados</option><option>Además de registrar, comparo datos para decidir</option></select></div>
+                    <div class="field card"><label>Una decisión que me cuesta tomar</label><textarea id="hardDecision" placeholder="Ej.: no sé cuándo conviene subir precios."></textarea></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Distinción</div><h3>Dato ≠ información útil</h3><p>Más adelante aprenderás a seleccionar qué necesitas mirar para decidir.</p></div>
+              <div class="aside-card"><div class="aside-tag">Se retomará</div><h3>Indicadores</h3><p>En módulos posteriores convertirás algunos registros en indicadores de gestión.</p></div>
+              <div class="aside-output"><h3>Producto</h3><div class="output-item"><div class="output-icon">i</div><div><strong>Mapa de información</strong><span>Qué existe y dónde se encuentra.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="screen m0" data-module="0" data-title="Mi fotografía de hoy">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">05</span> Integración</div>
+                <h2>Esta es tu fotografía inicial</h2>
+                <p>Ahora sí registra tu preocupación principal. La guardaremos como una hipótesis inicial, no como un diagnóstico.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="snapshot-layout">
+                  <div class="snapshot">
+                    <h3>Mi negocio hoy</h3>
+                    <div class="snapshot-grid">
+                      <div class="snap-card"><span class="k">Negocio</span><strong id="snapName">Sin nombre aún</strong><span id="snapOffer">Oferta pendiente</span></div>
+                      <div class="snap-card"><span class="k">Clientes</span><strong id="snapClients">Por completar</strong><span>Quién sostiene la demanda actual.</span></div>
+                      <div class="snap-card"><span class="k">Recorrido</span><strong id="snapFlow">0 pasos</strong><span>Cómo ocurre la atención o venta.</span></div>
+                      <div class="snap-card"><span class="k">Ecosistema</span><strong id="snapEco">0 elementos</strong><span>Personas, recursos y terceros.</span></div>
+                      <div class="snap-card"><span class="k">Información</span><strong id="snapInfo">0 registros descritos</strong><span>Qué información existe hoy.</span></div>
+                      <div class="snap-card"><span class="k">Decisiones</span><strong id="snapDecision">Por completar</strong><span>Cómo decides actualmente.</span></div>
                     </div>
-                    <div class="orientation-right">
-                      <div class="ori-card"><span class="k">Aprenderás a</span><strong>Mirar el negocio como un sistema</strong><p>Relacionar personas, procesos, información, recursos, clientes y decisiones.</p></div>
-                      <div class="ori-card"><span class="k">Trabajarás con</span><strong>Un caso + tu propio negocio</strong><p>Primero practicarás con un caso y después transferirás el análisis a tu realidad.</p></div>
-                      <div class="ori-card"><span class="k">Evidencia del módulo</span><strong>Mapa inicial de gestión</strong><p>Quedará guardado en tu expediente y se retomará en el diagnóstico del Módulo 2.</p></div>
+                  </div>
+                  <div class="snapshot-reflect">
+                    <div class="card accent"><h3>Mi hipótesis inicial</h3><p>Lo que escribas puede cambiar después. Eso es parte del aprendizaje.</p></div>
+                    <div class="field"><label>Hoy creo que mi principal problema o preocupación es...</label><textarea id="mainConcern" placeholder="Escríbelo con tus propias palabras."></textarea></div>
+                    <div class="field"><label>La parte de mi negocio que siento más clara es...</label><textarea id="clearArea" placeholder="¿Qué comprendes o controlas mejor?"></textarea></div>
+                    <div class="field"><label>La pregunta que me gustaría poder responder es...</label><textarea id="bridgeQuestion" placeholder="Ej.: ¿cómo sé si realmente gano dinero con cada servicio?"></textarea></div>
+                    <button class="btn primary" onclick="completeModule0()">Guardar fotografía y continuar</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Cierre</div><h3>Descripción ≠ diagnóstico</h3><p>El Módulo 0 termina con una pregunta, no con una solución.</p></div>
+              <div class="aside-card"><div class="aside-tag">Siguiente</div><h3>Mirar el negocio completo</h3><p>Aprenderás un marco para reinterpretar esta fotografía.</p></div>
+              <div class="aside-output"><h3>Mi negocio</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Fotografía inicial</strong><span>Primera versión de tu negocio en la plataforma.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <!-- ================= MÓDULO 1 ================= -->
+        <article class="screen m1" data-module="1" data-title="Algo no cuadra">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">01</span> Activación de problema</div>
+                <h2>Las ventas aumentaron. ¿Entonces el negocio está mejor?</h2>
+                <p>Antes de presentar un modelo, vamos a enfrentarnos a una situación que obliga a mirar más de una cosa al mismo tiempo.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="case-hook">
+                  <div class="case-story">
+                    <div class="mini">Caso · Café Buen Día</div>
+                    <h3>Más clientes, más trabajo… y menos tranquilidad</h3>
+                    <p>El café lleva tres años funcionando. Durante el último año aumentaron las ventas y las evaluaciones de clientes siguen siendo buenas.</p>
+                    <ul>
+                      <li>El dueño compra y conoce de memoria a los proveedores.</li>
+                      <li>Los precios no se revisan hace más de un año.</li>
+                      <li>Cada trabajador prepara algunos productos de manera distinta.</li>
+                      <li>El inventario se revisa cuando falta algo.</li>
+                      <li>No hay claridad sobre el margen de cada producto.</li>
+                      <li>Las ventas se registran, pero rara vez se analizan.</li>
+                      <li>Si el dueño falta, varias decisiones quedan pendientes.</li>
+                    </ul>
+                  </div>
+                  <div class="hook-task">
+                    <div class="card accent"><h3>Primera reacción</h3><p>No busques todavía “la respuesta correcta”. Registra qué te llama la atención.</p></div>
+                    <div class="field card"><label>¿Qué crees que está pasando?</label><textarea id="caseInitial" placeholder="Escribe tu primera lectura del caso."></textarea></div>
+                    <div class="card"><h3>¿Podemos decir que funciona bien?</h3><div class="segmented" id="caseVerdict"><button data-value="Sí">Sí</button><button data-value="No">No</button><button data-value="No hay información suficiente">No hay información suficiente</button></div><div class="feedback" id="caseVerdictFeedback">Una respuesta útil no depende de elegir “sí” o “no”, sino de reconocer qué información necesitamos antes de evaluar el negocio.</div></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Propósito</div><h3>Crear una necesidad de análisis</h3><p>El modelo aparece después de que el caso demuestra que mirar solo las ventas no basta.</p></div>
+              <div class="aside-card"><div class="aside-tag">Recuerda</div><h3>Tu negocio ya está aquí</h3><p>Más adelante aplicarás el mismo criterio a tu propia fotografía.</p></div>
+              <div class="aside-output"><h3>Habilidad</h3><div class="output-item"><div class="output-icon">?</div><div><strong>Suspender el juicio</strong><span>Antes de recomendar una solución.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="screen m1" data-module="1" data-title="Qué necesitamos mirar">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">02</span> Descubrimiento</div>
+                <h2>¿Qué información pedirías antes de decidir?</h2>
+                <p>Selecciona las pistas que investigarías. A medida que eliges, la plataforma mostrará qué dimensión de gestión estás activando.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="discovery-layout">
+                  <div class="clue-board">
+                    <div class="clue-grid" id="clueGrid">
+                      <button class="clue" data-dim="Clientes y resultados"><strong>Margen por producto</strong><span>¿Cuánto deja realmente cada venta?</span></button>
+                      <button class="clue" data-dim="Información"><strong>Datos de ventas</strong><span>¿Qué se vende, cuándo y cuánto?</span></button>
+                      <button class="clue" data-dim="Procesos"><strong>Forma de preparar productos</strong><span>¿Existe una manera común de hacerlo?</span></button>
+                      <button class="clue" data-dim="Proveedores y alianzas"><strong>Compras e inventario</strong><span>¿Cómo se repone y controla el stock?</span></button>
+                      <button class="clue" data-dim="Personas"><strong>Decisiones del dueño</strong><span>¿Qué depende exclusivamente de él?</span></button>
+                      <button class="clue" data-dim="Control y mejora"><strong>Revisión periódica</strong><span>¿Qué se controla y con qué frecuencia?</span></button>
+                      <button class="clue" data-dim="Dirección"><strong>Prioridades del negocio</strong><span>¿Qué quiere lograr y qué está priorizando?</span></button>
+                      <button class="clue" data-dim="Recursos y tecnología"><strong>Herramientas de registro</strong><span>¿Qué sistemas sostienen la operación?</span></button>
+                    </div>
+                  </div>
+                  <div class="discovery-panel">
+                    <div class="card accent"><h3>Lo que estás haciendo</h3><p>Estás abriendo distintas “ventanas” para comprender el mismo negocio.</p></div>
+                    <div><strong style="font-size:calc(.67rem * var(--font-scale))">Dimensiones descubiertas</strong></div>
+                    <div class="discovered" id="discoveredList"><span class="empty">Selecciona al menos una pista.</span></div>
+                    <button class="btn primary" onclick="revealModel()">Mostrar el modelo completo</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Descubrimiento</div><h3>Las categorías vienen después</h3><p>Primero surge la necesidad de mirar algo; luego aprendemos cómo se llama esa dimensión.</p></div>
+              <div class="aside-card"><div class="aside-tag">Pregunta</div><h3>¿Qué falta mirar?</h3><p>Ninguna de estas dimensiones explica por sí sola el negocio completo.</p></div>
+              <div class="aside-output"><h3>Avance</h3><div class="output-item"><div class="output-icon" id="discoveryCount">0</div><div><strong>Dimensiones descubiertas</strong><span>El modelo tiene ocho.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="screen m1" data-module="1" data-title="Mirar el negocio completo">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">03</span> Marco conceptual</div>
+                <h2>Ocho dimensiones para leer un negocio</h2>
+                <p>Ahora sí ponemos nombre al modelo. Las ocho dimensiones se organizan en cuatro preguntas mayores para que no se transformen en una lista que memorizar.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="model-layout">
+                  <div class="model-board">
+                    <div class="dimension-group"><strong>1 · Dirección</strong><p>¿Hacia dónde vamos?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Dirección"><strong>Dirección</strong><span>Objetivos, prioridades y rumbo.</span></button></div></div>
+                    <div class="dimension-group"><strong>2 · Operación</strong><p>¿Cómo hacemos que funcione?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Personas"><strong>Personas</strong><span>Roles, capacidades y coordinación.</span></button><button class="dimension-btn" data-dimension="Procesos"><strong>Procesos</strong><span>Cómo se realiza el trabajo.</span></button><button class="dimension-btn" data-dimension="Recursos y tecnología"><strong>Recursos y tecnología</strong><span>Herramientas y soporte.</span></button><button class="dimension-btn" data-dimension="Proveedores y alianzas"><strong>Proveedores y alianzas</strong><span>Compras y relaciones externas.</span></button></div></div>
+                    <div class="dimension-group"><strong>3 · Información y resultados</strong><p>¿Cómo sabemos qué ocurre?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Clientes y resultados"><strong>Clientes y resultados</strong><span>Valor, ventas y desempeño.</span></button><button class="dimension-btn" data-dimension="Información"><strong>Información</strong><span>Datos y registros para decidir.</span></button></div></div>
+                    <div class="dimension-group"><strong>4 · Aprendizaje y mejora</strong><p>¿Cómo corregimos y mejoramos?</p><div class="dimension-list"><button class="dimension-btn" data-dimension="Control y mejora"><strong>Control y mejora</strong><span>Seguimiento, evaluación y ajustes.</span></button></div></div>
+                  </div>
+                  <div class="model-detail" id="modelDetail">
+                    <div class="eyebrow">Selecciona una dimensión</div>
+                    <h3>Mirar el negocio completo</h3>
+                    <p>Haz clic en una dimensión para ver qué incluye y cuál es su pregunta guía.</p>
+                    <div class="question-box">Un problema visible puede originarse en otra dimensión. Por eso necesitamos relacionarlas.</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">No memorices</div><h3>Usa las preguntas</h3><p>La utilidad del modelo está en lo que te permite preguntar sobre tu negocio.</p></div>
+              <div class="aside-card"><div class="aside-tag">Clave</div><h3>Las dimensiones se relacionan</h3><p>Un problema de ventas puede involucrar procesos, precios, información o personas.</p></div>
+              <div class="aside-output"><h3>Modelo</h3><div class="output-item"><div class="output-icon">8</div><div><strong>Ocho lentes</strong><span>Organizados en cuatro preguntas.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="screen m1" data-module="1" data-title="Síntoma, evidencia y problema">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">04</span> Herramienta de pensamiento</div>
+                <h2>No compres una solución antes de entender el problema</h2>
+                <p>Practica cómo transformar una necesidad expresada en preguntas y evidencia útil antes de decidir una intervención.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="lab-layout">
+                  <div class="lab-model">
+                    <div class="mini">Secuencia de análisis</div>
+                    <h3>Síntoma → preguntas → evidencia → problema</h3>
+                    <p>El síntoma es lo que vemos o sentimos. El problema se formula cuando la evidencia permite explicar qué necesita intervención.</p>
+                    <div class="flow-mini"><div><b>1</b>Síntoma</div><div><b>2</b>Preguntas</div><div><b>3</b>Evidencia</div><div><b>4</b>Problema</div></div>
+                  </div>
+                  <div class="lab-tool">
+                    <div class="scenario-tabs" id="scenarioTabs">
+                      <button class="scenario-tab active" data-scenario="sales">Necesito vender más</button>
+                      <button class="scenario-tab" data-scenario="people">Necesito contratar gente</button>
+                      <button class="scenario-tab" data-scenario="ads">Necesito publicidad</button>
+                      <button class="scenario-tab" data-scenario="software">Necesito un software</button>
+                    </div>
+                    <div class="lab-columns">
+                      <div class="lab-cell"><span class="lab">Síntoma</span><strong id="labA">“Necesito vender más”</strong><p id="labAP">Es la necesidad expresada inicialmente.</p></div>
+                      <div class="lab-cell"><span class="lab">Preguntas</span><strong id="labB">¿Ventas, margen o costos?</strong><p id="labBP">¿La baja rentabilidad se explica por pocas ventas, precio, costos o mezcla de productos?</p></div>
+                      <div class="lab-cell"><span class="lab">Evidencia</span><strong id="labC">Ventas, costos y márgenes</strong><p id="labCP">Necesitamos revisar datos antes de elegir una intervención.</p></div>
+                      <div class="lab-cell"><span class="lab">Problema</span><strong id="labD">Todavía no lo sabemos</strong><p id="labDP">El diagnóstico aparece después de analizar la evidencia, no antes.</p></div>
                     </div>
                   </div>
                 </div>
-              </section>
-            </div>
-          </article>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Regla</div><h3>Problema ≠ solución deseada</h3><p>“Necesito un software” ya presupone una intervención.</p></div>
+              <div class="aside-card"><div class="aside-tag">Conecta</div><h3>Piensa en tu preocupación inicial</h3><p>En la siguiente pantalla la mirarás con estas nuevas categorías.</p></div>
+              <div class="aside-output"><h3>Herramienta</h3><div class="output-item"><div class="output-icon">S</div><div><strong>Síntoma → evidencia</strong><span>Puente hacia el diagnóstico.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
 
-          <!-- 1 ACTIVACIÓN -->
-          <article class="screen" data-title="Punto de partida">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">01</span> Activación</div>
-                  <h2>Partamos por tu idea de “buena administración”</h2>
-                  <p>Primero registraremos cómo piensas hoy. Al cierre podrás comparar esta respuesta con una nueva lectura de tu negocio.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="activation-grid">
-                    <div class="prompt-card">
-                      <div>
-                        <h3>¿Qué significa para ti administrar bien un negocio?</h3>
-                        <p>No busques una definición técnica. Escríbelo como lo explicarías a otra persona.</p>
-                      </div>
-                      <textarea id="initialAnswer" placeholder="Por ejemplo: tener las cuentas claras, saber cuánto vendo, organizar al equipo..."></textarea>
-                      <div class="save-line">Se guarda automáticamente en tu expediente.</div>
-                    </div>
-                    <div class="quickcheck">
-                      <h3>¿Cómo te ves hoy?</h3>
-                      <p>Marca rápidamente tu nivel de acuerdo. No es una evaluación.</p>
-
-                      <div class="scale-item" data-scale="s1">
-                        <strong>“Si mi negocio vende más, significa que está funcionando mejor.”</strong>
-                        <div class="scale"><button data-v="1">En desacuerdo</button><button data-v="2">No estoy seguro/a</button><button data-v="3">De acuerdo</button></div>
-                      </div>
-                      <div class="scale-item" data-scale="s2">
-                        <strong>“Sé qué información necesito revisar para tomar decisiones.”</strong>
-                        <div class="scale"><button data-v="1">En desacuerdo</button><button data-v="2">No estoy seguro/a</button><button data-v="3">De acuerdo</button></div>
-                      </div>
-                      <div class="scale-item" data-scale="s3">
-                        <strong>“Puedo distinguir entre un problema y su síntoma.”</strong>
-                        <div class="scale"><button data-v="1">En desacuerdo</button><button data-v="2">No estoy seguro/a</button><button data-v="3">De acuerdo</button></div>
-                      </div>
-                    </div>
+        <article class="screen m1" data-module="1" data-title="Ahora mira el tuyo">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">05</span> Transferencia</div>
+                <h2>Aplica las ocho dimensiones a tu propio negocio</h2>
+                <p>No es todavía un diagnóstico técnico. Es una nueva lectura de la fotografía que construiste en el Módulo 0.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="map-layout">
+                  <div class="map-cards" id="mapCards"></div>
+                  <div class="map-side">
+                    <div><h3 id="mapSelected">Selecciona una dimensión</h3><p id="mapHelp">Marca tu nivel de claridad y escribe una evidencia que explique tu percepción.</p></div>
+                    <div class="pills"><span class="tag" style="background:var(--success-soft)">1 · claro</span><span class="tag" style="background:var(--warning-soft)">2 · dudas</span><span class="tag" style="background:var(--danger-soft)">3 · revisar</span></div>
+                    <textarea id="mapEvidence" placeholder="Ej.: sé cuánto vendo al mes, pero no conozco el margen por servicio."></textarea>
+                    <button class="btn primary" onclick="saveMapEvidence()">Guardar evidencia</button>
                   </div>
                 </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Para qué sirve</div><h3>Activar antes de enseñar</h3><p>Tu idea inicial funciona como punto de comparación. No se corrige todavía.</p></div>
-                <div class="aside-card"><div class="aside-tag">Consejo</div><h3>Responde desde tu experiencia</h3><p>No necesitas conocimientos previos de administración.</p></div>
-                <div class="aside-output"><h3>Tu expediente</h3><div class="output-item"><div class="output-icon">A</div><div><strong>Idea inicial</strong><span>Se incorpora en esta pantalla.</span></div></div><div class="output-item"><div class="output-icon">M</div><div><strong>Mapa de gestión</strong><span>Lo construirás más adelante.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Importante</div><h3>Percepción informada</h3><p>Ahora tienes más categorías que en el Módulo 0, pero todavía deberás contrastarlas con evidencia en el diagnóstico.</p></div>
+              <div class="aside-card"><div class="aside-tag">Producto</div><h3>Mapa inicial de gestión</h3><p>Será una pieza central de “Mi negocio”.</p></div>
+              <div class="aside-output" id="mapSummary"><h3>Tu mapa</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Dimensiones marcadas</strong><span>Completa varias para ver patrones.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
 
-          <!-- 2 EXPLORACIÓN -->
-          <article class="screen" data-title="Explora el sistema">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">02</span> Exploración guiada</div>
-                  <h2>Un negocio funciona como un sistema</h2>
-                  <p>Selecciona cada dimensión. No memorices: observa qué preguntas permite hacer sobre un negocio.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="system-view">
-                    <div class="system-canvas">
-                      <div class="orbit" id="orbit">
-                        <button class="node" data-node="Dirección" data-desc="Objetivos, prioridades, decisiones de crecimiento y foco estratégico." data-q="¿Sabemos hacia dónde queremos llevar el negocio?"><span class="idx">01</span><strong>Dirección</strong><span>Rumbo y prioridades</span></button>
-                        <button class="node" data-node="Clientes y resultados" data-desc="Clientes, propuesta de valor, ventas, resultados comerciales y rentabilidad." data-q="¿Sabemos quién nos compra y qué resultados obtenemos?"><span class="idx">02</span><strong>Clientes y resultados</strong><span>Valor y desempeño</span></button>
-                        <button class="node" data-node="Personas" data-desc="Roles, responsabilidades, coordinación, capacidades y carga de trabajo." data-q="¿Está claro quién hace qué y qué capacidades necesitamos?"><span class="idx">03</span><strong>Personas</strong><span>Roles y coordinación</span></button>
-                        <button class="node" data-node="Procesos" data-desc="Rutinas, secuencias de trabajo, estándares, tiempos y puntos de control." data-q="¿Tenemos una forma ordenada de hacer las cosas?"><span class="idx">04</span><strong>Procesos</strong><span>Cómo hacemos el trabajo</span></button>
-
-                        <div class="node center"><strong>Mi negocio</strong><span>Las dimensiones se afectan entre sí</span></div>
-
-                        <button class="node" data-node="Información" data-desc="Registros, indicadores, ventas, costos, inventario y seguimiento." data-q="¿Tenemos datos confiables para tomar decisiones?"><span class="idx">05</span><strong>Información</strong><span>Datos para decidir</span></button>
-                        <button class="node" data-node="Recursos y tecnología" data-desc="Equipamiento, sistemas, software, herramientas y uso eficiente de recursos." data-q="¿Usamos adecuadamente nuestras herramientas y recursos?"><span class="idx">06</span><strong>Recursos y tecnología</strong><span>Herramientas y soporte</span></button>
-                        <button class="node" data-node="Proveedores y alianzas" data-desc="Compras, abastecimiento, proveedores críticos, acuerdos y relaciones externas." data-q="¿Trabajamos con terceros de forma conveniente?"><span class="idx">07</span><strong>Proveedores y alianzas</strong><span>Relaciones externas</span></button>
-                        <button class="node" data-node="Control y mejora" data-desc="Monitoreo, evaluación, correcciones, aprendizaje y mejora continua." data-q="¿Revisamos lo que ocurre y corregimos cuando algo no funciona?"><span class="idx">08</span><strong>Control y mejora</strong><span>Aprender y ajustar</span></button>
-                      </div>
-                    </div>
-                    <div class="detail-panel" id="detailPanel">
-                      <div class="tag">Selecciona una dimensión</div>
-                      <h3>¿Qué miraremos?</h3>
-                      <p>Haz clic sobre una dimensión para ver qué incluye y qué pregunta permite formular.</p>
-                      <div class="detail-list">
-                        <div>La gestión no depende de una sola área.</div>
-                        <div>Un problema visible puede originarse en otra dimensión.</div>
-                        <div>Diagnosticar exige relacionar información.</div>
-                      </div>
-                    </div>
+        <article class="screen m1" data-module="1" data-title="Mi nueva lectura">
+          <div class="lesson-shell">
+            <section class="lesson">
+              <div class="lesson-head">
+                <div class="phase"><span class="phase-badge">06</span> Reinterpretación</div>
+                <h2>Vuelve a mirar tu preocupación inicial</h2>
+                <p>El cierre consiste en reinterpretar tu propia experiencia usando el marco que acabas de aprender.</p>
+              </div>
+              <div class="lesson-body">
+                <div class="reinterpret-layout">
+                  <div class="before-after">
+                    <div class="quote-card"><strong>Lo que escribiste en el Módulo 0</strong><span id="concernMirror">Aún no has definido una preocupación inicial.</span></div>
+                    <div class="field"><label>Ahora describiría mi situación de esta manera...</label><textarea id="newReading" placeholder="Reformula tu lectura incorporando lo que aprendiste sobre dimensiones, evidencia y problemas."></textarea></div>
+                    <div class="field"><label>En el diagnóstico quiero comprobar...</label><textarea id="diagnosticQuestion" placeholder="Escribe una pregunta concreta que necesite evidencia para responderse."></textarea></div>
+                  </div>
+                  <div class="finish">
+                    <div class="mini">Transformación del módulo</div>
+                    <h3>Pasaste de describir tu negocio a empezar a interpretarlo.</h3>
+                    <p>Ya puedes mirar distintas dimensiones, distinguir una preocupación de un diagnóstico y formular preguntas que necesitan evidencia antes de decidir una solución.</p>
+                    <button onclick="completeModule1()">Completar Módulo 1</button>
                   </div>
                 </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Idea clave</div><h3>Vender no basta</h3><p>Un negocio puede aumentar ventas y, al mismo tiempo, empeorar en margen, procesos o control.</p></div>
-                <div class="aside-card"><div class="aside-tag">Tu tarea mental</div><h3>Relaciona</h3><p>Pregúntate qué ocurre si una dimensión falla y cómo repercute en las demás.</p></div>
-                <div class="aside-output"><h3>Lo que debes llevarte</h3><div class="output-item"><div class="output-icon">8</div><div><strong>Ocho lentes</strong><span>Para observar el negocio.</span></div></div><div class="output-item"><div class="output-icon">↔</div><div><strong>Relaciones</strong><span>Las dimensiones no funcionan aisladas.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
+              </div>
+            </section>
+            <aside class="aside">
+              <div class="aside-card"><div class="aside-tag">Antes / después</div><h3>La evidencia está en tu explicación</h3><p>Compara cómo nombrabas el problema antes y cómo lo haces ahora.</p></div>
+              <div class="aside-card"><div class="aside-tag">Siguiente</div><h3>Módulo 2 · Diagnosticar</h3><p>Transformarás percepciones en evidencia, causas y necesidades priorizadas.</p></div>
+              <div class="aside-output"><h3>Productos guardados</h3><div class="output-item"><div class="output-icon">M</div><div><strong>Mapa de gestión</strong><span>Lectura inicial por dimensiones.</span></div></div><div class="output-item"><div class="output-icon">?</div><div><strong>Pregunta diagnóstica</strong><span>Puente al Módulo 2.</span></div></div></div>
+            </aside>
+          </div>
+        </article>
+      </section>
 
-          <!-- 3 CASO -->
-          <article class="screen" data-title="Practica con un caso">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">03</span> Práctica guiada</div>
-                  <h2>Antes de opinar, aprende a mirar</h2>
-                  <p>Usaremos el Café Buen Día para practicar tres movimientos: observar señales, relacionarlas con dimensiones y decidir qué evidencia falta.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="case-grid">
-                    <div class="case-story">
-                      <div class="tag">Caso · Café Buen Día</div>
-                      <h3>Las ventas aumentaron. El dueño está preocupado.</h3>
-                      <p>El café lleva tres años funcionando y tiene buenas evaluaciones.</p>
-                      <ul>
-                        <li>El dueño realiza las compras y conoce de memoria a los proveedores.</li>
-                        <li>Los precios se fijaron hace más de un año.</li>
-                        <li>Cada trabajador prepara algunos productos de manera diferente.</li>
-                        <li>El inventario se revisa cuando falta algo.</li>
-                        <li>No hay claridad sobre el margen de cada producto.</li>
-                        <li>Las ventas se registran, pero rara vez se analizan.</li>
-                        <li>Si el dueño falta, varias decisiones quedan pendientes.</li>
-                      </ul>
-                    </div>
-                    <div class="case-work">
-                      <div class="case-tabs">
-                        <button class="case-tab active" data-tab="0">1 · Observa</button>
-                        <button class="case-tab" data-tab="1">2 · Relaciona</button>
-                        <button class="case-tab" data-tab="2">3 · Pregunta</button>
-                      </div>
-
-                      <div class="case-step active" data-case="0">
-                        <h3>¿Qué señales requieren atención?</h3>
-                        <p>Marca aquello que podría indicar una necesidad de gestión.</p>
-                        <div class="choice-list">
-                          <label class="choice"><input type="checkbox"> Los precios llevan más de un año sin revisarse.</label>
-                          <label class="choice"><input type="checkbox"> El inventario se revisa recién cuando falta algo.</label>
-                          <label class="choice"><input type="checkbox"> Existen buenas evaluaciones de clientes.</label>
-                          <label class="choice"><input type="checkbox"> Algunas decisiones dependen del dueño.</label>
-                          <label class="choice"><input type="checkbox"> Las ventas aumentaron.</label>
-                        </div>
-                        <button class="btn primary" style="margin-top:9px" onclick="showCaseFeedback(0)">Revisar</button>
-                        <div class="step-feedback" id="cf0">Las señales no son solo “cosas negativas”. Incluso un aumento de ventas puede ser relevante si no sabemos qué está ocurriendo con costos, márgenes o capacidad operativa.</div>
-                      </div>
-
-                      <div class="case-step" data-case="1">
-                        <h3>¿Qué dimensiones aparecen?</h3>
-                        <p>Selecciona las que te parecen directamente involucradas.</p>
-                        <div class="choice-list">
-                          <label class="choice"><input type="checkbox"> Procesos</label>
-                          <label class="choice"><input type="checkbox"> Información</label>
-                          <label class="choice"><input type="checkbox"> Proveedores y abastecimiento</label>
-                          <label class="choice"><input type="checkbox"> Personas y roles</label>
-                          <label class="choice"><input type="checkbox"> Control y mejora</label>
-                        </div>
-                        <button class="btn primary" style="margin-top:9px" onclick="showCaseFeedback(1)">Revisar</button>
-                        <div class="step-feedback" id="cf1">Varias dimensiones se cruzan. Este es justamente el punto: un problema de gestión rara vez pertenece a una sola “caja”.</div>
-                      </div>
-
-                      <div class="case-step" data-case="2">
-                        <h3>¿Qué información falta?</h3>
-                        <p>Elige qué revisarías antes de recomendar una solución.</p>
-                        <div class="choice-list">
-                          <label class="choice"><input type="checkbox"> Costos y margen por producto.</label>
-                          <label class="choice"><input type="checkbox"> Criterios de fijación de precios.</label>
-                          <label class="choice"><input type="checkbox"> Flujo de caja.</label>
-                          <label class="choice"><input type="checkbox"> Procedimiento de compras e inventario.</label>
-                          <label class="choice"><input type="checkbox"> Decisiones que solo puede tomar el dueño.</label>
-                        </div>
-                        <button class="btn primary" style="margin-top:9px" onclick="showCaseFeedback(2)">Revisar</button>
-                        <div class="step-feedback" id="cf2"><strong>Diagnosticar no es opinar:</strong> es reunir evidencia suficiente para comprender qué ocurre antes de decidir qué hacer.</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Secuencia</div><h3>Observar → relacionar → preguntar</h3><p>Esta lógica volverá a aparecer durante todo el curso.</p></div>
-                <div class="aside-card"><div class="aside-tag">Evita</div><h3>Saltarte al consejo</h3><p>“Compra un software” o “haz publicidad” son soluciones, no diagnósticos.</p></div>
-                <div class="aside-output"><h3>Habilidad en práctica</h3><div class="output-item"><div class="output-icon">1</div><div><strong>Detectar señales</strong><span>Sin confundirlas con causas.</span></div></div><div class="output-item"><div class="output-icon">2</div><div><strong>Pedir evidencia</strong><span>Antes de decidir.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
-
-          <!-- 4 CONCEPTUALIZACIÓN -->
-          <article class="screen" data-title="Del síntoma al problema">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">04</span> Conceptualización</div>
-                  <h2>Transforma una impresión en una pregunta de gestión</h2>
-                  <p>Ahora ponemos nombre a lo que acabas de hacer con el caso: pasar del síntoma a una investigación más útil.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="lens-grid">
-                    <div class="lens-model">
-                      <div class="mini">Modelo de análisis</div>
-                      <h3>Síntoma → preguntas → evidencia → problema</h3>
-                      <p>Un síntoma es lo que vemos o sentimos. El problema se formula cuando contamos con evidencia suficiente para explicar qué necesita intervención.</p>
-                      <div class="flow"><div><b>1</b>Síntoma</div><div><b>2</b>Preguntas</div><div><b>3</b>Evidencia</div><div><b>4</b>Problema</div></div>
-                    </div>
-
-                    <div class="symptom-tool">
-                      <div class="symptoms" id="symptoms">
-                        <button class="symptom active" data-s="sales">Necesito vender más</button>
-                        <button class="symptom" data-s="people">Necesito contratar gente</button>
-                        <button class="symptom" data-s="ads">Necesito publicidad</button>
-                        <button class="symptom" data-s="software">Necesito un software</button>
-                      </div>
-                      <div class="analysis-box">
-                        <div><span class="lab">Síntoma</span><strong id="symA">“Necesito vender más”</strong><p id="symAP">Es la necesidad expresada inicialmente.</p></div>
-                        <div><span class="lab">Preguntas</span><strong id="symB">¿Ventas, margen o costos?</strong><p id="symBP">¿La baja rentabilidad se explica por pocas ventas, precio, costos o mezcla de productos?</p></div>
-                        <div><span class="lab">Evidencia</span><strong id="symC">Ventas, costos y márgenes</strong><p id="symCP">Necesitamos revisar datos antes de elegir una intervención.</p></div>
-                        <div><span class="lab">Posible problema</span><strong id="symD">Todavía no lo sabemos</strong><p id="symDP">El diagnóstico aparece después de analizar la evidencia, no antes.</p></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Regla del curso</div><h3>No compres una solución antes de entender el problema</h3><p>La solución correcta depende de la causa, no del síntoma.</p></div>
-                <div class="aside-card"><div class="aside-tag">Conecta con tu realidad</div><h3>¿Qué “solución” estabas pensando comprar?</h3><p>Quizás conviene convertirla primero en una pregunta.</p></div>
-                <div class="aside-output"><h3>Modelo incorporado</h3><div class="output-item"><div class="output-icon">S</div><div><strong>Síntoma</strong><span>Lo observable.</span></div></div><div class="output-item"><div class="output-icon">E</div><div><strong>Evidencia</strong><span>Lo que necesitas comprobar.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
-
-          <!-- 5 TRANSFERENCIA -->
-          <article class="screen" data-title="Llévalo a tu negocio">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">05</span> Transferencia situada</div>
-                  <h2>Construye tu primer mapa de gestión</h2>
-                  <p>Ahora vuelves a tu negocio. Marca tu nivel de claridad y escribe una evidencia que explique tu decisión en la dimensión que más te preocupe.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="transfer-grid">
-                    <div class="dimension-cards" id="dimensionCards"></div>
-                    <div class="transfer-aside">
-                      <div>
-                        <h3 id="selectedDim">Selecciona una dimensión</h3>
-                        <p id="selectedDimHelp">Luego escribe qué evidencia tienes hoy para sostener tu percepción.</p>
-                      </div>
-                      <div class="legend-row"><span class="legend-pill ok">1 · claro</span><span class="legend-pill mid">2 · dudas</span><span class="legend-pill bad">3 · revisar</span></div>
-                      <textarea id="evidenceNote" placeholder="Ejemplo: sé cuánto vendo al mes, pero no tengo claridad del margen por producto."></textarea>
-                      <button class="btn primary" onclick="saveEvidence()">Guardar evidencia</button>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Importante</div><h3>Esto no es aún el diagnóstico</h3><p>Es tu percepción inicial. En el Módulo 2 la contrastarás con evidencia.</p></div>
-                <div class="aside-card"><div class="aside-tag">Producto</div><h3>Mapa inicial de gestión</h3><p>Será una de las primeras piezas de tu Plan de Gestión y Mejora.</p></div>
-                <div class="aside-output" id="mapSummary"><h3>Tu mapa</h3><div class="output-item"><div class="output-icon">0</div><div><strong>Dimensiones marcadas</strong><span>Completa al menos cuatro para visualizar patrones.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
-
-          <!-- 6 CHECKPOINT -->
-          <article class="screen" data-title="Comprueba lo aprendido">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">06</span> Checkpoint</div>
-                  <h2>Antes de cerrar, comprueba tu criterio</h2>
-                  <p>No buscamos una nota. Estas tres situaciones permiten verificar si puedes aplicar la lógica del módulo.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="checkpoint">
-                    <div class="quiz">
-                      <h3>Responde una alternativa en cada caso</h3>
-                      <p>Recibirás retroalimentación inmediata.</p>
-
-                      <div class="q" data-correct="1">
-                        <strong>1. Las ventas aumentaron, pero el dueño tiene menos dinero disponible. ¿Cuál es el mejor primer paso?</strong>
-                        <div class="qopts"><button class="qopt">Hacer más publicidad.</button><button class="qopt">Revisar costos, márgenes y flujo de caja.</button><button class="qopt">Contratar un vendedor.</button></div>
-                      </div>
-                      <div class="q" data-correct="2">
-                        <strong>2. Un proceso genera errores frecuentes. Antes de comprar un software conviene…</strong>
-                        <div class="qopts"><button class="qopt">Elegir el software más usado.</button><button class="qopt">Pedir cotizaciones.</button><button class="qopt">Comprender primero cómo funciona actualmente el proceso y dónde falla.</button></div>
-                      </div>
-                      <div class="q" data-correct="0">
-                        <strong>3. Diagnosticar significa principalmente…</strong>
-                        <div class="qopts"><button class="qopt">Reunir y relacionar evidencia antes de decidir una intervención.</button><button class="qopt">Identificar rápidamente qué servicio comprar.</button><button class="qopt">Encontrar un culpable del problema.</button></div>
-                      </div>
-                    </div>
-                    <div class="check-card">
-                      <div class="score" id="score">0/3</div>
-                      <strong>Checkpoint del módulo</strong>
-                      <p id="scoreMsg">Responde las tres situaciones. Puedes cambiar tu respuesta: lo importante es comprender el criterio.</p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Retroalimentación</div><h3>Inmediata y sin nota</h3><p>El error funciona como oportunidad para ajustar el criterio antes de trabajar con tu negocio.</p></div>
-                <div class="aside-card"><div class="aside-tag">Criterio esperado</div><h3>Primero comprender</h3><p>La intervención viene después del análisis.</p></div>
-                <div class="aside-output"><h3>Checkpoint</h3><div class="output-item"><div class="output-icon">✓</div><div><strong>3 situaciones</strong><span>Aplicación breve y focalizada.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
-
-          <!-- 7 CIERRE -->
-          <article class="screen" data-title="Cierre y reinterpretación">
-            <div class="lesson-shell">
-              <section class="lesson">
-                <div class="lesson-head">
-                  <div class="phase"><span class="phase-badge">07</span> Reinterpretación</div>
-                  <h2>Vuelve a tu punto de partida</h2>
-                  <p>El cierre no consiste en repetir conceptos: consiste en mirar de nuevo tu experiencia con las categorías que aprendiste.</p>
-                </div>
-                <div class="lesson-body">
-                  <div class="close-grid">
-                    <div class="compare">
-                      <div class="initial-quote"><strong>Tu respuesta inicial</strong><span id="initialMirror">Todavía no has escrito tu definición inicial.</span></div>
-                      <div class="ref"><label>Ahora, ¿qué significa para ti gestionar bien un negocio?</label><textarea id="finalAnswer" placeholder="Reformula tu respuesta después del recorrido del módulo."></textarea></div>
-                      <div class="ref"><label>¿Qué aspecto de tu negocio quieres investigar primero en el diagnóstico?</label><textarea id="nextQuestion" placeholder="Escribe una pregunta concreta que quieras responder en el Módulo 2."></textarea></div>
-                    </div>
-                    <div class="finish">
-                      <div class="mini">Lo que ya construiste</div>
-                      <h3>Una nueva forma de mirar tu negocio.</h3>
-                      <p>Ahora puedes observarlo como un sistema, distinguir síntomas de problemas y reconocer qué información necesitas antes de decidir una solución.</p>
-                      <button onclick="completeModule()">Completar módulo y guardar evidencia</button>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <aside class="aside">
-                <div class="aside-card"><div class="aside-tag">Metacognición</div><h3>Compara antes / después</h3><p>La evidencia de aprendizaje está también en cómo cambia tu explicación.</p></div>
-                <div class="aside-card"><div class="aside-tag">Próximo módulo</div><h3>Diagnosticar antes de actuar</h3><p>Transformarás percepciones en evidencia y necesidades priorizadas.</p></div>
-                <div class="aside-output"><h3>Productos guardados</h3><div class="output-item"><div class="output-icon">A</div><div><strong>Definición inicial y final</strong><span>Comparación metacognitiva.</span></div></div><div class="output-item"><div class="output-icon">M</div><div><strong>Mapa inicial</strong><span>Base del diagnóstico.</span></div></div><div class="output-item"><div class="output-icon">?</div><div><strong>Pregunta para investigar</strong><span>Puente al Módulo 2.</span></div></div></div>
-              </aside>
-            </div>
-          </article>
-
-        </section>
-
-        <footer class="controls">
-          <div class="l"><button class="btn" id="prev" onclick="move(-1)">← Anterior</button></div>
-          <div class="steps" id="steps"></div>
-          <div class="r"><button class="btn primary" id="next" onclick="move(1)">Siguiente →</button></div>
-        </footer>
-      </main>
-    </div>
-  </section>
+      <footer class="footer">
+        <div class="left"><button class="btn" id="prevBtn" onclick="move(-1)">← Anterior</button></div>
+        <div class="stepdots" id="stepDots"></div>
+        <div class="right"><button class="btn primary" id="nextBtn" onclick="move(1)">Siguiente →</button></div>
+      </footer>
+    </main>
+  </div>
+</section>
 </div>
 
-<!-- EXPEDIENTE / MI NEGOCIO -->
+<!-- MI NEGOCIO -->
 <aside class="drawer" id="drawer">
-  <div class="drawer-head"><h3>Mi negocio</h3><button class="mini-btn" onclick="toggleDrawer()">×</button></div>
+  <div class="drawer-head"><h3>Mi negocio</h3><button class="iconbtn" onclick="toggleDrawer()">×</button></div>
   <div class="drawer-body">
-    <div class="drawer-section"><div class="k">Expediente en construcción</div><div class="drawer-box">Aquí se reúnen automáticamente las evidencias que produces durante el curso. No es una carpeta aparte: es el resultado acumulativo de tu aprendizaje.</div></div>
-    <div class="drawer-section"><div class="k">Módulo 1</div><div class="drawer-list">
-      <div class="drawer-item"><strong>Idea inicial sobre gestión</strong><span id="drawerInitial">Pendiente</span></div>
-      <div class="drawer-item"><strong>Mapa inicial</strong><span id="drawerMap">0 de 8 dimensiones marcadas</span></div>
-      <div class="drawer-item"><strong>Evidencia situada</strong><span id="drawerEvidence">Pendiente</span></div>
-      <div class="drawer-item"><strong>Pregunta para el diagnóstico</strong><span id="drawerQuestion">Pendiente</span></div>
-    </div></div>
-    <div class="drawer-section"><div class="k">Siguiente</div><div class="drawer-box"><strong>Módulo 2 · Diagnosticar antes de actuar</strong><br>Usarás evidencia para revisar si tus primeras percepciones se sostienen.</div></div>
+    <div class="drawer-section"><div class="k">Expediente vivo</div><div class="drawer-box">Este espacio reúne productos de aprendizaje que se reutilizan y enriquecen a lo largo del curso.</div></div>
+    <div class="drawer-section">
+      <div class="k">Descripción</div>
+      <div class="drawer-list">
+        <div class="drawer-item"><strong>Negocio</strong><span id="dName">Pendiente</span></div>
+        <div class="drawer-item"><strong>Oferta</strong><span id="dOffer">Pendiente</span></div>
+        <div class="drawer-item"><strong>Clientes</strong><span id="dClients">Pendiente</span></div>
+        <div class="drawer-item"><strong>Recorrido</strong><span id="dFlow">0 pasos descritos</span></div>
+        <div class="drawer-item"><strong>Ecosistema</strong><span id="dEco">0 elementos agregados</span></div>
+        <div class="drawer-item"><strong>Preocupación inicial</strong><span id="dConcern">Pendiente</span></div>
+      </div>
+    </div>
+    <div class="drawer-section">
+      <div class="k">Lectura de gestión</div>
+      <div class="drawer-list">
+        <div class="drawer-item"><strong>Mapa inicial</strong><span id="dMap">0 de 8 dimensiones marcadas</span></div>
+        <div class="drawer-item"><strong>Nueva lectura</strong><span id="dReading">Pendiente</span></div>
+        <div class="drawer-item"><strong>Pregunta diagnóstica</strong><span id="dDiagnostic">Pendiente</span></div>
+      </div>
+    </div>
   </div>
 </aside>
 
-<nav class="dock" aria-label="Herramientas">
-  <button data-label="Ruta" onclick="go(0)">Ruta</button>
-  <button data-label="Mi negocio" onclick="toggleDrawer()">MB</button>
+<!-- TEMAS -->
+<section class="theme-panel" id="themePanel">
+  <h3>Personaliza tu espacio</h3>
+  <p>El tema cambia color, profundidad e intensidad sin alterar el contenido.</p>
+  <div class="theme-grid">
+    <button class="theme-card active" data-theme="aurora"><div class="swatch" style="background:linear-gradient(135deg,#dbe4f3,#f1dfb8,#ddd5ee)"></div><strong>Aurora</strong><span>Dorado suave</span></button>
+    <button class="theme-card" data-theme="ocean"><div class="swatch" style="background:linear-gradient(135deg,#d8ebf5,#b9d7e7,#e7edf6)"></div><strong>Océano</strong><span>Azules serenos</span></button>
+    <button class="theme-card" data-theme="forest"><div class="swatch" style="background:linear-gradient(135deg,#dde9df,#bed4c4,#eee9d7)"></div><strong>Bosque</strong><span>Verdes orgánicos</span></button>
+    <button class="theme-card" data-theme="lavender"><div class="swatch" style="background:linear-gradient(135deg,#e7e0f3,#d8cdef,#f0e8f5)"></div><strong>Lavanda</strong><span>Violeta suave</span></button>
+    <button class="theme-card" data-theme="copper"><div class="swatch" style="background:linear-gradient(135deg,#f1dfd2,#d6a98b,#f1e7da)"></div><strong>Cobre</strong><span>Cálido y tierra</span></button>
+    <button class="theme-card" data-theme="graphite"><div class="swatch" style="background:linear-gradient(135deg,#cfd3da,#9da4af,#e3e4e7)"></div><strong>Grafito</strong><span>Neutro y sobrio</span></button>
+  </div>
+  <div class="setting"><div class="setting-head"><span>Intensidad del color</span><span id="intensityLabel">Media</span></div><input id="intensityRange" type="range" min="0" max="2" step="1" value="1"></div>
+  <div class="setting"><div class="setting-head"><span>Tamaño de texto</span><span id="fontLabel">Grande</span></div><input id="fontRange" type="range" min="0" max="2" step="1" value="1"></div>
+</section>
+
+<nav class="dock">
+  <button data-label="Módulo 0" onclick="openModule(0)">M0</button>
+  <button data-label="Módulo 1" onclick="openModule(1)">M1</button>
   <span class="dock-sep"></span>
-  <button data-label="Notas" onclick="toast('En la versión final: bloc de notas del curso')">N</button>
+  <button data-label="Mi negocio" onclick="toggleDrawer()">MB</button>
+  <button data-label="Notas" onclick="toast('En la versión final: bloc de notas del estudiante')">N</button>
   <button data-label="Glosario" onclick="toast('En la versión final: glosario contextual')">G</button>
-  <button data-label="Herramientas" onclick="toast('En la versión final: biblioteca de plantillas y recursos')">H</button>
-  <button data-label="Plan de gestión" onclick="toast('En la versión final: Plan de Gestión y Mejora')">PG</button>
+  <button data-label="Herramientas" onclick="toast('En la versión final: biblioteca de recursos y plantillas')">H</button>
+  <button data-label="Personalizar" onclick="toggleTheme()">◐</button>
 </nav>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const screens=[...document.querySelectorAll('.screen')];
-let current=0;
-
+/* ---------- ROUTING ---------- */
+let currentModule=0;
+let currentIndex=0;
+function moduleScreens(m){return [...document.querySelectorAll(`.screen[data-module="${m}"]`)]}
 function render(){
-  screens.forEach((s,i)=>s.classList.toggle('active',i===current));
-  document.getElementById('screenTitle').textContent=screens[current].dataset.title;
-  document.getElementById('prev').style.visibility=current===0?'hidden':'visible';
-  document.getElementById('next').textContent=current===screens.length-1?'Ir al Módulo 2 →':'Siguiente →';
-  const holder=document.getElementById('steps');holder.innerHTML='';
-  screens.forEach((_,i)=>{const d=document.createElement('span');d.className='sdot'+(i===current?' active':i<current?' done':'');holder.appendChild(d)});
-  if(current===screens.length-1) syncClose();
-}
-function move(d){
-  if(current===screens.length-1 && d>0){toast('En la plataforma final comenzarías el Módulo 2.');return}
-  current=Math.max(0,Math.min(screens.length-1,current+d));render()
-}
-function go(n){current=Math.max(0,Math.min(screens.length-1,n));render()}
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const screens=moduleScreens(currentModule);
+  currentIndex=Math.max(0,Math.min(currentIndex,screens.length-1));
+  screens[currentIndex].classList.add('active');
 
+  document.getElementById('moduleEyebrow').textContent=currentModule===0?'Módulo 0 · Mi negocio hoy':'Módulo 1 · Mirar el negocio completo';
+  document.getElementById('screenTitle').textContent=screens[currentIndex].dataset.title;
+  document.getElementById('timeChip').textContent=currentModule===0?'30–40 min':'40–50 min';
+
+  document.getElementById('mod0Btn').classList.toggle('active',currentModule===0);
+  document.getElementById('mod1Btn').classList.toggle('active',currentModule===1);
+
+  document.getElementById('prevBtn').style.visibility=currentIndex===0?'hidden':'visible';
+  const last=currentIndex===screens.length-1;
+  document.getElementById('nextBtn').textContent=last?(currentModule===0?'Ir al Módulo 1 →':'Ir al Módulo 2 →'):'Siguiente →';
+
+  const holder=document.getElementById('stepDots');holder.innerHTML='';
+  screens.forEach((_,i)=>{const d=document.createElement('span');d.className='stepdot'+(i===currentIndex?' active':i<currentIndex?' done':'');holder.appendChild(d)});
+
+  if(currentModule===0 && currentIndex===5) syncSnapshot();
+  if(currentModule===1 && currentIndex===5) syncReinterpretation();
+}
+function move(dir){
+  const screens=moduleScreens(currentModule);
+  if(dir>0 && currentIndex===screens.length-1){
+    if(currentModule===0){openModule(1);return}
+    toast('En la plataforma final comenzarías el Módulo 2: Diagnosticar antes de actuar.');
+    return;
+  }
+  currentIndex=Math.max(0,Math.min(screens.length-1,currentIndex+dir));render()
+}
+function openModule(m){currentModule=m;currentIndex=0;render()}
+
+/* ---------- UI ---------- */
 function toast(msg){
-  const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
-  clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),2200)
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)
 }
 function toggleDrawer(){document.getElementById('drawer').classList.toggle('open')}
+function toggleTheme(){document.getElementById('themePanel').classList.toggle('open')}
+function saveChip(){
+  const c=document.getElementById('saveChip');c.textContent='Guardando…';
+  clearTimeout(window.__save);window.__save=setTimeout(()=>c.textContent='Guardado automático',420)
+}
 
-function autoSave(el,key,mirrorId){
-  const saved=localStorage.getItem(key); if(saved) el.value=saved;
-  el.addEventListener('input',()=>{
-    localStorage.setItem(key,el.value);
-    const chip=document.getElementById('saveChip');chip.textContent='Guardando…';
-    clearTimeout(window.__save);window.__save=setTimeout(()=>chip.textContent='Guardado automático',450);
-    if(mirrorId) document.getElementById(mirrorId).textContent=el.value.trim()?el.value.trim():'Pendiente';
+/* ---------- AUTOSAVE ---------- */
+function bind(id,key,mirrors=[]){
+  const el=document.getElementById(id);if(!el)return;
+  const saved=localStorage.getItem(key);if(saved!==null)el.value=saved;
+  const update=()=>{localStorage.setItem(key,el.value);saveChip();mirrors.forEach(mid=>{const m=document.getElementById(mid);if(m)m.textContent=el.value.trim()||'Pendiente'})};
+  el.addEventListener('input',update);el.addEventListener('change',update);
+  mirrors.forEach(mid=>{const m=document.getElementById(mid);if(m)m.textContent=el.value.trim()||'Pendiente'})
+}
+[
+ ['bizName','pyu_bizName',['dName']],['bizAge','pyu_bizAge',[]],['bizOffer','pyu_bizOffer',['dOffer']],
+ ['bizClients','pyu_bizClients',['dClients']],['bizReach','pyu_bizReach',[]],['bizGoal','pyu_bizGoal',[]],
+ ['ownerOnly','pyu_ownerOnly',[]],['wouldStop','pyu_wouldStop',[]],['decisionStyle','pyu_decisionStyle',[]],
+ ['hardDecision','pyu_hardDecision',[]],['mainConcern','pyu_mainConcern',['dConcern']],
+ ['clearArea','pyu_clearArea',[]],['bridgeQuestion','pyu_bridgeQuestion',[]],
+ ['caseInitial','pyu_caseInitial',[]],['mapEvidence','pyu_mapEvidence',[]],
+ ['newReading','pyu_newReading',['dReading']],['diagnosticQuestion','pyu_diagnosticQuestion',['dDiagnostic']]
+].forEach(x=>bind(...x));
+
+/* ---------- SINGLE SELECT COMPONENT ---------- */
+function setupChoice(containerId,key){
+  const wrap=document.getElementById(containerId); if(!wrap)return;
+  const saved=localStorage.getItem(key);
+  wrap.querySelectorAll('button[data-value]').forEach(btn=>{
+    if(btn.dataset.value===saved)btn.classList.add('active');
+    btn.addEventListener('click',()=>{
+      wrap.querySelectorAll('button[data-value]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');localStorage.setItem(key,btn.dataset.value);saveChip();
+      if(containerId==='caseVerdict')document.getElementById('caseVerdictFeedback').classList.add('show');
+    })
   })
 }
-autoSave(document.getElementById('initialAnswer'),'pyu3_initial','drawerInitial');
-autoSave(document.getElementById('finalAnswer'),'pyu3_final');
-autoSave(document.getElementById('nextQuestion'),'pyu3_question','drawerQuestion');
-autoSave(document.getElementById('evidenceNote'),'pyu3_evidence','drawerEvidence');
+setupChoice('businessType','pyu_businessType');
+setupChoice('workMode','pyu_workMode');
+setupChoice('caseVerdict','pyu_caseVerdict');
 
-document.querySelectorAll('.scale-item').forEach(block=>{
-  const key='pyu3_'+block.dataset.scale;
-  const saved=localStorage.getItem(key);
-  block.querySelectorAll('button').forEach(btn=>{
-    if(saved===btn.dataset.v)btn.classList.add('active');
-    btn.addEventListener('click',()=>{
-      block.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');localStorage.setItem(key,btn.dataset.v)
-    })
+/* ---------- FLOW EDITOR ---------- */
+let flowSteps=[];
+try{flowSteps=JSON.parse(localStorage.getItem('pyu_flow')||'[]')}catch(e){}
+if(!flowSteps.length)flowSteps=[
+  'El cliente llega o consulta',
+  'Se informa / cotiza / agenda',
+  'Se prepara o realiza el producto o servicio',
+  'Se cobra o registra el pago',
+  'Se cierra o hace seguimiento'
+];
+function saveFlow(){localStorage.setItem('pyu_flow',JSON.stringify(flowSteps));renderFlow();saveChip()}
+function renderFlow(){
+  const wrap=document.getElementById('flowList');wrap.innerHTML='';
+  flowSteps.forEach((txt,i)=>{
+    const row=document.createElement('div');row.className='flow-card';
+    row.innerHTML=`<div class="flow-index">${String(i+1).padStart(2,'0')}</div>
+      <input value="${escapeHtml(txt)}" aria-label="Paso ${i+1}">
+      <div class="flow-actions">
+        <button title="Subir" ${i===0?'disabled':''}>↑</button>
+        <button title="Bajar" ${i===flowSteps.length-1?'disabled':''}>↓</button>
+        <button title="Eliminar">×</button>
+      </div>`;
+    const input=row.querySelector('input');
+    input.addEventListener('input',()=>{flowSteps[i]=input.value;localStorage.setItem('pyu_flow',JSON.stringify(flowSteps));updateDrawer();saveChip()});
+    const [up,down,del]=row.querySelectorAll('.flow-actions button');
+    up.addEventListener('click',()=>{if(i>0){[flowSteps[i-1],flowSteps[i]]=[flowSteps[i],flowSteps[i-1]];saveFlow()}});
+    down.addEventListener('click',()=>{if(i<flowSteps.length-1){[flowSteps[i+1],flowSteps[i]]=[flowSteps[i],flowSteps[i+1]];saveFlow()}});
+    del.addEventListener('click',()=>{if(flowSteps.length>1){flowSteps.splice(i,1);saveFlow()}});
+    wrap.appendChild(row)
+  });
+  updateDrawer()
+}
+function addFlowStep(){flowSteps.push('Nuevo paso');saveFlow()}
+function escapeHtml(s){return String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
+renderFlow();
+
+/* ---------- TAG BUCKETS ---------- */
+const buckets={people:[],resources:[],providers:[],channels:[]};
+['people','resources','providers','channels'].forEach(k=>{
+  try{buckets[k]=JSON.parse(localStorage.getItem('pyu_tags_'+k)||'[]')}catch(e){}
+});
+function renderTags(kind){
+  const wrap=document.getElementById(kind+'Tags');wrap.innerHTML='';
+  if(!buckets[kind].length){wrap.innerHTML='<span class="empty">Aún no has agregado elementos.</span>';return}
+  buckets[kind].forEach((txt,i)=>{
+    const t=document.createElement('span');t.className='user-tag';t.innerHTML=`${escapeHtml(txt)} <button title="Quitar">×</button>`;
+    t.querySelector('button').addEventListener('click',()=>{buckets[kind].splice(i,1);localStorage.setItem('pyu_tags_'+kind,JSON.stringify(buckets[kind]));renderTags(kind);updateDrawer();saveChip()});
+    wrap.appendChild(t)
+  })
+}
+function addTag(kind){
+  const ids={people:'addPeople',resources:'addResources',providers:'addProviders',channels:'addChannels'};
+  const input=document.getElementById(ids[kind]);const val=input.value.trim();if(!val)return;
+  buckets[kind].push(val);input.value='';localStorage.setItem('pyu_tags_'+kind,JSON.stringify(buckets[kind]));renderTags(kind);updateDrawer();saveChip()
+}
+Object.keys(buckets).forEach(renderTags);
+
+/* ---------- INFO MATRIX ---------- */
+const infoItems=['Ventas / ingresos','Gastos','Cobros pendientes','Clientes','Agenda / reservas','Inventario / stock','Compras a proveedores','Horas o tiempos de trabajo'];
+const infoBody=document.getElementById('infoRows');
+infoItems.forEach((item,i)=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><strong>${item}</strong></td>
+  <td><select data-info="reg-${i}"><option value="">Selecciona</option><option>Sí</option><option>A veces</option><option>No</option></select></td>
+  <td><select data-info="where-${i}"><option value="">Selecciona</option><option>Memoria</option><option>Papel / cuaderno</option><option>WhatsApp / correo</option><option>Planilla</option><option>Software / sistema</option><option>Otro</option></select></td>`;
+  infoBody.appendChild(tr);
+  tr.querySelectorAll('select').forEach(sel=>{
+    const key='pyu_info_'+sel.dataset.info;sel.value=localStorage.getItem(key)||'';
+    sel.addEventListener('change',()=>{localStorage.setItem(key,sel.value);saveChip();updateDrawer()})
   })
 });
 
-const nodeData={};
-document.querySelectorAll('.node[data-node]').forEach(btn=>{
-  nodeData[btn.dataset.node]={desc:btn.dataset.desc,q:btn.dataset.q};
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.node[data-node]').forEach(x=>x.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('detailPanel').innerHTML=
-      `<div class="tag">Dimensión seleccionada</div><h3>${btn.dataset.node}</h3><p>${btn.dataset.desc}</p>
-       <div class="detail-list"><div><strong>Pregunta guía</strong><br>${btn.dataset.q}</div><div>Piensa en un ejemplo de tu negocio donde esta dimensión aparezca con claridad.</div></div>`
-  })
-});
+/* ---------- SNAPSHOT ---------- */
+function short(v,fb,max=62){const t=(v||'').trim();if(!t)return fb;return t.length>max?t.slice(0,max-1)+'…':t}
+function infoCount(){return [...document.querySelectorAll('[data-info^="reg-"]')].filter(x=>x.value).length}
+function ecoCount(){return Object.values(buckets).reduce((a,b)=>a+b.length,0)}
+function syncSnapshot(){
+  document.getElementById('snapName').textContent=short(document.getElementById('bizName').value,'Sin nombre aún',40);
+  document.getElementById('snapOffer').textContent=short(document.getElementById('bizOffer').value,'Oferta pendiente',85);
+  document.getElementById('snapClients').textContent=short(document.getElementById('bizClients').value,'Por completar',55);
+  document.getElementById('snapFlow').textContent=`${flowSteps.filter(x=>x.trim()).length} pasos descritos`;
+  document.getElementById('snapEco').textContent=`${ecoCount()} elementos`;
+  document.getElementById('snapInfo').textContent=`${infoCount()} registros descritos`;
+  document.getElementById('snapDecision').textContent=document.getElementById('decisionStyle').value||'Por completar';
+}
 
-document.querySelectorAll('.case-tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.case-tab').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('.case-step').forEach(x=>x.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelector(`.case-step[data-case="${btn.dataset.tab}"]`).classList.add('active')
-  })
-});
-function showCaseFeedback(n){document.getElementById('cf'+n).classList.add('show')}
+/* ---------- MODULE 0 COMPLETE ---------- */
+function completeModule0(){
+  localStorage.setItem('pyu_mod0_complete','1');
+  document.getElementById('mod0State').textContent='✓';document.getElementById('mod0Btn').classList.add('done');
+  updateProgress();updateDrawer();toast('Módulo 0 completado. Tu fotografía quedó guardada en Mi negocio.');
+  setTimeout(()=>openModule(1),700)
+}
 
-const symptomContent={
-  sales:["“Necesito vender más”","Es la necesidad expresada inicialmente.","¿Ventas, margen o costos?","¿La baja rentabilidad se explica por pocas ventas, precio, costos o mezcla de productos?","Ventas, costos y márgenes","Necesitamos revisar datos antes de elegir una intervención.","Todavía no lo sabemos","El diagnóstico aparece después de analizar la evidencia, no antes."],
-  people:["“Necesito contratar gente”","Parece faltar capacidad de trabajo.","¿Falta personal o el proceso está mal organizado?","¿Dónde se producen atrasos, sobrecarga o duplicaciones?","Carga, tiempos, roles y procesos","La evidencia permite distinguir dotación de organización.","Todavía no lo sabemos","Puede requerir contratación, redistribución o rediseño del proceso."],
-  ads:["“Necesito publicidad”","Se percibe falta de clientes o visibilidad.","¿Falta alcance, conversión, propuesta o seguimiento?","¿Dónde se pierden realmente los potenciales clientes?","Origen de clientes, tasa de conversión y seguimiento","Necesitamos entender el recorrido comercial.","Todavía no lo sabemos","La publicidad es solo una de varias intervenciones posibles."],
-  software:["“Necesito un software”","Se percibe desorden o lentitud.","¿El problema es tecnológico o del proceso?","¿Qué tarea falla, se duplica o consume tiempo?","Flujo del proceso, errores y tiempos","Primero se ordena qué debe ocurrir.","Todavía no lo sabemos","Un software puede automatizar un mal proceso si se compra demasiado pronto."]
+/* ---------- DISCOVERY ---------- */
+const selectedDims=new Set(JSON.parse(localStorage.getItem('pyu_discovered')||'[]'));
+function renderDiscovered(){
+  const wrap=document.getElementById('discoveredList');
+  document.querySelectorAll('.clue').forEach(c=>c.classList.toggle('active',selectedDims.has(c.dataset.dim)));
+  if(!selectedDims.size)wrap.innerHTML='<span class="empty">Selecciona al menos una pista.</span>';
+  else wrap.innerHTML=[...selectedDims].map((d,i)=>`<div class="discovered-item"><b>${i+1}</b><span>${d}</span></div>`).join('');
+  document.getElementById('discoveryCount').textContent=selectedDims.size;
+}
+document.querySelectorAll('.clue').forEach(btn=>btn.addEventListener('click',()=>{
+  const d=btn.dataset.dim;selectedDims.has(d)?selectedDims.delete(d):selectedDims.add(d);
+  localStorage.setItem('pyu_discovered',JSON.stringify([...selectedDims]));renderDiscovered();saveChip()
+}));
+function revealModel(){if(selectedDims.size<2){toast('Selecciona al menos dos pistas para comparar dimensiones.');return}currentIndex=2;render()}
+renderDiscovered();
+
+/* ---------- DIMENSION MODEL ---------- */
+const dimensionInfo={
+ 'Dirección':['Objetivos, prioridades y decisiones sobre hacia dónde llevar el negocio.','¿Sabemos hacia dónde queremos llevar el negocio y qué priorizar?'],
+ 'Personas':['Roles, responsabilidades, capacidades, coordinación y carga de trabajo.','¿Está claro quién hace qué y qué capacidades necesitamos?'],
+ 'Procesos':['Secuencias de trabajo, rutinas, estándares, tiempos y puntos de control.','¿Tenemos una forma suficientemente clara de hacer las cosas?'],
+ 'Recursos y tecnología':['Equipamiento, herramientas, sistemas y soporte tecnológico.','¿Nuestros recursos y herramientas ayudan realmente al trabajo?'],
+ 'Proveedores y alianzas':['Compras, abastecimiento, acuerdos y relaciones con terceros.','¿Dependemos de terceros de una manera conveniente y controlada?'],
+ 'Clientes y resultados':['Clientes, propuesta de valor, ventas, márgenes y resultados.','¿Sabemos para quién generamos valor y qué resultados estamos obteniendo?'],
+ 'Información':['Registros, datos, indicadores y acceso a información para decidir.','¿Tenemos información suficiente y confiable para tomar decisiones?'],
+ 'Control y mejora':['Seguimiento, evaluación, correcciones y aprendizaje continuo.','¿Revisamos lo que ocurre y ajustamos cuando algo no funciona?']
 };
-document.querySelectorAll('.symptom').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.symptom').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
-    const d=symptomContent[btn.dataset.s];
-    ['symA','symAP','symB','symBP','symC','symCP','symD','symDP'].forEach((id,i)=>document.getElementById(id).textContent=d[i])
-  })
-});
+document.querySelectorAll('.dimension-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.dimension-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const [desc,q]=dimensionInfo[btn.dataset.dimension];
+  document.getElementById('modelDetail').innerHTML=`<div class="eyebrow">Dimensión</div><h3>${btn.dataset.dimension}</h3><p>${desc}</p><div class="question-box"><strong>Pregunta guía</strong><br>${q}</div>`
+}));
 
-const dimensions=["Dirección","Clientes y resultados","Personas","Procesos","Información","Recursos y tecnología","Proveedores y alianzas","Control y mejora"];
-let selectedDimension="";
-const states={};
-const dimHolder=document.getElementById('dimensionCards');
+/* ---------- SYMPTOM LAB ---------- */
+const scenarios={
+ sales:['“Necesito vender más”','Es la necesidad expresada inicialmente.','¿Ventas, margen o costos?','¿La baja rentabilidad se explica por pocas ventas, precio, costos o mezcla de productos?','Ventas, costos y márgenes','Necesitamos revisar datos antes de elegir una intervención.','Todavía no lo sabemos','El diagnóstico aparece después de analizar la evidencia, no antes.'],
+ people:['“Necesito contratar gente”','Se percibe falta de capacidad para responder al trabajo.','¿Falta personal o el proceso está mal organizado?','¿Dónde aparecen atrasos, sobrecarga, esperas o duplicaciones?','Carga, tiempos, roles y procesos','La evidencia permite distinguir dotación de organización.','Todavía no lo sabemos','Puede requerir contratar, redistribuir o rediseñar procesos.'],
+ ads:['“Necesito publicidad”','Se percibe falta de clientes o visibilidad.','¿Falta alcance, conversión, propuesta o seguimiento?','¿Dónde se pierden realmente los potenciales clientes?','Origen de clientes, conversión y seguimiento','Necesitamos comprender el recorrido comercial.','Todavía no lo sabemos','La publicidad es solo una de varias intervenciones posibles.'],
+ software:['“Necesito un software”','Se percibe desorden, lentitud o dificultad para controlar.','¿El problema es tecnológico o del proceso?','¿Qué tarea falla, se duplica o consume demasiado tiempo?','Flujo del proceso, errores y tiempos','Primero necesitamos comprender qué debe ocurrir.','Todavía no lo sabemos','Un software puede automatizar un proceso mal diseñado si se compra demasiado pronto.']
+};
+document.querySelectorAll('.scenario-tab').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.scenario-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const d=scenarios[btn.dataset.scenario],ids=['labA','labAP','labB','labBP','labC','labCP','labD','labDP'];
+  ids.forEach((id,i)=>document.getElementById(id).textContent=d[i])
+}));
 
-dimensions.forEach((d,i)=>{
-  const state=localStorage.getItem('pyu3_dim_'+i)||'';
-  states[i]=state;
-  const card=document.createElement('div');card.className='dcard';card.dataset.i=i;
-  card.innerHTML=`<div><strong>${d}</strong><span>${i===0?'Rumbo y prioridades':i===1?'Clientes, ventas y resultados':i===2?'Roles y coordinación':i===3?'Cómo se hace el trabajo':i===4?'Datos para decidir':i===5?'Herramientas y recursos':i===6?'Compras y relaciones externas':'Seguimiento y mejora'}</span></div>
-  <div class="tri"><button data-val="1">1</button><button data-val="2">2</button><button data-val="3">3</button></div>`;
-  card.addEventListener('click',e=>{
-    selectedDimension=d;
-    document.getElementById('selectedDim').textContent=d;
-    document.getElementById('selectedDimHelp').textContent='Escribe qué evidencia tienes hoy sobre esta dimensión.';
-  });
+/* ---------- MANAGEMENT MAP ---------- */
+const mapDims=['Dirección','Clientes y resultados','Personas','Procesos','Información','Recursos y tecnología','Proveedores y alianzas','Control y mejora'];
+const mapStates={};let selectedMapDim='';
+const mapWrap=document.getElementById('mapCards');
+mapDims.forEach((d,i)=>{
+  const saved=localStorage.getItem('pyu_map_'+i)||'';mapStates[i]=saved;
+  const card=document.createElement('div');card.className='map-card';
+  card.innerHTML=`<div><strong>${d}</strong><span>${dimensionInfo[d][1]}</span></div>
+  <div class="tri"><button data-v="1">1</button><button data-v="2">2</button><button data-v="3">3</button></div>`;
+  card.addEventListener('click',()=>{selectedMapDim=d;document.getElementById('mapSelected').textContent=d;document.getElementById('mapHelp').textContent=dimensionInfo[d][1]});
   card.querySelectorAll('.tri button').forEach(b=>{
-    if(state===b.dataset.val)b.classList.add('active');
+    if(b.dataset.v===saved)b.classList.add('active');
     b.addEventListener('click',e=>{
-      e.stopPropagation();
-      card.querySelectorAll('.tri button').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');states[i]=b.dataset.val;localStorage.setItem('pyu3_dim_'+i,b.dataset.val);
-      selectedDimension=d;document.getElementById('selectedDim').textContent=d;
-      updateMapSummary();
+      e.stopPropagation();card.querySelectorAll('.tri button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+      mapStates[i]=b.dataset.v;localStorage.setItem('pyu_map_'+i,b.dataset.v);
+      selectedMapDim=d;document.getElementById('mapSelected').textContent=d;document.getElementById('mapHelp').textContent=dimensionInfo[d][1];
+      updateMapSummary();saveChip()
     })
   });
-  dimHolder.appendChild(card)
+  mapWrap.appendChild(card)
 });
 function updateMapSummary(){
-  const vals=Object.values(states).filter(Boolean), count=vals.length;
-  const review=vals.filter(v=>v==='3').length;
-  document.getElementById('drawerMap').textContent=`${count} de 8 dimensiones marcadas`;
-  document.getElementById('mapSummary').innerHTML=
-    `<h3>Tu mapa</h3>
-     <div class="output-item"><div class="output-icon">${count}</div><div><strong>Dimensiones marcadas</strong><span>${count<4?'Completa al menos cuatro para visualizar patrones.':'Ya comienza a aparecer un patrón.'}</span></div></div>
-     <div class="output-item"><div class="output-icon">${review}</div><div><strong>Necesitan revisión</strong><span>${review?'Serán buenas candidatas para el diagnóstico.':'Todavía no has marcado áreas críticas.'}</span></div></div>`;
+  const vals=Object.values(mapStates).filter(Boolean),review=vals.filter(v=>v==='3').length;
+  document.getElementById('dMap').textContent=`${vals.length} de 8 dimensiones marcadas`;
+  document.getElementById('mapSummary').innerHTML=`<h3>Tu mapa</h3>
+  <div class="output-item"><div class="output-icon">${vals.length}</div><div><strong>Dimensiones marcadas</strong><span>${vals.length<4?'Completa varias para ver patrones.':'Ya aparece una primera lectura.'}</span></div></div>
+  <div class="output-item"><div class="output-icon">${review}</div><div><strong>Necesitan revisión</strong><span>${review?'Buenas candidatas para el diagnóstico.':'Todavía no has marcado áreas críticas.'}</span></div></div>`;
+  updateDrawer()
 }
-updateMapSummary();
-function saveEvidence(){
-  const txt=document.getElementById('evidenceNote').value.trim();
-  if(!selectedDimension){toast('Primero selecciona una dimensión.');return}
+function saveMapEvidence(){
+  const txt=document.getElementById('mapEvidence').value.trim();
+  if(!selectedMapDim){toast('Primero selecciona una dimensión.');return}
   if(!txt){toast('Escribe una evidencia breve antes de guardar.');return}
-  localStorage.setItem('pyu3_evidence_dim',selectedDimension);
-  document.getElementById('drawerEvidence').textContent=selectedDimension+': '+txt;
-  toast('Evidencia guardada en tu expediente.')
+  localStorage.setItem('pyu_map_evidence_'+selectedMapDim,txt);toast('Evidencia guardada en tu mapa.')
 }
-
-const answers={};
-document.querySelectorAll('.q').forEach((q,qi)=>{
-  const correct=Number(q.dataset.correct);
-  q.querySelectorAll('.qopt').forEach((btn,bi)=>{
-    btn.addEventListener('click',()=>{
-      q.querySelectorAll('.qopt').forEach(x=>x.classList.remove('correct','wrong'));
-      answers[qi]=bi;
-      if(bi===correct)btn.classList.add('correct'); else btn.classList.add('wrong');
-      const score=Object.entries(answers).filter(([k,v])=>Number(v)===Number(document.querySelectorAll('.q')[Number(k)].dataset.correct)).length;
-      document.getElementById('score').textContent=score+'/3';
-      document.getElementById('scoreMsg').textContent=Object.keys(answers).length<3?'Continúa con las situaciones restantes.':score===3?'El criterio está bien instalado: primero comprender, luego intervenir.': 'Revisa las respuestas marcadas en rojo y vuelve a intentarlo.'
-    })
-  })
-});
-
-function syncClose(){
-  const ini=document.getElementById('initialAnswer').value.trim();
-  document.getElementById('initialMirror').textContent=ini||'Todavía no has escrito tu definición inicial.'
-}
-function completeModule(){
-  localStorage.setItem('pyu3_mod1_complete','1');
-  document.getElementById('courseBar').style.width='22%';
-  document.getElementById('coursePct').textContent='22%';
-  toast('Módulo 1 completado. Evidencias guardadas en Mi negocio.')
-}
-
-render();
 updateMapSummary();
+
+/* ---------- REINTERPRETATION ---------- */
+function syncReinterpretation(){
+  document.getElementById('concernMirror').textContent=document.getElementById('mainConcern').value.trim()||'Aún no has definido una preocupación inicial.'
+}
+function completeModule1(){
+  localStorage.setItem('pyu_mod1_complete','1');
+  document.getElementById('mod1State').textContent='✓';document.getElementById('mod1Btn').classList.add('done');
+  updateProgress();updateDrawer();toast('Módulo 1 completado. Tu nueva lectura quedó guardada en Mi negocio.')
+}
+
+/* ---------- DRAWER + PROGRESS ---------- */
+function updateDrawer(){
+  document.getElementById('dName').textContent=document.getElementById('bizName').value.trim()||'Pendiente';
+  document.getElementById('dOffer').textContent=short(document.getElementById('bizOffer').value,'Pendiente',80);
+  document.getElementById('dClients').textContent=short(document.getElementById('bizClients').value,'Pendiente',70);
+  document.getElementById('dFlow').textContent=`${flowSteps.filter(x=>x.trim()).length} pasos descritos`;
+  document.getElementById('dEco').textContent=`${ecoCount()} elementos agregados`;
+  document.getElementById('dConcern').textContent=short(document.getElementById('mainConcern').value,'Pendiente',75);
+  document.getElementById('dReading').textContent=short(document.getElementById('newReading').value,'Pendiente',75);
+  document.getElementById('dDiagnostic').textContent=short(document.getElementById('diagnosticQuestion').value,'Pendiente',75);
+}
+function updateProgress(){
+  const m0=localStorage.getItem('pyu_mod0_complete')==='1',m1=localStorage.getItem('pyu_mod1_complete')==='1';
+  const pct=(m0?11:0)+(m1?11:0);
+  document.getElementById('coursePct').textContent=pct+'%';document.getElementById('courseBar').style.width=pct+'%';
+  if(m0){document.getElementById('mod0State').textContent='✓';document.getElementById('mod0Btn').classList.add('done')}
+  if(m1){document.getElementById('mod1State').textContent='✓';document.getElementById('mod1Btn').classList.add('done')}
+}
+
+/* ---------- THEMES + FONT ---------- */
+const themes={
+ aurora:{accent:'#b8892f',accent2:'#e3c66f',dark:'#70531d',soft:'#f5ecd6',a:'#dce5f2',b:'#f0dfba',c:'#ddd5ee'},
+ ocean:{accent:'#4f86ad',accent2:'#9bc7df',dark:'#315c78',soft:'#e6f1f7',a:'#d7eaf4',b:'#c6dde9',c:'#e8edf6'},
+ forest:{accent:'#6b8d68',accent2:'#a9c3a4',dark:'#466244',soft:'#eaf2e7',a:'#dce8de',b:'#c8dacb',c:'#ece9da'},
+ lavender:{accent:'#7b69b8',accent2:'#b9a9e0',dark:'#584793',soft:'#eeeaf8',a:'#e6e0f2',b:'#d9d0ee',c:'#f0e8f5'},
+ copper:{accent:'#b36f4b',accent2:'#d7a181',dark:'#7d4b32',soft:'#f4e8df',a:'#f0ded2',b:'#dfb69c',c:'#f2e7dc'},
+ graphite:{accent:'#6d7380',accent2:'#afb4bc',dark:'#484d57',soft:'#eceef1',a:'#d7dae0',b:'#c2c6cd',c:'#e7e8eb'}
+};
+const intensities=[
+ {label:'Suave',white:.58,dark:0,panel:.87,shadow:.11,glow:'7%',tint:'5%'},
+ {label:'Media',white:.22,dark:0,panel:.80,shadow:.17,glow:'16%',tint:'11%'},
+ {label:'Intensa',white:0,dark:.08,panel:.70,shadow:.24,glow:'31%',tint:'19%'}
+];
+const fontSizes=[{label:'Mediano',scale:1.05},{label:'Grande',scale:1.16},{label:'Muy grande',scale:1.28}];
+function hexRgb(h){h=h.replace('#','');return{r:parseInt(h.slice(0,2),16),g:parseInt(h.slice(2,4),16),b:parseInt(h.slice(4,6),16)}}
+function rgbHex(o){const f=n=>Math.max(0,Math.min(255,Math.round(n))).toString(16).padStart(2,'0');return '#'+f(o.r)+f(o.g)+f(o.b)}
+function mix(a,b,t){const x=hexRgb(a),y=hexRgb(b);return rgbHex({r:x.r+(y.r-x.r)*t,g:x.g+(y.g-x.g)*t,b:x.b+(y.b-x.b)*t})}
+function tone(hex,p){if(p.white)return mix(hex,'#ffffff',p.white);if(p.dark)return mix(hex,'#151820',p.dark);return hex}
+function applyTheme(name,idx){
+  const t=themes[name]||themes.aurora,p=intensities[idx]||intensities[1],r=document.documentElement;
+  r.style.setProperty('--accent',tone(t.accent,p));r.style.setProperty('--accent-2',tone(t.accent2,p));r.style.setProperty('--accent-dark',tone(t.dark,p));r.style.setProperty('--accent-soft',tone(t.soft,p));
+  r.style.setProperty('--bg-a',tone(t.a,p));r.style.setProperty('--bg-b',tone(t.b,p));r.style.setProperty('--bg-c',tone(t.c,p));
+  r.style.setProperty('--panel-alpha',p.panel);r.style.setProperty('--shadow-alpha',p.shadow);r.style.setProperty('--glow-alpha',p.glow);r.style.setProperty('--surface-tint',p.tint);
+  document.getElementById('intensityLabel').textContent=p.label;
+  document.querySelectorAll('.theme-card').forEach(c=>c.classList.toggle('active',c.dataset.theme===name));
+  localStorage.setItem('pyu_theme',name);localStorage.setItem('pyu_intensity',idx)
+}
+document.querySelectorAll('.theme-card').forEach(c=>c.addEventListener('click',()=>applyTheme(c.dataset.theme,Number(document.getElementById('intensityRange').value))));
+document.getElementById('intensityRange').addEventListener('input',e=>applyTheme(localStorage.getItem('pyu_theme')||'aurora',Number(e.target.value)));
+document.getElementById('fontRange').addEventListener('input',e=>{
+  const f=fontSizes[Number(e.target.value)];document.documentElement.style.setProperty('--font-scale',f.scale);document.getElementById('fontLabel').textContent=f.label;localStorage.setItem('pyu_font',e.target.value)
+});
+const ti=Number(localStorage.getItem('pyu_intensity')||1),tn=localStorage.getItem('pyu_theme')||'aurora',fi=Number(localStorage.getItem('pyu_font')||1);
+document.getElementById('intensityRange').value=ti;document.getElementById('fontRange').value=fi;applyTheme(tn,ti);
+document.documentElement.style.setProperty('--font-scale',fontSizes[fi].scale);document.getElementById('fontLabel').textContent=fontSizes[fi].label;
+
+/* ---------- INIT ---------- */
+updateDrawer();updateProgress();render();
 </script>
 </body>
 </html>
