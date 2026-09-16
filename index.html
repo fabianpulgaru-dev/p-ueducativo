@@ -1781,6 +1781,37 @@ button[disabled]{
   .welcome-start-btn{width:100%}
 }
 
+
+/* V4.4 · CTA visible en la entrada del Módulo 1 */
+.module-entry-cta{
+  margin-top:10px;
+  padding:10px 11px;
+  border-radius:11px;
+  border:1px solid color-mix(in srgb,var(--phase-color) 18%,white);
+  background:linear-gradient(145deg,var(--phase-soft),#fff);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.module-entry-cta span{
+  display:block;
+  font-size:calc(.49rem * var(--font-scale));
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--phase-color);
+  font-weight:900;
+}
+.module-entry-cta strong{
+  display:block;
+  margin-top:2px;
+  font-size:calc(.58rem * var(--font-scale));
+}
+@media(max-width:760px){
+  .module-entry-cta{align-items:stretch;flex-direction:column}
+  .module-entry-cta .btn{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -2500,6 +2531,13 @@ button[disabled]{
 
             <button class="btn primary" onclick="revealCaseNeed()">¿Qué información falta? →</button>
             <div class="feedback" id="caseVerdictFeedback"></div>
+            <div class="module-entry-cta">
+              <div>
+                <span>Cuando estés listo/a</span>
+                <strong>Continúa para revisar nueva evidencia del caso.</strong>
+              </div>
+              <button class="btn primary" type="button" onclick="move(1)">Continuar con el caso →</button>
+            </div>
           </section>
         </div>
       </div>
@@ -3147,6 +3185,11 @@ function render(){
   document.getElementById('mod1Btn').classList.toggle('active',currentModule===1);
 
   document.getElementById('prevBtn').style.visibility=currentIndex===0?'hidden':'visible';
+  const globalNext=document.getElementById('nextBtn');
+  if(globalNext){
+    globalNext.style.visibility='visible';
+    globalNext.style.display='';
+  }
   const last=currentIndex===screens.length-1;
   const currentTitle=screens[currentIndex].dataset.title;
   const isCapsule=currentTitle==='Describir antes de diagnosticar' || currentTitle==='Cápsula: el negocio como sistema';
@@ -3170,7 +3213,16 @@ function move(dir){
   }
   currentIndex=Math.max(0,Math.min(screens.length-1,currentIndex+dir));render()
 }
-function openModule(m){currentModule=m;currentIndex=0;render()}
+function openModule(m){
+  currentModule=m;
+  currentIndex=0;
+  render();
+  const next=document.getElementById('nextBtn');
+  if(next){
+    next.style.visibility='visible';
+    next.style.display='';
+  }
+}
 
 /* ---------- UI ---------- */
 
